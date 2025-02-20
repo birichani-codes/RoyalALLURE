@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoyalALLURE Kenya</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        @font-face {
+            font-family: 'UniversLTPro';
+            src: url('fonts/UniversLTPro-Regular.woff2') format('woff2'),
+                 url('fonts/UniversLTPro-Regular.woff') format('woff'),
+                 url('fonts/UniversLTPro-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'UniversLTPro', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: rgb(51, 51, 51);
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #222;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-actions input {
+            padding: 6px;
+            border: none;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        .nav-actions i {
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        header {
+            background: url('images/rolex.webp') no-repeat center center/cover;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            color: white;
+            position: relative;
+            margin-top: 60px;
+            padding-left: 10%;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+            padding-top: 400px;
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            
+        }
+
+        .shop-now {
+            padding: 12px 24px;
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease, color 0.3s ease;
+            display: inline-block;
+        }
+
+        .shop-now:hover {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="logo"><i class="fas fa-home"></i> ROYALALLURE KENYA</div>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">WATCHES</a></li>
+                <li><a href="#">BOUTIQUES</a></li>
+                <li><a href="#">ABOUT US</a></li>
+            </ul>
+
+           <!-- Search & Icons -->
+<div class="nav-actions" style="display: flex; align-items: center; gap: 15px;">
+    <div class="search-box" style="display: flex; align-items: center; background: white; padding: 6px 10px; border-radius: 5px;">
+        <i class="fas fa-search" style="color: #555; margin-right: 8px;"></i> <!-- Font Awesome Search Icon -->
+        <input type="text" placeholder="Search" style="border: none; outline: none; font-size: 14px;">
+    </div>
+    <span style="font-size: 14px; color: gold; font-family: 'UniversLTPro', sans-serif;">🇰🇪 EN | KES</span>
+    <i class="fas fa-user" style="font-size: 18px; color: gold;"></i>
+</div>
+
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header>
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Discover Excellence</h1>
+            <p>Explore Our Handpicked Selection Today!</p>
+            <a href="#" class="shop-now">SHOP NOW</a>
+        </div>
+    </header>
+
+
+  
+<!-- Reliable Expert Section -->
+<section style="background-color: #2E423A; padding: 20px; animation: fadeIn 1.5s ease-in-out;">
+    <div style="display: flex; justify-content: space-around; align-items: center; color: white; font-family: 'UniversLTPro', sans-serif; font-size: 14px; text-transform: uppercase;">
+
+        <!-- Certified Dealer -->
+        <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
+            <i class="fas fa-medal" style="font-size: 24px; color: #FFD700; transition: color 0.3s ease;"></i>
+            <span><strong>Certified Dealer</strong> <br> Trusted & Verified</span>
+        </div>
+
+        <!-- Fast & Free Shipping -->
+        <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
+            <i class="fas fa-truck" style="font-size: 24px; color: #4CAF50; transition: color 0.3s ease;"></i>
+            <span><strong>Fast & Free Shipping</strong> <br> Anywhere in Kenya</span>
+        </div>
+
+        <!-- Hassle-Free Returns -->
+        <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
+            <i class="fas fa-exchange-alt" style="font-size: 24px; color: #FF9800; transition: color 0.3s ease;"></i>
+            <span><strong>Hassle-Free Returns</strong> <br> 14-Day Policy</span>
+        </div>
+
+        <!-- Authentic Warranty -->
+        <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
+            <i class="fas fa-certificate" style="font-size: 24px; color: #03A9F4; transition: color 0.3s ease;"></i>
+            <span><strong>Authenticity Guaranteed</strong> <br> Official Manufacturer’s Warranty</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- Hover & Animation Effects -->
+<style>
+    section div:hover {
+        transform: scale(1.1);
+    }
+    section i:hover {
+        color: #fff;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Arrivals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        .latest-arrivals {
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .latest-arrivals h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .watch-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .watch-card {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .watch-card:hover {
+            transform: scale(1.05);
+        }
+
+        .watch-card img {
+            width: 200px;
+            transition: opacity 0.3s ease;
+        }
+
+        .watch-card .watch-info {
+            margin-top: 10px;
+        }
+
+        .watch-card h3 {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .watch-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Hidden button on hover */
+        .watch-card .hover-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            padding: 10px;
+        }
+
+        .watch-card:hover .hover-overlay {
+            opacity: 1;
+        }
+
+        .hover-overlay button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .hover-overlay button:hover {
+            background-color: #e68900;
+        }
+
+    </style>
+</head>
+<body>
+
+<section class="latest-arrivals">
+    <h2>LATEST ARRIVALS</h2>
+    <div class="watch-container">
+        
+        <!-- Watch 1 (with price) -->
+        <div class="watch-card">
+            <img src="images/watch2.jpeg" alt="Watch 1">
+            <div class="watch-info">
+                <h3>CERTINA</h3>
+                <p>DS Action</p>
+                <p>CHF 465.00</p>
+            </div>
+            <div class="hover-overlay">
+                <p>CHF 465.00</p>
+                <button>Shop Now</button>
+            </div>
+        </div>
+
+        <!-- Watch 2 (with price) -->
+        <div class="watch-card">
+            <img src="images/watch1.jfif" alt="Watch 2">
+            <div class="watch-info">
+                <h3>CERTINA</h3>
+                <p>DS Action</p>
+                <p>CHF 500.00</p>
+            </div>
+            <div class="hover-overlay">
+                <p>CHF 500.00</p>
+                <button>Shop Now</button>
+            </div>
+        </div>
+
+        <!-- Watch 3 (without price) -->
+        <div class="watch-card">
+            <img src="images/watch2.jpeg" alt="Watch 3">
+            <div class="watch-info">
+                <h3>CERTINA</h3>
+                <p>DS Action</p>
+                <p>Price on Request</p>
+            </div>
+            <div class="hover-overlay">
+                <p>Price on Request</p>
+                <button>Ask for Information</button>
+            </div>
+        </div>
+
+        <!-- Watch 4 (with price) -->
+        <div class="watch-card">
+            <img src="images/watch1.jfif" alt="Watch 4">
+            <div class="watch-info">
+                <h3>CERTINA</h3>
+                <p>DS Action</p>
+                <p>CHF 600.00</p>
+            </div>
+            <div class="hover-overlay">
+                <p>CHF 600.00</p>
+                <button>Shop Now</button>
+            </div>
+        </div>
+
+        <!-- Watch 5 (without price) -->
+        <div class="watch-card">
+            <img src="images/watch.jpg" alt="Watch 5">
+            <div class="watch-info">
+                <h3>CERTINA</h3>
+                <p>DS Action</p>
+                <p>Price on Request</p>
+            </div>
+            <div class="hover-overlay">
+                <p>Price on Request</p>
+                <button>Ask for Information</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
+
+<section id="watch-carousel" style="display: flex; align-items: center; max-width: 1000px; padding: 20px; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; margin: 20px auto;">
+    
+    <!-- Left Info Column -->
+    <div style="width: 40%; padding-right: 20px;">
+        <h2 style="font-size: 24px; margin: 0;">Longines</h2>
+        <p style="font-size: 14px; color: #666;">Since its founding in 1832, Longines offers robust diver's and pilot's watches, first-class chronographs and calendar watches, distinguished dress watches and refined ladies' watches.</p>
+        <button style="background: black; color: white; border: none; padding: 10px 15px; cursor: pointer; margin-top: 10px;">DISCOVER LONGINES</button>
+    </div>
+    
+    <!-- Carousel Column -->
+    <div style="width: 60%; display: flex; align-items: center; position: relative;">
+        <!-- Previous Button -->
+        <button id="prevBtn" style="background: none; border: none; font-size: 20px; cursor: pointer; padding: 10px; color: black;">&#10094;</button>
+        
+        <!-- Carousel Container -->
+        <div style="overflow: hidden; width: 510px;">
+            <div class="carousel-track" style="display: flex; transition: transform 0.3s ease-in-out;">
+                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+                    <img src="images/watch1.jfif" alt="Watch 1" style="width: 120px; height: auto;">
+                    <p style="margin: 5px 0;">Watchm. Trad. Master Coll.</p>
+                </div>
+                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+                    <img src="images/watch2.jpeg" alt="Watch 2" style="width: 120px; height: auto;">
+                    <p style="margin: 5px 0;">Avigation</p>
+                </div>
+                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+                    <img src="images/watch.jpg" alt="Watch 3" style="width: 120px; height: auto;">
+                    <p style="margin: 5px 0;">Dolce Vita</p>
+                </div>
+                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+                    <img src="images/watch1.jfif" alt="Watch 4" style="width: 120px; height: auto;">
+                    <p style="margin: 5px 0;">HydroConquest</p>
+                </div>
+                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+                    <img src="images/watch.jpg" alt="Watch 5" style="width: 120px; height: auto;">
+                    <p style="margin: 5px 0;">Spirit</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Next Button -->
+        <button id="nextBtn" style="background: none; border: none; font-size: 20px; cursor: pointer; padding: 10px; color: black;">&#10095;</button>
+    </div>
+    
+</section>
+
+<!-- Responsive Media Queries Scoped to #watch-carousel -->
+<style>
+  /* For tablets and below */
+  @media (max-width: 768px) {
+    #watch-carousel {
+      flex-direction: column;
+      text-align: center;
+    }
+    #watch-carousel > div:first-child {
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 20px;
+    }
+    #watch-carousel > div:nth-child(2) {
+      width: 100%;
+      justify-content: center;
+    }
+    #watch-carousel .carousel-track {
+      width: 100%;
+    }
+    #watch-carousel [style*="overflow: hidden"] {
+      width: 100%;
+    }
+  }
+  
+  /* For mobile devices */
+  @media (max-width: 480px) {
+    #watch-carousel h2 {
+      font-size: 20px;
+    }
+    #watch-carousel p {
+      font-size: 12px;
+    }
+    #watch-carousel .watch {
+      min-width: 120px;
+    }
+    #watch-carousel .watch img {
+      width: 100px;
+    }
+  }
+</style>
+
+<script>
+    const track = document.querySelector("#watch-carousel .carousel-track");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let index = 0;
+    const totalItems = document.querySelectorAll("#watch-carousel .watch").length;
+    const visibleItems = 3; // Number of watches shown at a time
+
+    prevBtn.addEventListener("click", () => {
+        if (index > 0) {
+            index--;
+            updateCarousel();
+        }
+    });
+
+    nextBtn.addEventListener("click", () => {
+        if (index < totalItems - visibleItems) {
+            index++;
+            updateCarousel();
+        }
+    });
+
+    function updateCarousel() {
+        const offset = -index * 170; // Each card's width (150px) + padding (20px)
+        track.style.transform = `translateX(${offset}px)`;
+    }
+</script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Replica</title>
+    <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif;">
+    <footer style="background-color: black; color: white; padding: 30px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
+            <div>
+                <h3>Contact</h3>
+                <p>Phone: +254 700 123 456</p>
+                <p>Email: service@watches-of-kenya.ke</p>
+                <p>Watches of Kenya Ltd</p>
+                <p>Moi Avenue 10-15</p>
+                <p>00100 Nairobi</p>
+                <p>Kenya</p>
+            </div>
+            <div>
+                <h3>Company</h3>
+                <p>Careers</p>
+                <p>About Us</p>
+                <p>FAQ</p>
+            </div>
+            <div>
+                <h3>Secure Payment</h3>
+                <i class="fab fa-cc-visa" style="font-size: 24px; margin-right: 10px;"></i>
+                <i class="fab fa-cc-mastercard" style="font-size: 24px;"></i>
+            </div>
+            <div>
+                <h3>Fast delivery</h3>
+                <i class="fas fa-shipping-fast" style="font-size: 24px;"></i>
+            </div>
+            <div>
+                <h3>International</h3>
+                <i class="fas fa-flag" style="font-size: 24px;"></i>
+            </div>
+            <div>
+                <h3>Follow us</h3>
+                <i class="fab fa-instagram" style="font-size: 24px; margin-right: 10px;"></i>
+                <i class="fab fa-linkedin" style="font-size: 24px;"></i>
+            </div>
+        </div>
+        <hr style="border: 0.5px solid white; margin: 20px 0;">
+        <div style="text-align: center;">
+            <p>Imprint | Terms and Conditions | Privacy Policy &copy; 2025 Watches of Kenya</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
