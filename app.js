@@ -14,6 +14,9 @@ app.get('/watches', (req, res) => {
 app.get('/about-us', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'about-us.html'));
 });
+app.get('/watch-details', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'watch-details.html'));
+});
 
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');

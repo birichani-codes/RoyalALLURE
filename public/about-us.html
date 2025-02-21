@@ -63,12 +63,60 @@
         }
 
         .nav-links li {
-            display: inline;
+            position: relative;
         }
 
         .nav-links a {
             text-decoration: none;
             color: white;
+            padding: 10px;
+            display: block;
+        }
+
+        /* Boutiques Dropdown */
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .dropdown a {
+            text-decoration: none;
+            color: black;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background-color: #f4f4f4;
+        }
+
+        .dropdown-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #ff6600;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Show dropdown on hover */
+        .nav-links li:hover .dropdown {
+            display: block;
         }
 
         .nav-actions {
@@ -102,14 +150,33 @@
             <ul class="nav-links">
                 <li><a href="/">HOME</a></li>
                 <li><a href="/watches">WATCHES</a></li>
-                <li><a href="#">BOUTIQUES</a></li>
+                
+                <!-- Boutiques Dropdown -->
+                <li>
+                    <a href="#">BOUTIQUES</a>
+                    <div class="dropdown">
+                        <a href="#">
+                            <div class="dropdown-icon">L</div>
+                            Lucerne
+                        </a>
+                        <a href="#">
+                            <div class="dropdown-icon">I</div>
+                            Interlaken
+                        </a>
+                        <a href="#">
+                            <div class="dropdown-icon">P</div>
+                            Palma de Mallorca
+                        </a>
+                    </div>
+                </li>
+
                 <li><a href="/about-us">ABOUT US</a></li>
             </ul>
 
             <!-- Search & Icons -->
-            <div class="nav-actions" style="display: flex; align-items: center; gap: 15px;">
+            <div class="nav-actions">
                 <div class="search-box" style="display: flex; align-items: center; background: white; padding: 6px 10px; border-radius: 5px;">
-                    <i class="fas fa-search" style="color: #555; margin-right: 8px;"></i> <!-- Font Awesome Search Icon -->
+                    <i class="fas fa-search" style="color: #555; margin-right: 8px;"></i>
                     <input type="text" placeholder="Search" style="border: none; outline: none; font-size: 14px;">
                 </div>
                 <span style="font-size: 14px; color: gold; font-family: 'UniversLTPro', sans-serif;">🇰🇪 EN | KES</span>
