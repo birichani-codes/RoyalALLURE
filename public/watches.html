@@ -1,0 +1,197 @@
+<section>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .filter-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-bottom: 2px solid #ddd;
+            text-align: center;
+        }
+
+        .filter-button {
+            background-color: #e0e0e0;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-align: center;
+        }
+
+        .filter-button:hover {
+            background-color: #d0d0d0;
+        }
+
+        .sorting-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .sorting-container select {
+            padding: 10px;
+            font-size: 14px;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 15px;
+            flex-wrap: wrap;
+        }
+
+        .pagination a, .pagination span {
+            padding: 8px 12px;
+            background-color: #e0e0e0;
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+        }
+
+        .pagination .active {
+            background-color: black;
+            color: white;
+        }
+
+        .watch-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background-color: #fff;
+            justify-items: center;
+        }
+
+        .watch-card {
+            position: relative;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .watch-card img {
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        .watch-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .watch-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            display: none;
+            text-align: center;
+        }
+
+        .watch-card:hover .watch-info {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .filter-section {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .filter-button {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .watch-section {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+
+            .watch-card {
+                width: 100%;
+                max-width: 180px;
+            }
+        }
+    </style>
+
+    <div class="filter-section">
+        <button class="filter-button">BRAND</button>
+        <button class="filter-button">MODEL</button>
+        <button class="filter-button">DIAMETER</button>
+        <button class="filter-button">FILTER BY PRICE</button>
+        <button class="filter-button">GENDER</button>
+        <button class="filter-button">FEATURES</button>
+        <button class="filter-button">BRACELET</button>
+        <button class="filter-button">MECHANISM</button>
+        <button class="filter-button">DIAL COLOUR</button>
+        <button class="filter-button">CASE</button>
+    </div>
+
+    <div class="sorting-container">
+        <select>
+            <option>Default sorting</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest Arrivals</option>
+        </select>
+    </div>
+
+    <div class="pagination">
+        <a href="#">&lt;</a>
+        <span class="active">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <span>...</span>
+        <a href="#">50</a>
+        <a href="#">&gt;</a>
+    </div>
+
+    <div class="watch-section">
+        <div class="watch-card">
+            <img src="images/watch.jpg" alt="Watch 1">
+            <div class="watch-info">Movado - CHF 995.00</div>
+        </div>
+        <div class="watch-card">
+            <img src="images/watch.jpg" alt="Watch 2">
+            <div class="watch-info">Tudor Black Bay - CHF 3'550.00</div>
+        </div>
+        <div class="watch-card">
+            <img src="images/watch2.jpeg" alt="Watch 3">
+            <div class="watch-info">Movado Amorosa - CHF 495.00</div>
+        </div>
+        <div class="watch-card">
+            <img src="images/watch.jpg" alt="Watch 1">
+            <div class="watch-info">Movado - CHF 995.00</div>
+        </div>
+        <div class="watch-card">
+            <img src="images/watch.jpg" alt="Watch 2">
+            <div class="watch-info">Tudor Black Bay - CHF 3'550.00</div>
+        </div>
+        <div class="watch-card">
+            <img src="images/watch2.jpeg" alt="Watch 3">
+            <div class="watch-info">Movado Amorosa - CHF 495.00</div>
+        </div>
+        <div class="watch-card">
+            <img src="images/watch1.jfif" alt="Watch 4">
+            <div class="watch-info">Movado SE Quartz - CHF 2'095.00</div>
+        </div>
+        <div class="watch-card">
+            <img src="images/rolex.webp" alt="Watch 5">
+            <div class="watch-info">Tudor Black Bay - CHF 3'550.00</div>
+        </div>
+    </div>
+</section>
