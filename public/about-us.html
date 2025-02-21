@@ -1,8 +1,133 @@
-<<section class="header-section">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoyalALLURE Kenya</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        @font-face {
+            font-family: 'UniversLTPro';
+            src: url('fonts/UniversLTPro-Regular.woff2') format('woff2'),
+                 url('fonts/UniversLTPro-Regular.woff') format('woff'),
+                 url('fonts/UniversLTPro-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'UniversLTPro', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: rgb(51, 51, 51);
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #222;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-actions input {
+            padding: 6px;
+            border: none;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        .nav-actions i {
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="logo"><i class="fas fa-home"></i> ROYALALLURE KENYA</div>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/watches">WATCHES</a></li>
+                <li><a href="#">BOUTIQUES</a></li>
+                <li><a href="/about-us">ABOUT US</a></li>
+            </ul>
+
+            <!-- Search & Icons -->
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 15px;">
+                <div class="search-box" style="display: flex; align-items: center; background: white; padding: 6px 10px; border-radius: 5px;">
+                    <i class="fas fa-search" style="color: #555; margin-right: 8px;"></i> <!-- Font Awesome Search Icon -->
+                    <input type="text" placeholder="Search" style="border: none; outline: none; font-size: 14px;">
+                </div>
+                <span style="font-size: 14px; color: gold; font-family: 'UniversLTPro', sans-serif;">🇰🇪 EN | KES</span>
+                <i class="fas fa-user" style="font-size: 18px; color: gold;"></i>
+            </div>
+        </div>
+    </nav>
+
+</body>
+</html>
+
+
+
+<section class="header-section">
     <style>
         .header-section {
             text-align: center;
-            padding: 60px 5%;
+            padding: 100px 5%;
             background-color: #fff;
         }
 
