@@ -31,7 +31,7 @@ app.get('/request-an-appointment', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'request-an-appointment.html'));
 });
 
-app.get('/contact', (req, res) => {
+app.get('/contact-us', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'contact-us.html'));
 });
 
