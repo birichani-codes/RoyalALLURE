@@ -389,190 +389,174 @@
   <!-- END OF COMPLIMENTARY GIFTS SECTION -->
   
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latest Arrivals</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            text-align: center;
-        }
-
-        .latest-arrivals {
-            max-width: 1200px;
-            margin: 50px auto;
-        }
-
-        .latest-arrivals h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .watch-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .watch-card {
-            position: relative;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .watch-card:hover {
-            transform: scale(1.05);
-        }
-
-        .watch-card img {
-            width: 200px;
-            transition: opacity 0.3s ease;
-        }
-
-        .watch-card .watch-info {
-            margin-top: 10px;
-        }
-
-        .watch-card h3 {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .watch-card p {
-            font-size: 14px;
-            color: #666;
-        }
-
-        /* Hidden button on hover */
-        .watch-card .hover-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            color: white;
-            padding: 10px;
-        }
-
-        .watch-card:hover .hover-overlay {
-            opacity: 1;
-        }
-
-        .hover-overlay button {
-            background-color: #ff9800;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 14px;
-            margin-top: 10px;
-            transition: background 0.3s ease;
-        }
-
-        .hover-overlay button:hover {
-            background-color: #e68900;
-        }
-
-    </style>
-</head>
-<body>
-
-    <section class="latest-arrivals">
-        <h2>LATEST ARRIVALS</h2>
-        <div class="watch-container">
-            
-            <!-- Watch 1 (with price) -->
-            <a href="/watch-details">
-                <div class="watch-card">
-                    <img src="images/watch2.jpeg" alt="Watch 1">
-                    <div class="watch-info">
-                        <h3>CERTINA</h3>
-                        <p>DS Action</p>
-                        <p>CHF 465.00</p>
-                    </div>
-                    <div class="hover-overlay">
-                        <p>CHF 465.00</p>
-                        <button>Shop Now</button>
-                    </div>
-                </div>
-            </a>
-    
-            <!-- Watch 2 (with price) -->
-            <a href="https://example.com/watch2">
-                <div class="watch-card">
-                    <img src="images/watch1.jfif" alt="Watch 2">
-                    <div class="watch-info">
-                        <h3>CERTINA</h3>
-                        <p>DS Action</p>
-                        <p>CHF 500.00</p>
-                    </div>
-                    <div class="hover-overlay">
-                        <p>CHF 500.00</p>
-                        <button>Shop Now</button>
-                    </div>
-                </div>
-            </a>
-    
-            <!-- Watch 3 (without price) -->
-            <a href="https://example.com/watch3">
-                <div class="watch-card">
-                    <img src="images/watch2.jpeg" alt="Watch 3">
-                    <div class="watch-info">
-                        <h3>CERTINA</h3>
-                        <p>DS Action</p>
-                        <p>Price on Request</p>
-                    </div>
-                    <div class="hover-overlay">
-                        <p>Price on Request</p>
-                        <button>Ask for Information</button>
-                    </div>
-                </div>
-            </a>
-    
-            <!-- Watch 4 (with price) -->
-            <a href="https://example.com/watch4">
-                <div class="watch-card">
-                    <img src="images/watch1.jfif" alt="Watch 4">
-                    <div class="watch-info">
-                        <h3>CERTINA</h3>
-                        <p>DS Action</p>
-                        <p>CHF 600.00</p>
-                    </div>
-                    <div class="hover-overlay">
-                        <p>CHF 600.00</p>
-                        <button>Shop Now</button>
-                    </div>
-                </div>
-            </a>
-    
-        
+<!-- START: WATCH CARDS SECTION SNIPPET -->
+<style>
+    .watch-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      margin: 0 auto;
+    }
+  
+    .heading-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  
+    .heading-container h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+  
+    .heading-container p {
+      font-size: 16px;
+      color: #555;
+    }
+  
+    .watch-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+    }
+  
+    .watch-card {
+      position: relative;
+      width: 250px;
+      height: 380px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+  
+    .watch-card:hover {
+      transform: translateY(-5px);
+    }
+  
+    .watch-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  
+    .wishlist-icon {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: gold;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
+    }
+  
+    .watch-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+  
+    .watch-card:hover .watch-info {
+      transform: translateY(0);
+    }
+  
+    .watch-info button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: none;
+      background: gold;
+      color: black;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+  
+    /* Responsive: on screens under 768px, each card becomes full width (or up to a max) */
+    @media (max-width: 768px) {
+      .watch-card {
+        width: 100% !important;
+        max-width: 400px;
+      }
+    }
+  </style>
+  
+  <section class="watch-section">
+    <!-- Heading and Subheading -->
+    <div class="heading-container" style="text-align: center; margin-bottom: 30px;">
+      <h2 style="font-size: 28px; margin-bottom: 10px; color: #333;">LATEST ARRIVALS</h2>
+      <p style="font-size: 16px; color: #555;">Explore our latest collection of luxury watches</p>
+    </div>
+  
+    <!-- Watch Cards Container -->
+    <div class="watch-container">
+      <!-- Card 1 -->
+      <div class="watch-card">
+        <a href="wishlist.html" class="wishlist-icon" style="text-decoration: none; color: inherit;">
+          <i class="fas fa-heart"></i>
+        </a>
+        <img src="images/watch.jpg" alt="Watch 1">
+        <div class="watch-info">
+          Tudor Black Bay - KES 500,000
+          <button>Shop Now</button>
         </div>
-    </section>
+      </div>
+  
+      <!-- Card 2 -->
+      <div class="watch-card">
+        <i class="fas fa-heart wishlist-icon"></i>
+        <img src="images/watch.jpg" alt="Watch 2">
+        <div class="watch-info">
+          Tissot Classic - KES 200,000
+          <button>Ask for Information</button>
+        </div>
+      </div>
+  
+      <!-- Card 3 -->
+      <div class="watch-card">
+        <i class="fas fa-heart wishlist-icon"></i>
+        <img src="images/watch2.jpeg" alt="Watch 3">
+        <div class="watch-info">
+          Movado Amorosa - KES 150,000
+          <button>Shop Now</button>
+        </div>
+      </div>
+  
+      <!-- Card 4 -->
+      <div class="watch-card">
+        <i class="fas fa-heart wishlist-icon"></i>
+        <img src="images/watch.jpg" alt="Watch 4">
+        <div class="watch-info">
+          Movado SE Quartz - KES 300,000
+          <button>Ask for Information</button>
+        </div>
+      </div>
+  
+      <!-- Card 5 -->
+      <div class="watch-card">
+        <i class="fas fa-heart wishlist-icon"></i>
+        <img src="images/watch1.jfif" alt="Watch 5">
+        <div class="watch-info">
+          Rolex Explorer - KES 750,000
+          <button>Shop Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: WATCH CARDS SECTION SNIPPET -->
+  
+  
     <!-- START OF INTEREST-FREE CREDIT SECTION (INLINE STYLES) -->
 <section style="background-color:#fff; color:#333; padding:60px 20px; box-sizing:border-box;">
     <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;">
