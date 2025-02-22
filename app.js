@@ -17,6 +17,16 @@ app.get('/about-us', (req, res) => {
 app.get('/watch-details', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'watch-details.html'));
 });
+app.get('/faq', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'faq.html'));
+});
+app.get('/wishlist', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'wishlist.html'));
+});
+
+app.get('/shopping-bag', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'shopping-bag.html'));
+});
 
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');

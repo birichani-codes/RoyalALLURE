@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Bag - RoyalALLURE</title>
+
+  <!-- Include Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Jost", sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Top header / navbar */
+    .top-bar {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .top-bar .brand {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .top-bar .cart-link {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    /* Main container */
+    .main-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Page heading */
+    h1.page-title {
+      margin: 0;
+      font-size: 22px;
+      font-weight: normal;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    /* Cart area + summary layout */
+    .content-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .cart-area {
+      width: 60%;
+      min-width: 300px;
+    }
+
+    .summary-area {
+      width: 35%;
+      min-width: 280px;
+      background-color: #fafafa;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.05);
+      height: fit-content;
+    }
+
+    /* Individual cart items */
+    .cart-item {
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+      margin-bottom: 15px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .item-details {
+      flex: 1;
+      margin-left: 15px;
+    }
+
+    .item-details h4 {
+      margin: 0 0 5px;
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    .item-details p {
+      margin: 3px 0;
+      color: #333;
+    }
+
+    .quantity-select {
+      padding: 5px;
+      margin-right: 10px;
+    }
+
+    .item-actions {
+      margin-top: 5px;
+    }
+
+    .item-actions a {
+      color: #0077c8;
+      text-decoration: none;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    /* Summary area */
+    .summary-area h3 {
+      margin-top: 0;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .summary-option {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .summary-option i {
+      margin-right: 8px;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .summary-option a {
+      color: #0077c8;
+      text-decoration: none;
+    }
+
+    .promo {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .promo a {
+      color: #0077c8;
+      text-decoration: none;
+    }
+
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .price-line strong {
+      font-weight: bold;
+    }
+
+    /* Payment buttons with icons */
+    .checkout-btn,
+    .paypal-btn,
+    .gpay-btn {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 15px;
+    }
+    
+    .checkout-btn i,
+    .paypal-btn i,
+    .gpay-btn i {
+      margin-right: 8px;
+    }
+
+    .checkout-btn {
+      background: gold;
+      color: #000;
+    }
+
+    .paypal-btn {
+      background: #ffc439;
+      color: #000;
+    }
+
+    .gpay-btn {
+      background: #000;
+      color: #fff;
+    }
+
+    /* Accepted payment icons below "Checkout Securely" */
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .payment-icons i {
+      font-size: 24px;
+      color: #333;
+    }
+
+    /* Text below G Pay */
+    .payment-text {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media(max-width: 768px) {
+      .content-wrapper {
+        flex-direction: column;
+      }
+      .cart-area,
+      .summary-area {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Main content container -->
+  <div class="main-container">
+    <h1 class="page-title">YOUR SHOPPING BAG</h1>
+
+    <div class="content-wrapper">
+      <!-- Left side: cart items -->
+      <div class="cart-area">
+        <!-- First cart item: watch -->
+        <div class="cart-item">
+          <img src="images/watch.jpg" alt="Cartier Tank Solo Watch">
+          <div class="item-details">
+            <h4>Cartier Tank Solo “Yellow Gold Automatic 25mm”</h4>
+            <p>Price: £36,400.00</p>
+            <p><strong>Delivery:</strong> Free delivery by 25 February</p>
+            <div>
+              <select class="quantity-select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+              <span class="item-actions">
+                <a href="#">Remove item</a> | 
+                <a href="#">Add to wishlist</a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second cart item: care & service plan -->
+        <div class="cart-item">
+          <img src="images/watch1.jfif" alt="Care & Service Plan">
+          <div class="item-details">
+            <h4>Care & Service Plan “Yellow Gold Automatic 25mm”</h4>
+            <p>Price: £550.00</p>
+            <p><strong>Delivery:</strong> Free</p>
+            <div>
+              <select class="quantity-select">
+                <option>1</option>
+              </select>
+              <span class="item-actions">
+                <a href="#">Remove item</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: summary -->
+      <div class="summary-area">
+        <h3>Summary</h3>
+
+        <div class="summary-option">
+          <i class="fa-solid fa-circle-check"></i> Click & Collect Available
+        </div>
+        <div class="summary-option">
+          <i class="fa-solid fa-truck"></i> Free Home Delivery
+        </div>
+        <div class="summary-option">
+          <i class="fa-solid fa-clock"></i> Order within 2 hours for next day
+        </div>
+        <div class="summary-option">
+          <i class="fa-solid fa-money-check-dollar"></i> V12 Finance Available
+        </div>
+        <div class="summary-option">
+          <i class="fa-solid fa-rotate-left"></i> <a href="#">Returns Policy</a>
+        </div>
+        <div class="summary-option">
+          <i class="fa-solid fa-tag"></i> <a href="#">Got a promotional code?</a>
+        </div>
+
+        <!-- Price lines -->
+        <div class="price-line">
+          <span>Your Goodwill Payment:</span>
+          <strong>£100.00</strong>
+        </div>
+        <div class="price-line">
+          <span>Subtotal (incl. taxes):</span>
+          <strong>£36,950.00</strong>
+        </div>
+
+        <!-- Payment Buttons with Icons (complete replica) -->
+        <a href="#" class="checkout-btn">
+          <i class="fa-solid fa-lock"></i> Checkout Securely
+        </a>
+        <!-- Accepted payment method icons below Checkout Securely -->
+        <div class="payment-icons">
+          <i class="fa-brands fa-cc-visa"></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-amex"></i>
+          <i class="fa-brands fa-cc-discover"></i>
+        </div>
+        <a href="#" class="paypal-btn">
+          <i class="fa-brands fa-paypal"></i> PayPal Checkout
+        </a>
+        <a href="#" class="gpay-btn">
+          <i class="fa-brands fa-google-pay"></i> Pay with G Pay
+        </a>
+        <!-- Additional text below G Pay -->
+        <p class="payment-text">All transactions are secure and encrypted for your peace of mind.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

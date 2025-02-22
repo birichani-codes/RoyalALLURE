@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist - RoyalALLURE</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .wishlist-container {
+            width: 80%;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .wishlist-header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .wishlist-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .wishlist-item img {
+            width: 80px;
+            height: auto;
+            border-radius: 5px;
+        }
+        .wishlist-details {
+            flex-grow: 1;
+            padding: 0 20px;
+        }
+        .wishlist-details h3 {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        .wishlist-details p {
+            color: #777;
+            margin: 3px 0;
+        }
+        .wishlist-actions {
+            display: flex;
+            flex-direction: column;
+        }
+        .wishlist-actions button {
+            background-color: #C19A6B;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .wishlist-actions button:hover {
+            background-color: #a37f55;
+        }
+    </style>
+</head>
+<body>
+    <div class="wishlist-container">
+        <div class="wishlist-header">WISHLIST</div>
+        <p>You have <strong>2 items</strong> in your wishlist</p>
+        
+        <div class="wishlist-item">
+            <img src="images/watch.jpg" alt="Cartier Watch">
+            <div class="wishlist-details">
+                <h3>CARTIER</h3>
+                <p>Tank Louis Cartier - 100 Years Anniversary Exclusive</p>
+                <p>Product Code: 17311479</p>
+                <p>KES 2,000,000</p>
+            </div>
+            <div class="wishlist-actions">
+                <button>Add to Bag</button>
+                <button>Remove</button>
+            </div>
+        </div>
+        
+        <div class="wishlist-item">
+            <img src="images/watch2.jpeg" alt="Tudor Watch">
+            <div class="wishlist-details">
+                <h3>TUDOR</h3>
+                <p>Black Bay Chrono Boutique Edition 41mm Steel Case</p>
+                <p>Product Code: 17771072</p>
+                <p>KES 1,200,000</p>
+            </div>
+            <div class="wishlist-actions">
+                <button>Add to Bag</button>
+                <button>Remove</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
