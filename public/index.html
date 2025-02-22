@@ -185,6 +185,8 @@
       /* Show hamburger, hide nav links by default */
       .hamburger {
         display: block;
+        cursor: pointer;
+        font-size: 1.5em;
       }
       .nav-links {
         position: absolute;
@@ -218,6 +220,13 @@
       }
     }
 
+    /* Hide hamburger on large screens */
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none;
+      }
+    }
+
     @media (max-width: 480px) {
       /* Additional adjustments for very small screens */
       .top-bar {
@@ -247,11 +256,14 @@
       <a href="/request-an-appointment"><i class="fas fa-calendar-alt"></i> Request an Appointment</a>
       <a href="/contact"><i class="fas fa-phone"></i> Contact Us</a>
     </div>
-    <div class="social-icons">
+    <!--
+     <div class="social-icons">
       <a href="#"><i class="fab fa-facebook-f"></i></a>
       <a href="#"><i class="fab fa-instagram"></i></a>
       <a href="#"><i class="fab fa-twitter"></i></a>
     </div>
+    -->
+   
   </div>
 
   <!-- Navigation Bar -->
@@ -259,6 +271,10 @@
     <div class="nav-container">
       <div class="logo">
         <i class="fas fa-home"></i> ROYALALLURE KENYA
+      </div>
+      <!-- Hamburger Icon -->
+      <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
       </div>
       <ul class="nav-links">
         <li><a href="/">HOME</a></li>
@@ -278,8 +294,8 @@
     </div>
   </nav>
 
-   <!-- Hero Section -->
-   <header>
+  <!-- Hero Section -->
+  <header>
     <div class="overlay"></div>
     <div class="hero-content">
       <h1>Discover Excellence</h1>
@@ -288,6 +304,13 @@
     </div>
   </header>
 
+  <!-- JavaScript to toggle the menu -->
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
 
