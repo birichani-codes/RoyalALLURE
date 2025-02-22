@@ -30,6 +30,7 @@
       line-height: 24px;
       color: rgb(51, 51, 51);
       background-color: #f4f4f4;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
     }
 
     /* NAVIGATION BAR */
@@ -50,11 +51,12 @@
       align-items: center;
       width: 90%;
       margin: auto;
+      padding: 0 10px; /* Added horizontal padding */
     }
 
     /* LOGO */
     .logo {
-      font-size: 1.3em;
+      font-size: 1.1em; /* Slightly smaller for mobile */
       font-weight: bold;
       text-transform: uppercase;
       cursor: pointer;
@@ -63,7 +65,8 @@
     /* HAMBURGER (mobile) */
     .hamburger {
       display: none; /* shown on mobile via media query */
-      font-size: 1.5em;
+      font-size: 2em; /* Larger icon for easier tapping */
+      padding: 5px;   /* Additional padding around the icon */
       cursor: pointer;
     }
 
@@ -104,33 +107,6 @@
       border: none;
       outline: none;
       font-size: 14px;
-    }
-
-    /* MOBILE / SMALL SCREENS */
-    @media (max-width: 768px) {
-      /* Show hamburger, hide nav links by default */
-      .hamburger {
-        display: block;
-      }
-      .nav-links {
-        position: absolute;
-        top: 60px; /* just below the nav bar */
-        left: 0;
-        width: 100%;
-        background: #222;
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px;
-        transform: translateY(-200%); /* hidden by default */
-      }
-      .nav-links li {
-        display: block; /* each item on its own line in mobile */
-        margin-top: 10px;
-      }
-      /* Toggle the menu open */
-      .nav-links.active {
-        transform: translateY(0);
-      }
     }
 
     /* HERO SECTION */
@@ -188,6 +164,44 @@
     .shop-now:hover {
       background: white;
       color: black;
+    }
+
+    /* RESPONSIVE STYLES (mobile) */
+    @media (max-width: 768px) {
+      /* Show hamburger, hide nav links by default */
+      .hamburger {
+        display: block;
+      }
+      .nav-links {
+        position: absolute;
+        top: 60px; /* just below the nav bar */
+        left: 0;
+        width: 100%;
+        background: #222;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        transform: translateY(-200%); /* hidden by default */
+      }
+      .nav-links li {
+        display: block; /* each item on its own line in mobile */
+        margin-top: 10px;
+      }
+      /* Toggle the menu open */
+      .nav-links.active {
+        transform: translateY(0);
+      }
+
+      /* Adjust hero on mobile */
+      header {
+        height: 70vh; /* smaller hero height */
+      }
+      .hero-content {
+        padding-top: 200px; /* reduce top padding */
+      }
+      .hero-content h1 {
+        font-size: 2em;
+      }
     }
   </style>
 </head>
@@ -261,51 +275,87 @@
 </html>
 
   
-<!-- Reliable Expert Section -->
+<!-- START: RELIABLE EXPERT SECTION -->
 <section style="background-color: #2E423A; padding: 20px; animation: fadeIn 1.5s ease-in-out;">
-    <div style="display: flex; justify-content: space-around; align-items: center; color: white; font-family: 'UniversLTPro', sans-serif; font-size: 14px; text-transform: uppercase;">
-
-        <!-- Certified Dealer -->
-        <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
-            <i class="fas fa-medal" style="font-size: 24px; color: #FFD700; transition: color 0.3s ease;"></i>
-            <span><strong>Certified Dealer</strong> <br> Trusted & Verified</span>
-        </div>
-
-        <!-- Fast & Free Shipping -->
-        <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
-            <i class="fas fa-truck" style="font-size: 24px; color: #4CAF50; transition: color 0.3s ease;"></i>
-            <span><strong>Fast & Free Shipping</strong> <br> Anywhere in Kenya</span>
-        </div>
-
-        <!-- Hassle-Free Returns -->
-        <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
-            <i class="fas fa-exchange-alt" style="font-size: 24px; color: #FF9800; transition: color 0.3s ease;"></i>
-            <span><strong>Hassle-Free Returns</strong> <br> 14-Day Policy</span>
-        </div>
-
-        <!-- Authentic Warranty -->
-        <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
-            <i class="fas fa-certificate" style="font-size: 24px; color: #03A9F4; transition: color 0.3s ease;"></i>
-            <span><strong>Authenticity Guaranteed</strong> <br> Official Manufacturer’s Warranty</span>
-        </div>
-
+    <div class="reliable-container"
+         style="
+           width: 90%;
+           margin: auto;
+           display: flex;
+           justify-content: space-around;
+           align-items: center;
+           flex-wrap: wrap;
+           color: white;
+           font-family: 'UniversLTPro', sans-serif;
+           font-size: 14px;
+           text-transform: uppercase;
+           gap: 20px; /* space between items */
+         ">
+      
+      <!-- Certified Dealer -->
+      <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
+        <i class="fas fa-medal" style="font-size: 24px; color: #FFD700; transition: color 0.3s ease;"></i>
+        <span>
+          <strong>Certified Dealer</strong> <br>
+          Trusted & Verified
+        </span>
+      </div>
+  
+      <!-- Fast & Free Shipping -->
+      <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
+        <i class="fas fa-truck" style="font-size: 24px; color: #4CAF50; transition: color 0.3s ease;"></i>
+        <span>
+          <strong>Fast & Free Shipping</strong> <br>
+          Anywhere in Kenya
+        </span>
+      </div>
+  
+      <!-- Hassle-Free Returns -->
+      <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
+        <i class="fas fa-exchange-alt" style="font-size: 24px; color: #FF9800; transition: color 0.3s ease;"></i>
+        <span>
+          <strong>Hassle-Free Returns</strong> <br>
+          14-Day Policy
+        </span>
+      </div>
+  
+      <!-- Authentic Warranty -->
+      <div style="display: flex; align-items: center; gap: 12px; transition: transform 0.3s ease;">
+        <i class="fas fa-certificate" style="font-size: 24px; color: #03A9F4; transition: color 0.3s ease;"></i>
+        <span>
+          <strong>Authenticity Guaranteed</strong> <br>
+          Official Manufacturer’s Warranty
+        </span>
+      </div>
+      
     </div>
-</section>
-
-<!-- Hover & Animation Effects -->
-<style>
-    section div:hover {
-        transform: scale(1.1);
+  </section>
+  
+  <!-- Hover & Animation Effects -->
+  <style>
+    /* Scale only the direct child divs on hover */
+    .reliable-container > div:hover {
+      transform: scale(1.1);
     }
-    section i:hover {
-        color: #fff;
+    .reliable-container i:hover {
+      color: #fff;
     }
+  
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-</style>
-
+  
+    /* Responsive Adjustments: stack items on narrow screens */
+    @media (max-width: 768px) {
+      .reliable-container {
+        flex-direction: column;
+        align-items: flex-start; /* or center if you prefer */
+      }
+    }
+  </style>
+  <!-- END: RELIABLE EXPERT SECTION -->
+  
 <!-- START OF COMPLIMENTARY GIFTS SECTION (INLINE STYLES) -->
 <section style="background-color:#000; color:#fff; padding:60px 20px; box-sizing:border-box;">
     <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;">
