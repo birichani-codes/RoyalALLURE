@@ -7,10 +7,7 @@
 
   <!-- Font Awesome for icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
   <style>
     @font-face {
@@ -30,7 +27,39 @@
       line-height: 24px;
       color: rgb(51, 51, 51);
       background-color: #f4f4f4;
-      overflow-x: hidden; /* Prevent horizontal scrolling */
+      overflow-x: hidden;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8f8f8;
+      padding: 5px 10%;
+      font-size: 14px;
+      font-weight: 300;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1100;
+    }
+
+    .top-bar .left-links a {
+      text-decoration: none;
+      color: #333;
+      margin-right: 15px;
+    }
+
+    .top-bar .left-links a i {
+      margin-right: 5px;
+    }
+
+    .top-bar .social-icons a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 15px;
     }
 
     /* NAVIGATION BAR */
@@ -40,7 +69,7 @@
       padding: 15px 0;
       position: fixed;
       width: 100%;
-      top: 0;
+      top: 30px;
       left: 0;
       z-index: 1000;
     }
@@ -51,26 +80,16 @@
       align-items: center;
       width: 90%;
       margin: auto;
-      padding: 0 10px; /* Added horizontal padding */
+      padding: 0 10px;
     }
 
-    /* LOGO */
     .logo {
-      font-size: 1.1em; /* Slightly smaller for mobile */
+      font-size: 1.1em;
       font-weight: bold;
       text-transform: uppercase;
       cursor: pointer;
     }
 
-    /* HAMBURGER (mobile) */
-    .hamburger {
-      display: none; /* shown on mobile via media query */
-      font-size: 2em; /* Larger icon for easier tapping */
-      padding: 5px;   /* Additional padding around the icon */
-      cursor: pointer;
-    }
-
-    /* NAV LINKS */
     .nav-links {
       list-style: none;
       display: flex;
@@ -78,12 +97,6 @@
       gap: 30px;
       margin: 0;
       padding: 0;
-      transition: transform 0.3s ease;
-    }
-
-    .nav-links li {
-      display: inline-flex;
-      align-items: center;
     }
 
     .nav-links a {
@@ -91,7 +104,6 @@
       color: white;
     }
 
-    /* SEARCH BOX inside the nav */
     .search-box {
       display: flex;
       align-items: center;
@@ -99,10 +111,12 @@
       padding: 6px 10px;
       border-radius: 5px;
     }
+
     .search-box i {
       color: #555;
       margin-right: 8px;
     }
+
     .search-box input {
       border: none;
       outline: none;
@@ -203,60 +217,69 @@
         font-size: 2em;
       }
     }
+
+    @media (max-width: 480px) {
+      /* Additional adjustments for very small screens */
+      .top-bar {
+        padding: 5px 3%;
+        font-size: 12px;
+      }
+      .nav-container {
+        padding: 0 5%;
+      }
+      .nav-links {
+        gap: 20px;
+      }
+      .hero-content h1 {
+        font-size: 1.8em;
+      }
+      .hero-content p {
+        font-size: 1em;
+      }
+    }
   </style>
 </head>
 <body>
+  
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="left-links">
+      <a href="/request-an-appointment"><i class="fas fa-calendar-alt"></i> Request an Appointment</a>
+      <a href="#"><i class="fas fa-phone"></i> Contact Us</a>
+    </div>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
 
   <!-- Navigation Bar -->
   <nav>
     <div class="nav-container">
-      <!-- LOGO -->
       <div class="logo">
         <i class="fas fa-home"></i> ROYALALLURE KENYA
       </div>
-
-      <!-- HAMBURGER (mobile) -->
-      <div class="hamburger" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </div>
-
-      <!-- NAV LINKS -->
-      <ul class="nav-links" id="navLinks">
+      <ul class="nav-links">
         <li><a href="/">HOME</a></li>
         <li><a href="/watches">WATCHES</a></li>
         <li><a href="#">BOUTIQUES</a></li>
         <li><a href="/about-us">ABOUT US</a></li>
-
-        <!-- SEARCH BOX -->
         <li>
           <div class="search-box">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search">
           </div>
         </li>
-
-        <!-- EN | KES -->
-        <li>
-          <span style="font-size:14px; color: gold;">🇰🇪 EN | KES</span>
-        </li>
-
-        <!-- SHOPPING BAG -->
-        <li>
-          <a href="/shopping-bag" style="font-size: 18px; color: gold;">
-            <i class="fas fa-shopping-bag"></i>
-          </a>
-        </li>
-
-        <!-- USER ICON -->
-        <li>
-          <i class="fas fa-user" style="font-size: 18px; color: gold; cursor: pointer;"></i>
-        </li>
+        <li><span style="color: gold;">🇰🇪 EN | KES</span></li>
+        <li><a href="/shopping-bag" style="color: gold;"><i class="fas fa-shopping-bag"></i></a></li>
+        <li><i class="fas fa-user" style="color: gold; cursor: pointer;"></i></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header>
+   <!-- Hero Section -->
+   <header>
     <div class="overlay"></div>
     <div class="hero-content">
       <h1>Discover Excellence</h1>
@@ -265,14 +288,9 @@
     </div>
   </header>
 
-  <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById('navLinks');
-      navLinks.classList.toggle('active');
-    }
-  </script>
 </body>
 </html>
+
 
   
 <!-- START: RELIABLE EXPERT SECTION -->

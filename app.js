@@ -27,6 +27,9 @@ app.get('/wishlist', (req, res) => {
 app.get('/shopping-bag', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'shopping-bag.html'));
 });
+app.get('/request-an-appointment', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'request-an-appointment.html'));
+});
 
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');
