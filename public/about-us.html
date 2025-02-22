@@ -1,260 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoyalALLURE Kenya</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RoyalALLURE Kenya</title>
 
-    <style>
-        @font-face {
-            font-family: 'UniversLTPro';
-            src: url('fonts/UniversLTPro-Regular.woff2') format('woff2'),
-                 url('fonts/UniversLTPro-Regular.woff') format('woff'),
-                 url('fonts/UniversLTPro-Regular.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-        }
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  />
 
-        body {
-            margin: 0;
-            font-family: 'UniversLTPro', sans-serif;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-            color: rgb(51, 51, 51);
-            background-color: #f4f4f4;
-        }
+  <style>
+    @font-face {
+      font-family: 'UniversLTPro';
+      src: url('fonts/UniversLTPro-Regular.woff2') format('woff2'),
+           url('fonts/UniversLTPro-Regular.woff') format('woff'),
+           url('fonts/UniversLTPro-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
 
-        /* Navigation Bar */
-        nav {
-            background-color: #222;
-            color: white;
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
+    body {
+      margin: 0;
+      font-family: 'UniversLTPro', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: rgb(51, 51, 51);
+      background-color: #f4f4f4;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 90%;
-            margin: auto;
-        }
+    /* NAVIGATION BAR */
+    nav {
+      background-color: #222;
+      color: white;
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
 
-        .logo {
-            font-size: 1.3em;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px; /* Added horizontal padding */
+    }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-            margin: 0;
-            padding: 0;
-        }
+    /* LOGO */
+    .logo {
+      font-size: 1.1em; /* Slightly smaller for mobile */
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
 
-        .nav-links li {
-            position: relative;
-        }
+    /* HAMBURGER (mobile) */
+    .hamburger {
+      display: none; /* shown on mobile via media query */
+      font-size: 2em; /* Larger icon for easier tapping */
+      padding: 5px;   /* Additional padding around the icon */
+      cursor: pointer;
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            padding: 10px;
-            display: block;
-        }
+    /* NAV LINKS */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+      transition: transform 0.3s ease;
+    }
 
-        /* Boutiques Dropdown */
-        .dropdown {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 250px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            border-radius: 5px;
-            top: 100%;
-            left: 0;
-            z-index: 1000;
-        }
+    .nav-links li {
+      display: inline-flex;
+      align-items: center;
+    }
 
-        .dropdown a {
-            text-decoration: none;
-            color: black;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 12px;
-            transition: background 0.3s ease;
-        }
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+    }
 
-        .dropdown a:hover {
-            background-color: #f4f4f4;
-        }
+    /* SEARCH BOX inside the nav */
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+    .search-box i {
+      color: #555;
+      margin-right: 8px;
+    }
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
 
-        .dropdown-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #ff6600;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-        }
+    /* HERO SECTION */
+    header {
+      background: url('images/rolex.webp') no-repeat center center/cover;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      color: white;
+      position: relative;
+      margin-top: 60px; /* offset for fixed nav */
+      padding-left: 10%;
+    }
 
-        /* Show dropdown on hover */
-        .nav-links li:hover .dropdown {
-            display: block;
-        }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+    }
 
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      padding-top: 400px;
+    }
 
-        .nav-actions input {
-            padding: 6px;
-            border: none;
-            border-radius: 3px;
-            font-size: 0.9em;
-        }
+    .hero-content h1 {
+      font-size: 3em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
-        .nav-actions i {
-            font-size: 18px;
-            cursor: pointer;
-        }
-    </style>
+    .hero-content p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .shop-now {
+      padding: 12px 24px;
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease, color 0.3s ease;
+      display: inline-block;
+    }
+
+    .shop-now:hover {
+      background: white;
+      color: black;
+    }
+
+    /* RESPONSIVE STYLES (mobile) */
+    @media (max-width: 768px) {
+      /* Show hamburger, hide nav links by default */
+      .hamburger {
+        display: block;
+      }
+      .nav-links {
+        position: absolute;
+        top: 60px; /* just below the nav bar */
+        left: 0;
+        width: 100%;
+        background: #222;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        transform: translateY(-200%); /* hidden by default */
+      }
+      .nav-links li {
+        display: block; /* each item on its own line in mobile */
+        margin-top: 10px;
+      }
+      /* Toggle the menu open */
+      .nav-links.active {
+        transform: translateY(0);
+      }
+
+      /* Adjust hero on mobile */
+      header {
+        height: 70vh; /* smaller hero height */
+      }
+      .hero-content {
+        padding-top: 200px; /* reduce top padding */
+      }
+      .hero-content h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="nav-container">
-            <!-- Logo -->
-            <div class="logo"><i class="fas fa-home"></i> ROYALALLURE KENYA</div>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-container">
+      <!-- LOGO -->
+      <div class="logo">
+        <i class="fas fa-home"></i> ROYALALLURE KENYA
+      </div>
 
-            <!-- Navigation Links -->
-            <ul class="nav-links">
-                <li><a href="/">HOME</a></li>
-                <li><a href="/watches">WATCHES</a></li>
-                
-                <!-- Boutiques Dropdown -->
-                <li>
-                    <a href="#">BOUTIQUES</a>
-                    <div class="dropdown">
-                        <a href="#">
-                            <div class="dropdown-icon">L</div>
-                            Lucerne
-                        </a>
-                        <a href="#">
-                            <div class="dropdown-icon">I</div>
-                            Interlaken
-                        </a>
-                        <a href="#">
-                            <div class="dropdown-icon">P</div>
-                            Palma de Mallorca
-                        </a>
-                    </div>
-                </li>
+      <!-- HAMBURGER (mobile) -->
+      <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
 
-                <li><a href="/about-us">ABOUT US</a></li>
-            </ul>
+      <!-- NAV LINKS -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/watches">WATCHES</a></li>
+        <li><a href="#">BOUTIQUES</a></li>
+        <li><a href="/about-us">ABOUT US</a></li>
 
-            <!-- Search & Icons -->
-            <div class="nav-actions">
-                <div class="search-box" style="display: flex; align-items: center; background: white; padding: 6px 10px; border-radius: 5px;">
-                    <i class="fas fa-search" style="color: #555; margin-right: 8px;"></i>
-                    <input type="text" placeholder="Search" style="border: none; outline: none; font-size: 14px;">
-                </div>
-                <span style="font-size: 14px; color: gold; font-family: 'UniversLTPro', sans-serif;">🇰🇪 EN | KES</span>
-                <i class="fas fa-user" style="font-size: 18px; color: gold;"></i>
-            </div>
-        </div>
-    </nav>
+        <!-- SEARCH BOX -->
+        <li>
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search">
+          </div>
+        </li>
 
+        <!-- EN | KES -->
+        <li>
+          <span style="font-size:14px; color: gold;">🇰🇪 EN | KES</span>
+        </li>
+
+        <!-- SHOPPING BAG -->
+        <li>
+          <a href="/shopping-bag" style="font-size: 18px; color: gold;">
+            <i class="fas fa-shopping-bag"></i>
+          </a>
+        </li>
+
+        <!-- USER ICON -->
+        <li>
+          <i class="fas fa-user" style="font-size: 18px; color: gold; cursor: pointer;"></i>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
 
 
-
-<section class="header-section">
+<section class="header-section" style="text-align: center; padding: 100px 5%; background-color: #fff;">
     <style>
+      .header-section p {
+        font-size: 18px;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto 15px;
+        line-height: 1.6;
+      }
+      .header-section h1 {
+        font-size: 48px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      /* Responsive Design */
+      @media (max-width: 1024px) {
         .header-section {
-            text-align: center;
-            padding: 100px 5%;
-            background-color: #fff;
+          padding: 50px 8%;
         }
-
-        .header-section p {
-            font-size: 18px;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto 15px;
-            line-height: 1.6;
+      }
+      @media (max-width: 768px) {
+        .header-section {
+          padding: 40px 10%;
         }
-
         .header-section h1 {
-            font-size: 48px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
+          font-size: 36px;
         }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .header-section {
-                padding: 50px 8%;
-            }
+        .header-section p {
+          font-size: 16px;
         }
-
-        @media (max-width: 768px) {
-            .header-section {
-                padding: 40px 10%;
-            }
-
-            .header-section h1 {
-                font-size: 36px;
-            }
-
-            .header-section p {
-                font-size: 16px;
-            }
+      }
+      @media (max-width: 480px) {
+        .header-section {
+          padding: 30px 12%;
         }
-
-        @media (max-width: 480px) {
-            .header-section {
-                padding: 30px 12%;
-            }
-
-            .header-section h1 {
-                font-size: 28px;
-            }
-
-            .header-section p {
-                font-size: 15px;
-            }
+        .header-section h1 {
+          font-size: 28px;
         }
+        .header-section p {
+          font-size: 15px;
+        }
+      }
     </style>
-
+  
     <p><strong>WE ARE HERE FOR YOU</strong></p>
     <h1>WELCOME TO ROYALALLURE</h1>
     <p>
-        At RoyalALLURE, we believe that luxury watches are for everyone. We invite you to explore our carefully curated collection both online and in our new Kenya-based boutique. Finding your dream watch should be a fun and memorable experience, so our knowledgeable team is on hand to answer any of your questions and ensure you take home the perfect timepiece.
+      At RoyalALLURE, we believe that luxury watches are for everyone. We invite you to explore our carefully curated collection both online and in our new Kenya-based boutique. Finding your dream watch should be a fun and memorable experience, so our knowledgeable team is on hand to answer any of your questions and ensure you take home the perfect timepiece.
     </p>
-</section>
+  </section>
+  
 
 <!-- Find Your Dream Luxury Watch Section -->
 <section class="dream-watch-section">
@@ -533,92 +596,89 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-<!-- Featured Collections Section -->
-<section class="featured-collections">
-    <h2>Our Exclusive Collections</h2>
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="images/watch.jpg" alt="Luxury Watch 1">
-                <p>Royal Elegance</p>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/watch2.jpeg" alt="Luxury Watch 2">
-                <p>Timeless Classic</p>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/watch1.jfif" alt="Luxury Watch 3">
-                <p>Modern Sophistication</p>
-            </div>
+<!-- START: FEATURED COLLECTIONS SECTION -->
+<section class="featured-collections" style="text-align: center; padding: 50px 20px; background: #f8f8f8;">
+    <h2 style="font-size: 28px; margin-bottom: 20px; color: #333;">Our Exclusive Collections</h2>
+    <div class="swiper-container" style="width: 90%; max-width: 1200px; margin: auto;">
+      <div class="swiper-wrapper" style="display: flex; transition: transform 0.3s ease-in-out;">
+        <div class="swiper-slide" style="text-align: center; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+          <img src="images/watch.jpg" alt="Luxury Watch 1" style="width: 100%; max-width: 300px; border-radius: 10px; transition: transform 0.3s;">
+          <p style="font-size: 18px; color: #333; margin-top: 10px; font-weight: bold;">Royal Elegance</p>
         </div>
-        <!-- Navigation Buttons -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-slide" style="text-align: center; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+          <img src="images/watch2.jpeg" alt="Luxury Watch 2" style="width: 100%; max-width: 300px; border-radius: 10px; transition: transform 0.3s;">
+          <p style="font-size: 18px; color: #333; margin-top: 10px; font-weight: bold;">Timeless Classic</p>
+        </div>
+        <div class="swiper-slide" style="text-align: center; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+          <img src="images/watch1.jfif" alt="Luxury Watch 3" style="width: 100%; max-width: 300px; border-radius: 10px; transition: transform 0.3s;">
+          <p style="font-size: 18px; color: #333; margin-top: 10px; font-weight: bold;">Modern Sophistication</p>
+        </div>
+      </div>
+      <!-- Navigation Buttons -->
+      <div class="swiper-button-next" style="color: black;"></div>
+      <div class="swiper-button-prev" style="color: black;"></div>
+      <div class="swiper-pagination"></div>
     </div>
-</section>
-
-<!-- Custom Styling -->
-<style>
-    .featured-collections {
-        text-align: center;
-        padding: 50px 20px;
-        background: #f8f8f8;
-    }
-    .swiper-container {
-        width: 90%;
-        max-width: 1200px;
-        margin: auto;
-    }
-    .swiper-slide {
-        text-align: center;
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    .swiper-slide img {
-        width: 100%;
-        max-width: 300px;
-        border-radius: 10px;
-        transition: transform 0.3s;
-    }
-    .swiper-slide img:hover {
-        transform: scale(1.05);
-    }
-    .swiper-slide p {
-        font-size: 18px;
-        color: #333;
-        margin-top: 10px;
-        font-weight: bold;
-    }
-</style>
-
-<!-- Swiper JS Initialization -->
-<script>
+  
+    <!-- Inline Responsive Media Queries -->
+    <style>
+      @media (max-width: 768px) {
+        .swiper-container {
+          width: 100% !important;
+          padding: 0 10px;
+        }
+        .swiper-slide {
+          padding: 15px;
+        }
+        .swiper-slide img {
+          max-width: 100%;
+        }
+        .swiper-slide p {
+          font-size: 16px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .swiper-slide {
+          padding: 10px;
+        }
+        .swiper-slide img {
+          width: 100%;
+        }
+        .swiper-slide p {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </section>
+  
+  <!-- Swiper JS Initialization -->
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var swiper = new Swiper(".swiper-container", {
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
-            }
-        });
+      var swiper = new Swiper(".swiper-container", {
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          480: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 }
+        }
+      });
     });
-</script>
-
+  </script>
+  <!-- END: FEATURED COLLECTIONS SECTION -->
+  
 <section class="gallery-section">
     <style>
         /* Gallery Section */
