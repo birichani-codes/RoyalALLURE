@@ -278,309 +278,69 @@
     </div>
   </nav>
 
-  
+   
 
 </body>
 </html>
-<!-- START: RESPONSIVE FILTER, SORTING & PAGINATION SECTION -->
-<section>
-    <style>
-      /* Global Reset for this section */
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #fff;
-        /* Note: This padding is for demonstration only; adjust as needed */
-        padding: 100px 5%;
-      }
-      
-      /* Filter Section */
-      .filter-section {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 10px;
-        padding: 20px;
-        background-color: #f8f8f8;
-        border-bottom: 2px solid #ddd;
-        text-align: center;
-      }
-      
-      .filter-button {
-        background-color: #e0e0e0;
-        border: none;
-        padding: 10px;
-        font-size: 14px;
-        cursor: pointer;
-        transition: background 0.3s, transform 0.3s;
-        text-align: center;
-        border-radius: 4px;
-      }
-      
-      .filter-button:hover {
-        background-color: #d0d0d0;
-        transform: scale(1.05);
-      }
-      
-      /* Sorting Container */
-      .sorting-container {
-        display: flex;
-        justify-content: center;
-        padding: 15px;
-      }
-      
-      .sorting-container select {
-        padding: 10px;
-        font-size: 14px;
-        width: 100%;
-        max-width: 250px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-      
-      /* Pagination */
-      .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        padding: 15px;
-        flex-wrap: wrap;
-      }
-      
-      .pagination a, .pagination span {
-        padding: 8px 12px;
-        background-color: #e0e0e0;
-        text-decoration: none;
-        color: black;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background 0.3s, transform 0.3s;
-      }
-      
-      .pagination a:hover, .pagination span:hover {
-        background-color: #ccc;
-        transform: scale(1.05);
-      }
-      
-      .pagination .active {
-        background-color: black;
-        color: white;
-      }
-      
-      /* Responsive Adjustments */
-      @media (max-width: 768px) {
-        .filter-section {
-          grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        }
-        
-        .filter-button {
-          font-size: 12px;
-          padding: 8px;
-        }
-        
-        .sorting-container select {
-          font-size: 13px;
-          padding: 8px;
-        }
-      }
-      
-      @media (max-width: 480px) {
-        .filter-section {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        
-        .filter-button {
-          font-size: 10px;
-          padding: 6px;
-        }
-        
-        .sorting-container select {
-          font-size: 12px;
-          padding: 6px;
-        }
-        
-        .pagination a, .pagination span {
-          font-size: 12px;
-          padding: 6px 10px;
-        }
-      }
-    </style>
-  
-    <div class="filter-section">
-        <button class="filter-button">BRAND</button>
-        <button class="filter-button">MODEL</button>
-        <button class="filter-button">DIAMETER</button>
-        <button class="filter-button">FILTER BY PRICE</button>
-        <button class="filter-button">GENDER</button>
-        <button class="filter-button">FEATURES</button>
-        <button class="filter-button">BRACELET</button>
-        <button class="filter-button">MECHANISM</button>
-        <button class="filter-button">DIAL COLOUR</button>
-        <button class="filter-button">CASE</button>
-    </div>
-  
-    <div class="sorting-container">
-        <select>
-            <option>Default sorting</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Newest Arrivals</option>
-        </select>
-    </div>
-  
-    <div class="pagination">
-        <a href="#">&lt;</a>
-        <span class="active">1</span>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <span>...</span>
-        <a href="#">50</a>
-        <a href="#">&gt;</a>
-    </div>
-  </section>
-  <!-- END: RESPONSIVE FILTER, SORTING & PAGINATION SECTION -->
-  
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoyalALLURE Kenya</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        @font-face {
-            font-family: 'Jost';
-            src: url('fonts/Jost-Regular.woff2') format('woff2'),
-                 url('fonts/Jost-Regular.woff') format('woff'),
-                 url('fonts/Jost-Regular.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Jost', sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        /* Watch Section */
-        .watch-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .watch-card {
-            position: relative;
-            width: 250px;
-            height: 380px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .watch-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .watch-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .wishlist-icon {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: gold;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 10;
-            
-        }
-
-        .watch-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .watch-card:hover .watch-info {
-            transform: translateY(0);
-        }
-
-        .watch-info button {
-            margin-top: 10px;
-            padding: 8px 12px;
-            border: none;
-            background: gold;
-            color: black;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-    </style>
+    <title>Contact Us - RoyalALLURE</title>
 </head>
-<body>
+<body style="font-family: Jost, sans-serif; margin: 0; padding: 0;">
+    <div style="max-width: 900px; margin: auto; padding: 40px 20px;">
+        <h2 style="text-align: center;">CONTACT US</h2>
+        <p style="text-align: center; color: #666;">At RoyalALLURE, we are passionate about providing excellent client experience and are happy to help with any queries that you may have.</p>
+        
+        <h3 style="color: #8a6d3b;">ORDER RELATED & GENERAL ENQUIRIES</h3>
+        <p>For order-related and general inquiries, our client support team can be contacted by the methods below:</p>
 
-    <div class="watch-section">
-        <div class="watch-card">
-            <a href="wishlist.html" class="wishlist-icon"><i class="fas fa-heart"></i></a>
-            <img src="images/watch.jpg" alt="Watch 1">
-            <div class="watch-info">Tudor Black Bay - KES 500,000
-                <button>Shop Now</button>
-            </div>
+        <div style="border-top: 1px solid #ddd; padding: 20px 0;">
+            <p><strong>Live Help Service</strong></p>
+            <p>Get real-time advice and assistance from our luxury watch and jewelry experts.</p>
+            <p>Live Chat hours: 8:00 AM - 10:00 PM, 7 days a week*</p>
+            <button style="background-color: #c1a162; color: white; padding: 10px 20px; border: none; cursor: pointer;">LAUNCH LIVE CHAT</button>
         </div>
-        <div class="watch-card">
-            <i class="fas fa-heart wishlist-icon"></i>
-            <img src="images/watch.jpg" alt="Watch 2">
-            <div class="watch-info">Tissot Classic - KES 200,000
-                <button>Ask for Information</button>
-            </div>
+
+        <div style="border-top: 1px solid #ddd; padding: 20px 0;">
+            <p><strong>WhatsApp</strong></p>
+            <p>WhatsApp hours of operation: 8:00 AM - 10:00 PM, 7 days a week*</p>
+            <button style="background-color: #c1a162; color: white; padding: 10px 20px; border: none; cursor: pointer;">SEND MESSAGE</button>
         </div>
-        <div class="watch-card">
-            <i class="fas fa-heart wishlist-icon"></i>
-            <img src="images/watch2.jpeg" alt="Watch 3">
-            <div class="watch-info">Movado Amorosa - KES 150,000
-                <button>Shop Now</button>
-            </div>
+
+        <div style="border-top: 1px solid #ddd; padding: 20px 0;">
+            <p><strong>Phone</strong></p>
+            <p>To contact us by phone, please call <a href="tel:08001114116" style="color: #8a6d3b; text-decoration: none;">0800 111 4116</a>. Lines are open Monday - Sunday, 10 AM to 7 PM.</p>
+            <p>For fastest service, use our live chat.</p>
         </div>
-        <div class="watch-card">
-            <i class="fas fa-heart wishlist-icon"></i>
-            <img src="images/watch.jpg" alt="Watch 4">
-            <div class="watch-info">Movado SE Quartz - KES 300,000
-                <button>Ask for Information</button>
-            </div>
+
+        <div style="border-top: 1px solid #ddd; padding: 20px 0;">
+            <p><strong>Email</strong></p>
+            <p>Please use the form below to send us your query. We aim to respond within 5 days.</p>
         </div>
-        <div class="watch-card">
-            <i class="fas fa-heart wishlist-icon"></i>
-            <img src="images/watch1.jfif" alt="Watch 5">
-            <div class="watch-info">Rolex Explorer - KES 750,000
-                <button>Shop Now</button>
+
+        <form style="border-top: 1px solid #ddd; padding-top: 20px;">
+            <div style="display: flex; gap: 10px;">
+                <input type="text" placeholder="Full Name" style="flex: 1; padding: 10px; border: 1px solid #ccc;">
+                <input type="email" placeholder="Email Address" style="flex: 1; padding: 10px; border: 1px solid #ccc;">
             </div>
-        </div>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <select style="flex: 1; padding: 10px; border: 1px solid #ccc;">
+                    <option>Select an option</option>
+                </select>
+                <input type="text" placeholder="Phone Number" style="flex: 1; padding: 10px; border: 1px solid #ccc;">
+            </div>
+            <textarea placeholder="Your Message" style="width: 100%; margin-top: 10px; padding: 10px; border: 1px solid #ccc;"></textarea>
+            <button style="background-color: #c1a162; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 10px;">SEND MESSAGE</button>
+        </form>
     </div>
-
-
-
-    
 </body>
+</html>
 
-<footer style="background-color: #1c1c1c; color: #f1f1f1; padding:30px; text-align: left;">
+<footer style="background-color: #1c1c1c; color: #f1f1f1; padding: 30px; text-align: left;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
       
       <!-- Contact Information -->
@@ -638,7 +398,3 @@
     </div>
   </footer>
   
-
-</html>
-
-

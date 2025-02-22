@@ -31,6 +31,10 @@ app.get('/request-an-appointment', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'request-an-appointment.html'));
 });
 
+app.get('/contact', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'contact-us.html'));
+});
+
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');
 });
