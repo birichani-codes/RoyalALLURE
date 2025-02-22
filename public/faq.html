@@ -69,7 +69,7 @@
       padding: 15px 0;
       position: fixed;
       width: 100%;
-      top: 30px;
+      top: 30px; /* Below the top bar */
       left: 0;
       z-index: 1000;
     }
@@ -123,124 +123,41 @@
       font-size: 14px;
     }
 
-    /* HERO SECTION */
-    header {
-      background: url('images/rolex.webp') no-repeat center center/cover;
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      text-align: left;
-      color: white;
-      position: relative;
-      margin-top: 60px; /* offset for fixed nav */
-      padding-left: 10%;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 500px;
-      padding-top: 400px;
-    }
-
-    .hero-content h1 {
-      font-size: 3em;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .hero-content p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
-
-    .shop-now {
-      padding: 12px 24px;
-      background-color: transparent;
-      border: 2px solid white;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-      transition: background 0.3s ease, color 0.3s ease;
-      display: inline-block;
-    }
-
-    .shop-now:hover {
-      background: white;
-      color: black;
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: gold;
     }
 
     /* RESPONSIVE STYLES (mobile) */
     @media (max-width: 768px) {
-      /* Show hamburger, hide nav links by default */
       .hamburger {
         display: block;
       }
+
       .nav-links {
         position: absolute;
-        top: 60px; /* just below the nav bar */
+        top: 60px;
         left: 0;
         width: 100%;
         background: #222;
         flex-direction: column;
         gap: 15px;
         padding: 20px;
-        transform: translateY(-200%); /* hidden by default */
+        display: none;
+        transition: all 0.3s ease-in-out;
       }
-      .nav-links li {
-        display: block; /* each item on its own line in mobile */
-        margin-top: 10px;
-      }
-      /* Toggle the menu open */
+
       .nav-links.active {
-        transform: translateY(0);
-      }
-
-      /* Adjust hero on mobile */
-      header {
-        height: 70vh; /* smaller hero height */
-      }
-      .hero-content {
-        padding-top: 200px; /* reduce top padding */
-      }
-      .hero-content h1 {
-        font-size: 2em;
-      }
-    }
-
-    @media (max-width: 480px) {
-      /* Additional adjustments for very small screens */
-      .top-bar {
-        padding: 5px 3%;
-        font-size: 12px;
-      }
-      .nav-container {
-        padding: 0 5%;
-      }
-      .nav-links {
-        gap: 20px;
-      }
-      .hero-content h1 {
-        font-size: 1.8em;
-      }
-      .hero-content p {
-        font-size: 1em;
+        display: flex;
       }
     }
   </style>
 </head>
 <body>
-  
+
   <!-- Top Bar -->
   <div class="top-bar">
     <div class="left-links">
@@ -260,6 +177,9 @@
       <div class="logo">
         <i class="fas fa-home"></i> ROYALALLURE KENYA
       </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
       <ul class="nav-links">
         <li><a href="/">HOME</a></li>
         <li><a href="/watches">WATCHES</a></li>
@@ -278,10 +198,16 @@
     </div>
   </nav>
 
-   
+  <script>
+    // Toggle hamburger menu
+    document.querySelector(".hamburger").addEventListener("click", function () {
+      document.querySelector(".nav-links").classList.toggle("active");
+    });
+  </script>
 
 </body>
 </html>
+
 
 
 <section style="padding: 20px; font-family: 'Jost', sans-serif; text-align: center;padding: 100px 5%;">
