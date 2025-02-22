@@ -599,125 +599,124 @@
 </body>
 </html>
 
-<section id="watch-carousel" style="display: flex; align-items: center; max-width: 1000px; padding: 20px; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; margin: 20px auto;">
-    
+<!-- START: WATCH CAROUSEL SECTION SNIPPET -->
+<section id="watch-carousel" style="display: flex; flex-wrap: wrap; align-items: center; width: 100%; padding: 20px; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; margin: 20px 0;">
+  
     <!-- Left Info Column -->
-    <div style="width: 40%; padding-right: 20px;">
-        <h2 style="font-size: 24px; margin: 0;">Longines</h2>
-        <p style="font-size: 14px; color: #666;">Since its founding in 1832, Longines offers robust diver's and pilot's watches, first-class chronographs and calendar watches, distinguished dress watches and refined ladies' watches.</p>
-        <button style="background: black; color: white; border: none; padding: 10px 15px; cursor: pointer; margin-top: 10px;">DISCOVER LONGINES</button>
+    <div style="width: 40%; padding-right: 20px; box-sizing: border-box;">
+      <h2 style="font-size: 24px; margin: 0;">Longines</h2>
+      <p style="font-size: 14px; color: #666;">Since its founding in 1832, Longines offers robust diver's and pilot's watches, first-class chronographs and calendar watches, distinguished dress watches and refined ladies' watches.</p>
+      <button style="background: black; color: white; border: none; padding: 10px 15px; cursor: pointer; margin-top: 10px;">DISCOVER LONGINES</button>
     </div>
     
     <!-- Carousel Column -->
-    <div style="width: 60%; display: flex; align-items: center; position: relative;">
-        <!-- Previous Button -->
-        <button id="prevBtn" style="background: none; border: none; font-size: 20px; cursor: pointer; padding: 10px; color: black;">&#10094;</button>
-        
-        <!-- Carousel Container -->
-        <div style="overflow: hidden; width: 510px;">
-            <div class="carousel-track" style="display: flex; transition: transform 0.3s ease-in-out;">
-                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
-                    <img src="images/watch1.jfif" alt="Watch 1" style="width: 120px; height: auto;">
-                    <p style="margin: 5px 0;">Watchm. Trad. Master Coll.</p>
-                </div>
-                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
-                    <img src="images/watch2.jpeg" alt="Watch 2" style="width: 120px; height: auto;">
-                    <p style="margin: 5px 0;">Avigation</p>
-                </div>
-                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
-                    <img src="images/watch.jpg" alt="Watch 3" style="width: 120px; height: auto;">
-                    <p style="margin: 5px 0;">Dolce Vita</p>
-                </div>
-                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
-                    <img src="images/watch1.jfif" alt="Watch 4" style="width: 120px; height: auto;">
-                    <p style="margin: 5px 0;">HydroConquest</p>
-                </div>
-                <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
-                    <img src="images/watch.jpg" alt="Watch 5" style="width: 120px; height: auto;">
-                    <p style="margin: 5px 0;">Spirit</p>
-                </div>
-            </div>
+    <div style="width: 60%; display: flex; align-items: center; position: relative; box-sizing: border-box;">
+      <!-- Previous Button -->
+      <button id="prevBtn" style="background: none; border: none; font-size: 20px; cursor: pointer; padding: 10px; color: black;">&#10094;</button>
+      
+      <!-- Carousel Container -->
+      <div style="overflow: hidden; width: calc(100% - 80px);">
+        <div class="carousel-track" style="display: flex; transition: transform 0.3s ease-in-out;">
+          <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+            <img src="images/watch1.jfif" alt="Watch 1" style="width: 120px; height: auto;">
+            <p style="margin: 5px 0;">Watchm. Trad. Master Coll.</p>
+          </div>
+          <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+            <img src="images/watch2.jpeg" alt="Watch 2" style="width: 120px; height: auto;">
+            <p style="margin: 5px 0;">Avigation</p>
+          </div>
+          <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+            <img src="images/watch.jpg" alt="Watch 3" style="width: 120px; height: auto;">
+            <p style="margin: 5px 0;">Dolce Vita</p>
+          </div>
+          <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+            <img src="images/watch1.jfif" alt="Watch 4" style="width: 120px; height: auto;">
+            <p style="margin: 5px 0;">HydroConquest</p>
+          </div>
+          <div class="watch" style="min-width: 150px; text-align: center; padding: 10px; box-sizing: border-box;">
+            <img src="images/watch.jpg" alt="Watch 5" style="width: 120px; height: auto;">
+            <p style="margin: 5px 0;">Spirit</p>
+          </div>
         </div>
-        
-        <!-- Next Button -->
-        <button id="nextBtn" style="background: none; border: none; font-size: 20px; cursor: pointer; padding: 10px; color: black;">&#10095;</button>
+      </div>
+      
+      <!-- Next Button -->
+      <button id="nextBtn" style="background: none; border: none; font-size: 20px; cursor: pointer; padding: 10px; color: black;">&#10095;</button>
     </div>
     
-</section>
-
-<!-- Responsive Media Queries Scoped to #watch-carousel -->
-<style>
-  /* For tablets and below */
-  @media (max-width: 768px) {
-    #watch-carousel {
-      flex-direction: column;
-      text-align: center;
-    }
-    #watch-carousel > div:first-child {
-      width: 100%;
-      padding-right: 0;
-      margin-bottom: 20px;
-    }
-    #watch-carousel > div:nth-child(2) {
-      width: 100%;
-      justify-content: center;
-    }
-    #watch-carousel .carousel-track {
-      width: 100%;
-    }
-    #watch-carousel [style*="overflow: hidden"] {
-      width: 100%;
-    }
-  }
+  </section>
   
-  /* For mobile devices */
-  @media (max-width: 480px) {
-    #watch-carousel h2 {
-      font-size: 20px;
+  <!-- Responsive Media Queries Scoped to #watch-carousel -->
+  <style>
+    /* For tablets and below */
+    @media (max-width: 768px) {
+      #watch-carousel {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      #watch-carousel > div:first-child {
+        width: 100% !important;
+        padding-right: 0;
+        margin-bottom: 20px;
+      }
+      #watch-carousel > div:nth-child(2) {
+        width: 100% !important;
+        justify-content: center;
+      }
+      /* Make carousel container full width */
+      #watch-carousel [style*="overflow: hidden"] {
+        width: 100% !important;
+      }
     }
-    #watch-carousel p {
-      font-size: 12px;
-    }
-    #watch-carousel .watch {
-      min-width: 120px;
-    }
-    #watch-carousel .watch img {
-      width: 100px;
-    }
-  }
-</style>
-
-<script>
+  </style>
+  
+  <script>
+    // Carousel functionality
     const track = document.querySelector("#watch-carousel .carousel-track");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
-
     let index = 0;
-    const totalItems = document.querySelectorAll("#watch-carousel .watch").length;
-    const visibleItems = 3; // Number of watches shown at a time
-
+    const watches = document.querySelectorAll("#watch-carousel .watch");
+    const totalItems = watches.length;
+    
+    // Adjust visibleItems based on screen width
+    let visibleItems = window.innerWidth <= 768 ? 2 : 3;
+    window.addEventListener('resize', () => {
+      visibleItems = window.innerWidth <= 768 ? 2 : 3;
+      // Reset carousel if needed
+      if(index > totalItems - visibleItems) {
+        index = totalItems - visibleItems;
+        updateCarousel();
+      }
+    });
+    
     prevBtn.addEventListener("click", () => {
-        if (index > 0) {
-            index--;
-            updateCarousel();
-        }
+      if (index > 0) {
+        index--;
+        updateCarousel();
+      }
     });
-
+    
     nextBtn.addEventListener("click", () => {
-        if (index < totalItems - visibleItems) {
-            index++;
-            updateCarousel();
-        }
+      if (index < totalItems - visibleItems) {
+        index++;
+        updateCarousel();
+      }
     });
-
+    
     function updateCarousel() {
-        const offset = -index * 170; // Each card's width (150px) + padding (20px)
-        track.style.transform = `translateX(${offset}px)`;
+      // Get the width of one watch element (including its padding/margin gap)
+      const card = watches[0];
+      const cardWidth = card.offsetWidth; // assuming gap is included in inline styles (if not, add extra value)
+      // Calculate offset using card width; you can adjust the multiplier if there's extra gap
+      const offset = -index * (cardWidth + 20);
+      track.style.transform = `translateX(${offset}px)`;
     }
-</script>
-
-
-
+  </script>
+  <!-- END: WATCH CAROUSEL SECTION SNIPPET -->
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
