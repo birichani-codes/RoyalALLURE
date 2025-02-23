@@ -1,109 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wishlist - RoyalALLURE</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: 'Jost', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        .wishlist-container {
-            width: 80%;
-            margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .wishlist-header {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .wishlist-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-        .wishlist-item img {
-            width: 80px;
-            height: auto;
-            border-radius: 5px;
-        }
-        .wishlist-details {
-            flex-grow: 1;
-            padding: 0 20px;
-        }
-        .wishlist-details h3 {
-            margin: 5px 0;
-            font-size: 18px;
-        }
-        .wishlist-details p {
-            color: #777;
-            margin: 3px 0;
-        }
-        .wishlist-actions {
-            display: flex;
-            flex-direction: column;
-        }
-        .wishlist-actions button {
-            background-color: #C19A6B;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            margin: 5px 0;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        .wishlist-actions button:hover {
-            background-color: #a37f55;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RoyalALLURE Kenya</title>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <style>
+    @font-face {
+      font-family: 'UniversLTPro';
+      src: url('fonts/UniversLTPro-Regular.woff2') format('woff2'),
+           url('fonts/UniversLTPro-Regular.woff') format('woff'),
+           url('fonts/UniversLTPro-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'UniversLTPro', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: rgb(51, 51, 51);
+      background-color: #f4f4f4;
+      overflow-x: hidden;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8f8f8;
+      padding: 5px 10%;
+      font-size: 14px;
+      font-weight: 300;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1100;
+    }
+
+    .top-bar .left-links a {
+      text-decoration: none;
+      color: #333;
+      margin-right: 15px;
+    }
+
+    .top-bar .left-links a i {
+      margin-right: 5px;
+    }
+
+    .top-bar .social-icons a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 15px;
+    }
+
+    /* NAVIGATION BAR */
+    nav {
+      background-color: #222;
+      color: white;
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      top: 30px; /* Below the top bar */
+      left: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    .logo {
+      font-size: 1.1em;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+
+    .search-box i {
+      color: #555;
+      margin-right: 8px;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: gold;
+    }
+
+    /* RESPONSIVE STYLES (mobile) */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #222;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        display: none;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="wishlist-container">
-        <div class="wishlist-header">WISHLIST</div>
-        <p>You have <strong>2 items</strong> in your wishlist</p>
-        
-        <div class="wishlist-item">
-            <img src="images/watch.jpg" alt="Cartier Watch">
-            <div class="wishlist-details">
-                <h3>CARTIER</h3>
-                <p>Tank Louis Cartier - 100 Years Anniversary Exclusive</p>
-                <p>Product Code: 17311479</p>
-                <p>KES 2,000,000</p>
-            </div>
-            <div class="wishlist-actions">
-                <button>Add to Bag</button>
-                <button>Remove</button>
-            </div>
-        </div>
-        
-        <div class="wishlist-item">
-            <img src="images/watch2.jpeg" alt="Tudor Watch">
-            <div class="wishlist-details">
-                <h3>TUDOR</h3>
-                <p>Black Bay Chrono Boutique Edition 41mm Steel Case</p>
-                <p>Product Code: 17771072</p>
-                <p>KES 1,200,000</p>
-            </div>
-            <div class="wishlist-actions">
-                <button>Add to Bag</button>
-                <button>Remove</button>
-            </div>
-        </div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="left-links">
+      <a href="/request-an-appointment"><i class="fas fa-calendar-alt"></i> Request an Appointment</a>
+      <a href="/contact-us"><i class="fas fa-phone"></i> Contact Us</a>
     </div>
+    <!--
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    -->
+    
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-home"></i> ROYALALLURE KENYA
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/watches">WATCHES</a></li>
+        <li><a href="#">BOUTIQUES</a></li>
+        <li><a href="/about-us">ABOUT US</a></li>
+        <li>
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search">
+          </div>
+        </li>
+        <li><span style="color: gold;">🇰🇪 EN | KES</span></li>
+        <li><a href="/shopping-bag" style="color: gold;"><i class="fas fa-shopping-bag"></i></a></li>
+        <!-- Wishlist Icon -->
+        <li><a href="/wishlist" style="color: gold;"><i class="fas fa-heart"></i></a></li>
+        <li><i class="fas fa-user" style="color: gold; cursor: pointer;"></i></li>
+        <li><i class="fas fa-user" style="color: gold; cursor: pointer;"></i></li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+    // Toggle hamburger menu
+    document.querySelector(".hamburger").addEventListener("click", function () {
+      document.querySelector(".nav-links").classList.toggle("active");
+    });
+  </script>
+
 </body>
 </html>
 
 
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist - RoyalALLURE</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .wishlist-container {
+      width: 80%;
+      margin: 50px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .wishlist-header {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .wishlist-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+    .wishlist-item img {
+      width: 80px;
+      height: auto;
+      border-radius: 5px;
+    }
+    .wishlist-details {
+      flex-grow: 1;
+      padding: 0 20px;
+    }
+    .wishlist-details h3 {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+    .wishlist-details p {
+      color: #777;
+      margin: 3px 0;
+    }
+    .wishlist-actions {
+      display: flex;
+      flex-direction: column;
+    }
+    .wishlist-actions button {
+      background-color: #C19A6B;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      margin: 5px 0;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .wishlist-actions button:hover {
+      background-color: #a37f55;
+    }
+  </style>
+</head>
+<body>
+  <div class="wishlist-container" id="wishlistContainer">
+    <!-- Dynamic wishlist content will be injected here -->
+  </div>
+
+  <script>
+    // Helper functions to work with localStorage
+    function getWishlistItems() {
+      const items = localStorage.getItem("wishlistItems");
+      return items ? JSON.parse(items) : [];
+    }
+
+    function saveWishlistItems(items) {
+      localStorage.setItem("wishlistItems", JSON.stringify(items));
+    }
+
+    // Toggle wishlist: if product exists, remove it; otherwise, add it.
+    // This function can be used on the product page when clicking the heart icon.
+    function toggleWishlist(product) {
+      let items = getWishlistItems();
+      const exists = items.find(item => item.id === product.id);
+      if (exists) {
+        // Remove the product if it already exists
+        items = items.filter(item => item.id !== product.id);
+      } else {
+        // Add the product to wishlist
+        items.push(product);
+      }
+      saveWishlistItems(items);
+    }
+
+    // Render the wishlist on wishlist.html
+    function renderWishlist() {
+      const wishlistItems = getWishlistItems();
+      const container = document.getElementById("wishlistContainer");
+      
+      // Build header and item count
+      container.innerHTML = `
+        <div class="wishlist-header">WISHLIST</div>
+        <p>You have <strong>${wishlistItems.length} item${wishlistItems.length !== 1 ? 's' : ''}</strong> in your wishlist</p>
+      `;
+      
+      // Create wishlist item elements for each product
+      wishlistItems.forEach(item => {
+        const wishlistItem = document.createElement("div");
+        wishlistItem.className = "wishlist-item";
+        
+        wishlistItem.innerHTML = `
+          <img src="${item.image}" alt="${item.brand} ${item.model}">
+          <div class="wishlist-details">
+            <h3>${item.brand}</h3>
+            <p>${item.model}</p>
+            <p>Product Code: ${item.info.basic["Product Code"] || item.id}</p>
+            <p>${item.price}</p>
+          </div>
+          <div class="wishlist-actions">
+            <button onclick="addToBag(${item.id})">Add to Bag</button>
+            <button onclick="removeFromWishlist(${item.id})">Remove</button>
+          </div>
+        `;
+        
+        container.appendChild(wishlistItem);
+      });
+    }
+
+    // Remove an item from the wishlist and re-render
+    function removeFromWishlist(productId) {
+      let items = getWishlistItems();
+      items = items.filter(item => item.id !== productId);
+      saveWishlistItems(items);
+      renderWishlist();
+    }
+
+    // Dummy function to handle "Add to Bag" action
+    function addToBag(productId) {
+      alert("Product " + productId + " added to bag!");
+      // Here you could implement functionality to add the product to the cart.
+    }
+
+    // Render wishlist once the DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", renderWishlist);
+  </script>
+</body>
+</html>
+
+
+<footer style="background-color: #1c1c1c; color: #f1f1f1; padding: 30px; text-align: left;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
+      
+      <!-- Contact Information -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Contact</h3>
+        <p style="margin: 2px 0;">Phone: +254 700 123 456</p>
+        <p style="margin: 2px 0;">Email: service@watches-of-kenya.ke</p>
+        <p style="margin: 2px 0;">Watches of Kenya Ltd</p>
+        <p style="margin: 2px 0;">Moi Avenue 10-15</p>
+        <p style="margin: 2px 0;">00100 Nairobi</p>
+        <p style="margin: 2px 0;">Kenya</p>
+      </div>
+      
+      <!-- Company Links -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Company</h3>
+        <p style="margin: 2px 0;">
+          <a href="about.html" style="text-decoration: none; color: #f1f1f1;">About Us</a>
+        </p>
+        <p style="margin: 2px 0;">
+          <a href="faq.html" style="text-decoration: none; color: #f1f1f1;">FAQ</a>
+        </p>
+      </div>
+      
+      <!-- Secure Payment -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Secure Payment</h3>
+        <i class="fab fa-cc-visa" style="font-size: 24px; margin-right: 10px; color: #f1f1f1;"></i>
+        <i class="fab fa-cc-mastercard" style="font-size: 24px; color: #f1f1f1;"></i>
+      </div>
+      
+      <!-- Fast Delivery -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Fast Delivery</h3>
+        <i class="fas fa-shipping-fast" style="font-size: 24px; color: #f1f1f1;"></i>
+      </div>
+      
+      <!-- International -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">International</h3>
+        <i class="fas fa-flag" style="font-size: 24px; color: #f1f1f1;"></i>
+      </div>
+      
+      <!-- Social Media -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Follow Us</h3>
+        <i class="fab fa-instagram" style="font-size: 24px; margin-right: 10px; color: #f1f1f1;"></i>
+        <i class="fab fa-linkedin" style="font-size: 24px; color: #f1f1f1;"></i>
+      </div>
+      
+    </div>
+    <hr style="border: 0.5px solid #f1f1f1; margin: 20px 0;">
+    <div style="text-align: center;">
+      <p style="font-size: 14px;">Imprint | Terms and Conditions | Privacy Policy &copy; 2025 Watches of Kenya</p>
+    </div>
+  </footer>
+  
+  

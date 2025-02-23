@@ -180,6 +180,9 @@
                     <input type="text" placeholder="Search" style="border: none; outline: none; font-size: 14px;">
                 </div>
                 <span style="font-size: 14px; color: gold; font-family: 'UniversLTPro', sans-serif;">🇰🇪 EN | KES</span>
+                <!-- Wishlist Icon -->
+        <li><a href="/wishlist" style="color: gold;"><i class="fas fa-heart"></i></a></li>
+        <li><i class="fas fa-user" style="color: gold; cursor: pointer;"></i></li>
                 <i class="fas fa-user" style="font-size: 18px; color: gold;"></i>
             </div>
         </div>
@@ -422,7 +425,6 @@
 </body>
 </html>
 
-
 <section style="padding: 20px; font-family: 'Jost', sans-serif; text-align: center;">
     <h2 style="text-transform: uppercase; font-size: 16px; letter-spacing: 1px; font-weight: bold; text-align: left; margin: 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px;">
       RELATED PRODUCT
@@ -464,7 +466,12 @@
           relatedProducts.forEach(product => {
             // Create a container for each product card
             const card = document.createElement("div");
-            card.style.cssText = "flex: 0 0 auto; width: 150px; text-align: center;";
+            card.style.cssText = "flex: 0 0 auto; width: 150px; text-align: center; cursor: pointer;";
+            
+            // Add click event to redirect to the watch details page
+            card.addEventListener("click", () => {
+              window.location.href = `watch-details.html?id=${product.id}`;
+            });
             
             // Create and append the product image
             const img = document.createElement("img");
@@ -502,6 +509,7 @@
     document.addEventListener('DOMContentLoaded', loadRelatedProducts);
   </script>
   
+  
   <section style="padding: 20px; font-family: 'Jost', sans-serif; text-align: center;">
     <h2 style="text-transform: uppercase; font-size: 16px; letter-spacing: 1px; font-weight: bold; text-align: left; margin: 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px;">
       RECENTLY VIEWED 
@@ -523,22 +531,22 @@
   </section>
   
   <script>
-    // Horizontal scroll function for Recently Viewed section
+    // Function to scroll the Recently Viewed section horizontally
     function scrollRecentProducts(amount) {
       document.getElementById("recently-viewed-list").scrollBy({ left: amount, behavior: "smooth" });
     }
   
     // Function to fetch and render Recently Viewed products dynamically
     function loadRecentlyViewed() {
-      fetch('REPOSITORY/royalALLUREREPO.json')
+      fetch('/REPOSITORY/royalALLUREREPO.json')
         .then(response => response.json())
         .then(data => {
           const recentlyViewed = data.recentlyViewed;
           const container = document.getElementById("recently-viewed-list");
-          container.innerHTML = ""; // Clear existing content
+          container.innerHTML = ""; // Clear any existing content
   
           recentlyViewed.forEach(product => {
-            // Create card container
+            // Create a container for each product card
             const card = document.createElement("div");
             card.style.cssText = "flex: 0 0 auto; width: 150px; text-align: center;";
   
@@ -567,20 +575,22 @@
             price.textContent = product.price;
             card.appendChild(price);
   
-            // Append card to container
+            // Optionally, you can add a click event to redirect to detailed product view
+            card.addEventListener("click", () => {
+              window.location.href = `watch-details.html?id=${product.id}`;
+            });
+  
+            // Append the card to the container
             container.appendChild(card);
           });
         })
         .catch(error => console.error("Error fetching recently viewed products:", error));
     }
   
-    // Load Recently Viewed products once DOM is ready
+    // Load Recently Viewed products once the DOM is ready
     document.addEventListener("DOMContentLoaded", loadRecentlyViewed);
   </script>
   
-</body>
-</html>
-
 <footer style="background-color: #1c1c1c; color: #f1f1f1; padding: 30px; text-align: left;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
       

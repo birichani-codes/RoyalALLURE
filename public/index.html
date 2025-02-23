@@ -19,13 +19,18 @@
       font-style: normal;
     }
 
-    body {
+    /* GLOBAL RESETS */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'UniversLTPro', sans-serif;
       font-weight: 400;
       font-size: 16px;
       line-height: 24px;
-      color: rgb(51, 51, 51);
+      color: #333;
       background-color: #f4f4f4;
       overflow-x: hidden;
     }
@@ -36,30 +41,22 @@
       justify-content: space-between;
       align-items: center;
       background: #f8f8f8;
-      padding: 5px 10%;
+      padding: 5px 20px;
       font-size: 14px;
       font-weight: 300;
       position: fixed;
       width: 100%;
       top: 0;
       left: 0;
-      z-index: 1100;
+      z-index: 1200; /* Higher than nav so it stays on top */
     }
-
     .top-bar .left-links a {
       text-decoration: none;
       color: #333;
       margin-right: 15px;
     }
-
     .top-bar .left-links a i {
       margin-right: 5px;
-    }
-
-    .top-bar .social-icons a {
-      text-decoration: none;
-      color: #333;
-      margin-left: 15px;
     }
 
     /* NAVIGATION BAR */
@@ -69,41 +66,39 @@
       padding: 15px 0;
       position: fixed;
       width: 100%;
-      top: 30px;
+      top: 40px; /* Sits below top-bar (which is ~35px tall) */
       left: 0;
-      z-index: 1000;
+      z-index: 1100; /* Below top bar, but above hero */
     }
-
     .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 90%;
-      margin: auto;
-      padding: 0 10px;
+      margin: 0;
+      padding: 0 20px; /* Adjust side padding as needed */
+      width: 100%;
     }
-
     .logo {
       font-size: 1.1em;
       font-weight: bold;
       text-transform: uppercase;
       cursor: pointer;
     }
-
+    .hamburger {
+      display: none; /* Hidden on large screens, shown on small */
+      font-size: 1.5em;
+      cursor: pointer;
+    }
     .nav-links {
       list-style: none;
       display: flex;
       align-items: center;
       gap: 30px;
-      margin: 0;
-      padding: 0;
     }
-
     .nav-links a {
       text-decoration: none;
       color: white;
     }
-
     .search-box {
       display: flex;
       align-items: center;
@@ -111,12 +106,10 @@
       padding: 6px 10px;
       border-radius: 5px;
     }
-
     .search-box i {
       color: #555;
       margin-right: 8px;
     }
-
     .search-box input {
       border: none;
       outline: none;
@@ -127,42 +120,34 @@
     header {
       background: url('images/rolex.webp') no-repeat center center/cover;
       height: 90vh;
+      position: relative;
+      margin-top: 75px; /* space for top bar (35px) + nav (40px) */
       display: flex;
       align-items: center;
-      text-align: left;
       color: white;
-      position: relative;
-      margin-top: 60px; /* offset for fixed nav */
-      padding-left: 10%;
     }
-
     .overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.3);
     }
-
     .hero-content {
       position: relative;
       z-index: 1;
+      margin-left: 20px;  /* minimal left offset */
+      margin-top: 300px;  /* push content down as desired */
       max-width: 500px;
-      padding-top: 400px;
     }
-
     .hero-content h1 {
       font-size: 3em;
       font-weight: bold;
       margin-bottom: 10px;
     }
-
     .hero-content p {
       font-size: 1.2em;
       margin-bottom: 20px;
     }
-
     .shop-now {
       padding: 12px 24px;
       background-color: transparent;
@@ -174,7 +159,6 @@
       transition: background 0.3s ease, color 0.3s ease;
       display: inline-block;
     }
-
     .shop-now:hover {
       background: white;
       color: black;
@@ -182,62 +166,52 @@
 
     /* RESPONSIVE STYLES (mobile) */
     @media (max-width: 768px) {
-      /* Show hamburger, hide nav links by default */
       .hamburger {
-        display: block;
-        cursor: pointer;
-        font-size: 1.5em;
+        display: block; /* Show hamburger on small screens */
       }
       .nav-links {
         position: absolute;
-        top: 60px; /* just below the nav bar */
+        top: 60px; /* below the nav container */
         left: 0;
         width: 100%;
         background: #222;
         flex-direction: column;
         gap: 15px;
         padding: 20px;
-        transform: translateY(-200%); /* hidden by default */
+        transform: translateY(-200%);
+        transition: transform 0.3s ease;
       }
-      .nav-links li {
-        display: block; /* each item on its own line in mobile */
-        margin-top: 10px;
-      }
-      /* Toggle the menu open */
       .nav-links.active {
         transform: translateY(0);
       }
-
-      /* Adjust hero on mobile */
+      .nav-links li {
+        margin-top: 10px;
+      }
       header {
-        height: 70vh; /* smaller hero height */
+        height: 70vh;
       }
       .hero-content {
-        padding-top: 200px; /* reduce top padding */
+        margin-top: 180px;
+        margin-left: 20px;
       }
       .hero-content h1 {
         font-size: 2em;
       }
     }
-
     /* Hide hamburger on large screens */
     @media (min-width: 769px) {
       .hamburger {
         display: none;
       }
     }
-
     @media (max-width: 480px) {
       /* Additional adjustments for very small screens */
       .top-bar {
-        padding: 5px 3%;
+        padding: 5px 10px;
         font-size: 12px;
       }
       .nav-container {
-        padding: 0 5%;
-      }
-      .nav-links {
-        gap: 20px;
+        padding: 0 10px;
       }
       .hero-content h1 {
         font-size: 1.8em;
@@ -249,21 +223,12 @@
   </style>
 </head>
 <body>
-  
   <!-- Top Bar -->
   <div class="top-bar">
     <div class="left-links">
       <a href="/request-an-appointment"><i class="fas fa-calendar-alt"></i> Request an Appointment</a>
       <a href="/contact-us"><i class="fas fa-phone"></i> Contact Us</a>
     </div>
-    <!--
-     <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-    </div>
-    -->
-   
   </div>
 
   <!-- Navigation Bar -->
@@ -289,6 +254,8 @@
         </li>
         <li><span style="color: gold;">🇰🇪 EN | KES</span></li>
         <li><a href="/shopping-bag" style="color: gold;"><i class="fas fa-shopping-bag"></i></a></li>
+        <!-- Wishlist Icon -->
+        <li><a href="/wishlist" style="color: gold;"><i class="fas fa-heart"></i></a></li>
         <li><i class="fas fa-user" style="color: gold; cursor: pointer;"></i></li>
       </ul>
     </div>
@@ -533,8 +500,7 @@
     }
   </style>
   
-  <section class="watch-section">
-    <!-- Heading and Subheading -->
+  <section style="padding: 20px; font-family: 'Jost', sans-serif; text-align: center;">
     <div class="heading-container" style="text-align: center; margin-bottom: 30px;">
       <h2 style="font-size: 28px; margin-bottom: 10px; color: #333;">LATEST ARRIVALS</h2>
       <p style="font-size: 16px; color: #555;">Explore our latest collection of luxury watches</p>
@@ -547,6 +513,33 @@
   </section>
   
   <script>
+    // Utility function to parse price string "KES 500,000" into a number for sorting
+    function parsePrice(priceStr) {
+      return parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
+    }
+  
+    // Wishlist helper functions
+    function getWishlistItems() {
+      return JSON.parse(localStorage.getItem("wishlistItems")) || [];
+    }
+    function saveWishlistItems(items) {
+      localStorage.setItem("wishlistItems", JSON.stringify(items));
+    }
+  
+    // Toggle wishlist status for a product and update the icon appearance
+    function toggleWishlist(product, iconElement) {
+      let wishlist = getWishlistItems();
+      const index = wishlist.findIndex(item => item.id === product.id);
+      if (index === -1) {
+        wishlist.push(product);
+        iconElement.style.color = 'red'; // Indicate item is added
+      } else {
+        wishlist.splice(index, 1);
+        iconElement.style.color = ''; // Revert to default color
+      }
+      saveWishlistItems(wishlist);
+    }
+  
     // Fetch the JSON repository from the public/repository folder
     fetch('/REPOSITORY/royalALLUREREPO.json')
       .then(response => {
@@ -558,8 +551,8 @@
       .then(data => {
         const container = document.getElementById('watchContainer');
   
-        // Get the "Latest Arrivals" watches
-        const latestArrivals = data.categories["Latest Arrivals"].map(id => 
+        // Get the "Latest Arrivals" watches from the JSON categories
+        const latestArrivals = data.categories["Latest Arrivals"].map(id =>
           data.watches.find(watch => watch.id === id)
         ).filter(watch => watch); // Remove undefined watches
   
@@ -577,17 +570,18 @@
             window.location.href = `watch-details.html?id=${watch.id}`;
           });
   
-          // Create wishlist element
-          let wishlistElement;
-          if (watch.wishlistLink) {
-            wishlistElement = document.createElement('a');
-            wishlistElement.href = watch.wishlistLink;
-            wishlistElement.className = 'wishlist-icon';
-            wishlistElement.innerHTML = '<i class="fas fa-heart"></i>';
-          } else {
-            wishlistElement = document.createElement('i');
-            wishlistElement.className = 'fas fa-heart wishlist-icon';
+          // Create wishlist icon element and attach toggle functionality
+          const wishlistElement = document.createElement('i');
+          wishlistElement.className = 'fas fa-heart wishlist-icon';
+          // Check if product is already in wishlist and update icon color
+          const wishlist = getWishlistItems();
+          if (wishlist.find(item => item.id === watch.id)) {
+            wishlistElement.style.color = 'red';
           }
+          wishlistElement.addEventListener('click', function (e) {
+            e.stopPropagation(); // Prevent card redirection
+            toggleWishlist(watch, wishlistElement);
+          });
           card.appendChild(wishlistElement);
   
           // Create the image element
@@ -601,9 +595,13 @@
           infoDiv.className = 'watch-info';
           infoDiv.textContent = `${watch.brand} ${watch.model} - ${watch.price}`;
   
-          // Create the action button
+          // Create the action button (e.g., "Shop Now" or "Ask for Information")
           const btn = document.createElement('button');
           btn.textContent = watch.action;
+          // Prevent card redirection when clicking the button
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+          });
           infoDiv.appendChild(btn);
   
           // Append watch info to the card
@@ -615,6 +613,7 @@
       })
       .catch(error => console.error('Error fetching watches:', error));
   </script>
+  
   
     <!-- START OF INTEREST-FREE CREDIT SECTION (INLINE STYLES) -->
 <section style="background-color:#fff; color:#333; padding:60px 20px; box-sizing:border-box;">
