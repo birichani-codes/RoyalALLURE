@@ -281,9 +281,33 @@
         flex-direction: column;
         margin: 20px;
       }
-
       .watch-detail-info {
         padding: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .watch-detail-container {
+        margin: 10px;
+        padding: 10px;
+      }
+      .watch-detail-title {
+        font-size: 20px;
+      }
+      .watch-detail-price {
+        font-size: 18px;
+      }
+      .watch-detail-btn {
+        font-size: 14px;
+        padding: 8px;
+      }
+      .watch-detail-dropdown-header {
+        padding: 8px 0;
+        font-size: 14px;
+      }
+      .watch-detail-dropdown-content {
+        font-size: 12px;
+        padding: 8px;
       }
     }
   </style>
@@ -292,199 +316,326 @@
   <div class="watch-detail-container">
     <!-- Watch Image -->
     <div class="watch-detail-image">
-      <img src="images/watch2.jpeg" alt="Watch Image" />
+      <img id="watch-image" src="" alt="Watch Image" />
     </div>
 
     <!-- Watch Details -->
     <div class="watch-detail-info">
-      <div class="watch-detail-title">TUDOR BLACK BAY FIFTY-EIGHT</div>
-      <div class="watch-detail-price">CHF 3'550.00</div>
+      <div id="watch-title" class="watch-detail-title"></div>
+      <div id="watch-price" class="watch-detail-price"></div>
       <a href="#" class="watch-detail-btn">ASK FOR INFORMATION</a>
 
+      <!-- Basic Info Dropdown -->
       <div class="watch-detail-dropdown">
         <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-basic-info')">
           Basic Info <i class="fas fa-chevron-down"></i>
         </div>
         <div class="watch-detail-dropdown-content" id="watch-basic-info">
-          <p><strong>Reference No:</strong> M79030N-0002</p>
-          <p><strong>Mechanism:</strong> Automatic</p>
-          <p><strong>Shape:</strong> Round</p>
+          <p><strong>Product Code:</strong> <span id="watch-product-code"></span></p>
+          <p><strong>Manufacturer Product Number:</strong> <span id="watch-manufacturer"></span></p>
+          <p><strong>Guarantee:</strong> <span id="watch-guarantee"></span></p>
         </div>
       </div>
 
+      <!-- Case Dropdown -->
       <div class="watch-detail-dropdown">
         <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-case-info')">
           Case <i class="fas fa-chevron-down"></i>
         </div>
         <div class="watch-detail-dropdown-content" id="watch-case-info">
-          <p><strong>Dial Colour:</strong> Black</p>
-          <p><strong>Glass:</strong> Sapphire Crystal</p>
-          <p><strong>Case:</strong> Stainless Steel</p>
+          <p><strong>Dial Colour:</strong> <span id="watch-dial"></span></p>
+          <p><strong>Case Material:</strong> <span id="watch-case-material"></span></p>
+          <p><strong>Water Resistant:</strong> <span id="watch-water-resistant"></span></p>
         </div>
       </div>
 
+      <!-- Bracelet Dropdown -->
       <div class="watch-detail-dropdown">
         <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-bracelet-info')">
           Bracelet <i class="fas fa-chevron-down"></i>
         </div>
         <div class="watch-detail-dropdown-content" id="watch-bracelet-info">
-          <p><strong>Bracelet Material:</strong> Leather Calf</p>
-          <p><strong>Buckle:</strong> Folding Buckle</p>
+          <p><strong>Strap Material:</strong> <span id="watch-strap"></span></p>
+          <p><strong>Buckle:</strong> <span id="watch-buckle"></span></p>
         </div>
       </div>
 
+      <!-- Movement Dropdown -->
       <div class="watch-detail-dropdown">
         <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-movement-info')">
           Movement <i class="fas fa-chevron-down"></i>
         </div>
         <div class="watch-detail-dropdown-content" id="watch-movement-info">
-          <p><strong>Mechanism:</strong> Automatic</p>
-          <p><strong>Calibre:</strong> MT5402</p>
-          <p><strong>Power Reserve:</strong> 70 hours</p>
+          <p><strong>Mechanism:</strong> <span id="watch-movement"></span></p>
+          <p><strong>Shape:</strong> <span id="watch-shape"></span></p>
         </div>
       </div>
     </div>
   </div>
 
   <script>
+    // Toggle dropdown visibility
     function toggleDropdown(id) {
       var content = document.getElementById(id);
       content.style.display = content.style.display === "block" ? "none" : "block";
     }
+
+    // Load watch details from JSON based on URL parameter "id"
+    function loadWatchDetails() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const watchId = urlParams.get('id');
+
+      fetch('REPOSITORY/royalALLUREREPO.json')
+        .then(response => response.json())
+        .then(data => {
+          const watch = data.watches.find(w => w.id == watchId);
+          if (watch) {
+            // Set main image, title, and price
+            document.getElementById('watch-image').src = watch.image;
+            document.getElementById('watch-title').textContent = `${watch.brand} ${watch.model}`;
+            document.getElementById('watch-price').textContent = watch.price;
+
+            // Populate Basic Info
+            document.getElementById('watch-product-code').textContent = watch.info.basic["Product Code"] || watch.id;
+            document.getElementById('watch-manufacturer').textContent = watch.info.basic["Manufacturer Product Number"] || "";
+            document.getElementById('watch-guarantee').textContent = watch.info.basic["Guarantee"] || "";
+
+            // Populate Case Info
+            document.getElementById('watch-dial').textContent = watch.info.case["Dial Colour"] || watch.dialColour;
+            document.getElementById('watch-case-material').textContent = watch.info.case["Case Material"] || "";
+            document.getElementById('watch-water-resistant').textContent = watch.info.case["Water Resistant"] || "";
+
+            // Populate Bracelet Info
+            document.getElementById('watch-strap').textContent = watch.info.bracelet["Strap Material"] || "";
+            document.getElementById('watch-buckle').textContent = watch.info.bracelet["Buckle"] || "";
+
+            // Populate Movement Info
+            document.getElementById('watch-movement').textContent = watch.info.movement["Mechanism"] || "";
+            document.getElementById('watch-shape').textContent = watch.info.movement["Shape"] || "";
+          }
+        })
+        .catch(error => console.error('Error fetching watch details:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', loadWatchDetails);
   </script>
 </body>
 </html>
 
 
-
 <section style="padding: 20px; font-family: 'Jost', sans-serif; text-align: center;">
     <h2 style="text-transform: uppercase; font-size: 16px; letter-spacing: 1px; font-weight: bold; text-align: left; margin: 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px;">
-        RELATED PRODUCT
+      RELATED PRODUCT
     </h2>
-
+  
     <div style="display: flex; align-items: center; justify-content: center; gap: 10px; position: relative; overflow: hidden;">
-        <button onclick="scrollProducts(-200)" style="border: none; background: none; font-size: 20px; cursor: pointer;">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <div id="product-list" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; width: 90%; padding: 10px;">
-            <div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch2.jpeg" alt="Watch 1" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">Black Bay Chrono S&G</p>
-                <p style="color: #555; font-size: 12px;">CHF 6'300.00</p>
-            </div>
-            <div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch1.jfif" alt="Watch 2" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">Black Bay P01</p>
-                <p style="color: #555; font-size: 12px;">CHF 4'150.00</p>
-            </div>
-            <div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div>
-            <div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div><div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div><div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div><div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div>
-        </div>
-
-        <button onclick="scrollProducts(200)" style="border: none; background: none; font-size: 20px; cursor: pointer;">
-            <i class="fas fa-chevron-right"></i>
-        </button>
+      <button onclick="scrollProducts(-200)" style="border: none; background: none; font-size: 20px; cursor: pointer;">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+  
+      <!-- The product list will be dynamically populated -->
+      <div id="product-list" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; width: 90%; padding: 10px;"></div>
+  
+      <button onclick="scrollProducts(200)" style="border: none; background: none; font-size: 20px; cursor: pointer;">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </div>
-</section>
-
-<script>
+  </section>
+  
+  <script>
+    // Scroll function for horizontal scrolling
     function scrollProducts(amount) {
-        document.getElementById("product-list").scrollBy({ left: amount, behavior: "smooth" });
+      document.getElementById("product-list").scrollBy({ left: amount, behavior: "smooth" });
     }
-</script>
-
-
-
-<section style="padding: 20px; font-family: 'Jost', sans-serif; text-align: center;">
+  
+    // Function to dynamically fetch and render related products
+    function loadRelatedProducts() {
+      fetch('REPOSITORY/royalALLUREREPO.json')
+        .then(response => response.json())
+        .then(data => {
+          // Get the relatedProducts array from your JSON
+          const relatedProducts = data.relatedProducts;
+          const productList = document.getElementById("product-list");
+          
+          // Clear any existing content
+          productList.innerHTML = "";
+          
+          // Loop through each related product and build its HTML
+          relatedProducts.forEach(product => {
+            // Create a container for each product card
+            const card = document.createElement("div");
+            card.style.cssText = "flex: 0 0 auto; width: 150px; text-align: center;";
+            
+            // Create and append the product image
+            const img = document.createElement("img");
+            img.src = product.image;
+            img.alt = product.model;
+            img.style.cssText = "width: 100%; border-radius: 10px;";
+            card.appendChild(img);
+            
+            // Create and append the brand name (bold)
+            const brand = document.createElement("p");
+            brand.style.cssText = "font-size: 14px; font-weight: bold; margin: 5px 0 0;";
+            brand.textContent = product.brand;
+            card.appendChild(brand);
+            
+            // Create and append the model name
+            const model = document.createElement("p");
+            model.style.cssText = "font-size: 12px; margin: 3px 0;";
+            model.textContent = product.model;
+            card.appendChild(model);
+            
+            // Create and append the price (using KES)
+            const price = document.createElement("p");
+            price.style.cssText = "color: #555; font-size: 12px; margin: 3px 0;";
+            price.textContent = product.price;
+            card.appendChild(price);
+            
+            // Append the card to the product list container
+            productList.appendChild(card);
+          });
+        })
+        .catch(error => console.error('Error fetching related products:', error));
+    }
+  
+    // Call the function once the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', loadRelatedProducts);
+  </script>
+  
+  <section style="padding: 20px; font-family: 'Jost', sans-serif; text-align: center;">
     <h2 style="text-transform: uppercase; font-size: 16px; letter-spacing: 1px; font-weight: bold; text-align: left; margin: 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px;">
-        RECENTLY VIEWED 
+      RECENTLY VIEWED 
     </h2>
-
+  
     <div style="display: flex; align-items: center; justify-content: center; gap: 10px; position: relative; overflow: hidden;">
-        <button onclick="scrollProducts(-200)" style="border: none; background: none; font-size: 20px; cursor: pointer;">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <div id="product-list" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; width: 90%; padding: 10px;">
-            <div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch2.jpeg" alt="Watch 1" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">Black Bay Chrono S&G</p>
-                <p style="color: #555; font-size: 12px;">CHF 6'300.00</p>
-            </div>
-            <div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch1.jfif" alt="Watch 2" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">Black Bay P01</p>
-                <p style="color: #555; font-size: 12px;">CHF 4'150.00</p>
-            </div>
-            <div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div>
-            <div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div><div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div><div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div><div style="flex: 0 0 auto; width: 150px; text-align: center;">
-                <img src="images/watch.jpg" alt="Watch 3" style="width: 100%; border-radius: 10px;">
-                <p style="font-size: 14px; font-weight: bold;">Tudor</p>
-                <p style="font-size: 12px;">1926 1926</p>
-                <p style="color: #555; font-size: 12px;">CHF 3'850.00</p>
-            </div>
-        </div>
-
-        <button onclick="scrollProducts(200)" style="border: none; background: none; font-size: 20px; cursor: pointer;">
-            <i class="fas fa-chevron-right"></i>
-        </button>
+      <button onclick="scrollRecentProducts(-200)" style="border: none; background: none; font-size: 20px; cursor: pointer;">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+  
+      <div id="recently-viewed-list" style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; width: 90%; padding: 10px;">
+        <!-- Dynamic Recently Viewed products will be injected here -->
+      </div>
+  
+      <button onclick="scrollRecentProducts(200)" style="border: none; background: none; font-size: 20px; cursor: pointer;">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </div>
-</section>
-
-<script>
-    function scrollProducts(amount) {
-        document.getElementById("product-list").scrollBy({ left: amount, behavior: "smooth" });
+  </section>
+  
+  <script>
+    // Horizontal scroll function for Recently Viewed section
+    function scrollRecentProducts(amount) {
+      document.getElementById("recently-viewed-list").scrollBy({ left: amount, behavior: "smooth" });
     }
-</script>
+  
+    // Function to fetch and render Recently Viewed products dynamically
+    function loadRecentlyViewed() {
+      fetch('REPOSITORY/royalALLUREREPO.json')
+        .then(response => response.json())
+        .then(data => {
+          const recentlyViewed = data.recentlyViewed;
+          const container = document.getElementById("recently-viewed-list");
+          container.innerHTML = ""; // Clear existing content
+  
+          recentlyViewed.forEach(product => {
+            // Create card container
+            const card = document.createElement("div");
+            card.style.cssText = "flex: 0 0 auto; width: 150px; text-align: center;";
+  
+            // Product image
+            const img = document.createElement("img");
+            img.src = product.image;
+            img.alt = product.model;
+            img.style.cssText = "width: 100%; border-radius: 10px;";
+            card.appendChild(img);
+  
+            // Brand (bold)
+            const brand = document.createElement("p");
+            brand.style.cssText = "font-size: 14px; font-weight: bold; margin: 5px 0 0;";
+            brand.textContent = product.brand;
+            card.appendChild(brand);
+  
+            // Model
+            const model = document.createElement("p");
+            model.style.cssText = "font-size: 12px; margin: 3px 0;";
+            model.textContent = product.model;
+            card.appendChild(model);
+  
+            // Price (KES)
+            const price = document.createElement("p");
+            price.style.cssText = "color: #555; font-size: 12px; margin: 3px 0;";
+            price.textContent = product.price;
+            card.appendChild(price);
+  
+            // Append card to container
+            container.appendChild(card);
+          });
+        })
+        .catch(error => console.error("Error fetching recently viewed products:", error));
+    }
+  
+    // Load Recently Viewed products once DOM is ready
+    document.addEventListener("DOMContentLoaded", loadRecentlyViewed);
+  </script>
+  
 </body>
 </html>
+
+<footer style="background-color: #1c1c1c; color: #f1f1f1; padding: 30px; text-align: left;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
+      
+      <!-- Contact Information -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Contact</h3>
+        <p style="margin: 2px 0;">Phone: +254 700 123 456</p>
+        <p style="margin: 2px 0;">Email: service@watches-of-kenya.ke</p>
+        <p style="margin: 2px 0;">Watches of Kenya Ltd</p>
+        <p style="margin: 2px 0;">Moi Avenue 10-15</p>
+        <p style="margin: 2px 0;">00100 Nairobi</p>
+        <p style="margin: 2px 0;">Kenya</p>
+      </div>
+      
+      <!-- Company Links -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Company</h3>
+        <p style="margin: 2px 0;">
+          <a href="about.html" style="text-decoration: none; color: #f1f1f1;">About Us</a>
+        </p>
+        <p style="margin: 2px 0;">
+          <a href="faq.html" style="text-decoration: none; color: #f1f1f1;">FAQ</a>
+        </p>
+      </div>
+      
+      <!-- Secure Payment -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Secure Payment</h3>
+        <i class="fab fa-cc-visa" style="font-size: 24px; margin-right: 10px; color: #f1f1f1;"></i>
+        <i class="fab fa-cc-mastercard" style="font-size: 24px; color: #f1f1f1;"></i>
+      </div>
+      
+      <!-- Fast Delivery -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Fast Delivery</h3>
+        <i class="fas fa-shipping-fast" style="font-size: 24px; color: #f1f1f1;"></i>
+      </div>
+      
+      <!-- International -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">International</h3>
+        <i class="fas fa-flag" style="font-size: 24px; color: #f1f1f1;"></i>
+      </div>
+      
+      <!-- Social Media -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #d4af37; margin-bottom: 10px;">Follow Us</h3>
+        <i class="fab fa-instagram" style="font-size: 24px; margin-right: 10px; color: #f1f1f1;"></i>
+        <i class="fab fa-linkedin" style="font-size: 24px; color: #f1f1f1;"></i>
+      </div>
+      
+    </div>
+    <hr style="border: 0.5px solid #f1f1f1; margin: 20px 0;">
+    <div style="text-align: center;">
+      <p style="font-size: 14px;">Imprint | Terms and Conditions | Privacy Policy &copy; 2025 Watches of Kenya</p>
+    </div>
+  </footer>
+  

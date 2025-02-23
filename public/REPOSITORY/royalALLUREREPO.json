@@ -1,0 +1,194 @@
+{
+    "repoName": "royalALLUREREPO.json",
+    "watches": [
+      {
+        "id": 1,
+        "brand": "Tudor",
+        "model": "Black Bay",
+        "price": "KES 500,000",
+        "image": "images/watch.jpg",
+        "action": "Shop Now",
+        "wishlistLink": "wishlist.html",
+        "info": {
+          "basic": {
+            "Product Code": "TB123456",
+            "Manufacturer Product Number": "TUD-001",
+            "Guarantee": "2 Year Guarantee"
+          },
+          "case": {
+            "Dial Colour": "Black",
+            "Case Material": "Stainless Steel",
+            "Water Resistant": "200 Metres"
+          },
+          "bracelet": {
+            "Strap Material": "Steel",
+            "Buckle": "Deployment Buckle"
+          },
+          "movement": {
+            "Mechanism": "Automatic",
+            "Shape": "Round"
+          }
+        },
+        "diameter": "41mm",
+        "gender": "Unisex",
+        "features": ["Automatic", "Water Resistant", "Luminous"],
+        "category": "Watches",
+        "watchMarkers": "None",
+        "recipient": "For Him/Her",
+        "brandCollections": "Classic Collection",
+        "subCategory": "Diver's Watch",
+        "additionalFeatures": [
+          "Date Display",
+          "Luminous Hands",
+          "Power Reserve Indicator"
+        ]
+      },
+      {
+        "id": 2,
+        "brand": "Tissot",
+        "model": "Classic",
+        "price": "KES 200,000",
+        "image": "images/watch2.jpeg",
+        "action": "Ask for Information",
+        "wishlistLink": "",
+        "info": {
+          "basic": {
+            "Product Code": "TC654321",
+            "Manufacturer Product Number": "TIS-002",
+            "Guarantee": "1 Year Guarantee"
+          },
+          "case": {
+            "Dial Colour": "White",
+            "Case Material": "Stainless Steel",
+            "Water Resistant": "100 Metres"
+          },
+          "bracelet": {
+            "Strap Material": "Leather",
+            "Buckle": "Tang Buckle"
+          },
+          "movement": {
+            "Mechanism": "Quartz",
+            "Shape": "Square"
+          }
+        },
+        "diameter": "40mm",
+        "gender": "Men",
+        "features": ["Quartz", "Chronograph"],
+        "category": "Watches",
+        "watchMarkers": "None",
+        "recipient": "For Him",
+        "brandCollections": "Modern Collection",
+        "subCategory": "Dress Watch",
+        "additionalFeatures": [
+          "Chronograph",
+          "Stopwatch"
+        ]
+      },
+      {
+        "id": 3,
+        "brand": "Girard-Perregaux",
+        "model": "Black Bay Fifty-Eight",
+        "price": "KES 355,000",
+        "image": "images/girard-perregaux.jpg",
+        "action": "Ask for Information",
+        "wishlistLink": "wishlist.html",
+        "info": {
+          "basic": {
+            "Product Code": "17250257",
+            "Manufacturer Product Number": "99295-21-000-BA6A",
+            "Guarantee": "Girard-Perregaux 5 Year Guarantee"
+          },
+          "case": {
+            "Dial Colour": "Skeleton",
+            "Case Material": "Titanium",
+            "Water Resistant": "30 Metres"
+          },
+          "bracelet": {
+            "Strap Material": "Alligator",
+            "Buckle": "Not Specified"
+          },
+          "movement": {
+            "Mechanism": "Automatic",
+            "Shape": "Not Specified"
+          }
+        },
+        "diameter": "45mm",
+        "gender": "For Him",
+        "features": [],
+        "category": "Watches",
+        "watchMarkers": "None",
+        "recipient": "For Him",
+        "brandCollections": "Brand Collections",
+        "subCategory": "Luxury Watch",
+        "additionalFeatures": [
+          "Skeleton Dial",
+          "Exhibition Case Back",
+          "Limited Edition"
+        ]
+      }
+    ],
+    "categories": {
+      "Latest Arrivals": [1, 3]
+    },
+    "relatedProducts": [
+      {
+        "id": 101,
+        "brand": "Tudor",
+        "model": "Black Bay Chrono S&G",
+        "image": "images/watch2.jpeg",
+        "price": "KES 630,000",
+        "category": "Related Product"
+      },
+      {
+        "id": 102,
+        "brand": "Tudor",
+        "model": "Black Bay P01",
+        "image": "images/watch1.jfif",
+        "price": "KES 415,000",
+        "category": "Related Product"
+      },
+      {
+        "id": 103,
+        "brand": "Tudor",
+        "model": "1926 1926",
+        "image": "images/watch.jpg",
+        "price": "KES 385,000",
+        "category": "Related Product"
+      },
+      {
+        "id": 104,
+        "brand": "Tudor",
+        "model": "1926 1926",
+        "image": "images/watch.jpg",
+        "price": "KES 385,000",
+        "category": "Related Product"
+      }
+    ],
+    "recentlyViewed": [
+      {
+        "id": 201,
+        "brand": "Rolex",
+        "model": "Explorer",
+        "image": "images/watch1.jfif",
+        "price": "KES 750,000",
+        "category": "Recently Viewed"
+      },
+      {
+        "id": 202,
+        "brand": "Omega",
+        "model": "Speedmaster",
+        "image": "images/watch2.jpeg",
+        "price": "KES 850,000",
+        "category": "Recently Viewed"
+      },
+      {
+        "id": 203,
+        "brand": "Breitling",
+        "model": "Navitimer",
+        "image": "images/watch.jpg",
+        "price": "KES 950,000",
+        "category": "Recently Viewed"
+      }
+    ]
+  }
+  

@@ -233,6 +233,7 @@
         background-color: #f8f8f8;
         border-bottom: 2px solid #ddd;
         text-align: center;
+        position: relative; /* For positioning dropdowns if needed */
       }
       
       .filter-button {
@@ -251,6 +252,25 @@
         transform: scale(1.05);
       }
       
+      /* Dropdown Menu for Filter Options */
+      .dropdown-menu {
+        position: absolute;
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+      }
+      
+      .dropdown-menu div {
+        cursor: pointer;
+        padding: 5px;
+      }
+      
+      .dropdown-menu div:hover {
+        background: #f0f0f0;
+      }
+      
       /* Sorting Container */
       .sorting-container {
         display: flex;
@@ -265,6 +285,35 @@
         max-width: 250px;
         border: 1px solid #ccc;
         border-radius: 4px;
+      }
+      
+      /* Watch Cards Container */
+      .watch-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        padding: 20px;
+      }
+      
+      .watch-card {
+        width: 250px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        border-radius: 4px;
+        background: #fafafa;
+      }
+      
+      .watch-card img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+      
+      .watch-info {
+        font-size: 16px;
+        margin-bottom: 10px;
       }
       
       /* Pagination */
@@ -336,39 +385,272 @@
       }
     </style>
   
-    <div class="filter-section">
-        <button class="filter-button">BRAND</button>
-        <button class="filter-button">MODEL</button>
-        <button class="filter-button">DIAMETER</button>
-        <button class="filter-button">FILTER BY PRICE</button>
-        <button class="filter-button">GENDER</button>
-        <button class="filter-button">FEATURES</button>
-        <button class="filter-button">BRACELET</button>
-        <button class="filter-button">MECHANISM</button>
-        <button class="filter-button">DIAL COLOUR</button>
-        <button class="filter-button">CASE</button>
+    <!-- Filter Buttons with data attributes -->
+    <div class="filter-section" id="filterSection">
+        <button class="filter-button" data-filter="brand">BRAND</button>
+        <button class="filter-button" data-filter="model">MODEL</button>
+        <button class="filter-button" data-filter="diameter">DIAMETER</button>
+        <button class="filter-button" data-filter="price">FILTER BY PRICE</button>
+        <button class="filter-button" data-filter="gender">GENDER</button>
+        <button class="filter-button" data-filter="features">FEATURES</button>
+        <button class="filter-button" data-filter="bracelet">BRACELET</button>
+        <button class="filter-button" data-filter="mechanism">MECHANISM</button>
+        <button class="filter-button" data-filter="dialColour">DIAL COLOUR</button>
+        <button class="filter-button" data-filter="case">CASE</button>
     </div>
   
+    <!-- Sorting Container -->
     <div class="sorting-container">
-        <select>
-            <option>Default sorting</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Newest Arrivals</option>
+        <select id="sortSelect">
+            <option value="default">Default sorting</option>
+            <option value="priceAsc">Price: Low to High</option>
+            <option value="priceDesc">Price: High to Low</option>
+            <option value="newest">Newest Arrivals</option>
         </select>
     </div>
   
-    <div class="pagination">
-        <a href="#">&lt;</a>
-        <span class="active">1</span>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <span>...</span>
-        <a href="#">50</a>
-        <a href="#">&gt;</a>
+    <!-- Watch Cards Container -->
+    <div class="watch-container" id="watchContainer">
+        <!-- Dynamic watch cards will be injected here -->
+    </div>
+  
+    <!-- Pagination Container -->
+    <div class="pagination" id="paginationContainer">
+        <!-- Dynamic pagination links will be injected here -->
     </div>
   </section>
   <!-- END: RESPONSIVE FILTER, SORTING & PAGINATION SECTION -->
+  
+  <!-- START: DYNAMIC FUNCTIONALITY SCRIPT -->
+  <script>
+    // Global variables
+    let allWatches = [];
+    let currentFilters = {}; // e.g., { brand: "Tudor", model: "Classic" }
+    let currentSortOption = "default";
+    let currentPage = 1;
+    const pageSize = 5;
+  
+    // Utility: Parse price string "KES 500,000" into a number for sorting
+    function parsePrice(priceStr) {
+      return parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
+    }
+  
+    // Fetch the JSON repository
+    fetch('/REPOSITORY/royalALLUREREPO.json')
+      .then(response => response.json())
+      .then(data => {
+        allWatches = data.watches;
+        updateDisplay();
+      })
+      .catch(error => console.error('Error fetching JSON:', error));
+  
+    // Update display: Filter, sort, paginate, and render watches
+    function updateDisplay() {
+      let filteredWatches = allWatches.filter(watch => {
+        for (const key in currentFilters) {
+          if (currentFilters[key]) {
+            let watchValue = watch[key];
+            // If value is an array (e.g., features), check for an exact match
+            if (Array.isArray(watchValue)) {
+              if (!watchValue.some(item => item.toLowerCase() === currentFilters[key].toLowerCase())) {
+                return false;
+              }
+            } else {
+              if (!String(watchValue).toLowerCase().includes(currentFilters[key].toLowerCase())) {
+                return false;
+              }
+            }
+          }
+        }
+        return true;
+      });
+  
+      // Apply sorting based on selected option
+      if (currentSortOption === "priceAsc") {
+        filteredWatches.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+      } else if (currentSortOption === "priceDesc") {
+        filteredWatches.sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+      } else if (currentSortOption === "newest") {
+        filteredWatches.sort((a, b) => b.id - a.id);
+      }
+  
+      // Pagination logic
+      const totalItems = filteredWatches.length;
+      const totalPages = Math.ceil(totalItems / pageSize);
+      if (currentPage > totalPages) {
+        currentPage = totalPages || 1;
+      }
+      const start = (currentPage - 1) * pageSize;
+      const paginatedWatches = filteredWatches.slice(start, start + pageSize);
+  
+      // Render the watch cards and pagination controls
+      renderWatches(paginatedWatches);
+      renderPagination(totalPages);
+    }
+  
+    // Render watch cards in the watch container
+    function renderWatches(watches) {
+      const container = document.getElementById('watchContainer');
+      container.innerHTML = ''; // Clear previous content
+      watches.forEach(watch => {
+        // Create the card container
+        const card = document.createElement('div');
+        card.className = 'watch-card';
+  
+        // Add click event on the card to redirect to watch-details.html with ID parameter
+        card.addEventListener('click', function() {
+          window.location.href = `watch-details.html?id=${watch.id}`;
+        });
+  
+        // Create wishlist element
+        let wishlistElement;
+        if (watch.wishlistLink) {
+          wishlistElement = document.createElement('a');
+          wishlistElement.href = watch.wishlistLink;
+          wishlistElement.className = 'wishlist-icon';
+          wishlistElement.style.textDecoration = 'none';
+          wishlistElement.style.color = 'inherit';
+          wishlistElement.innerHTML = '<i class="fas fa-heart"></i>';
+          // Prevent card redirection when clicking the wishlist icon
+          wishlistElement.addEventListener('click', function(e) {
+            e.stopPropagation();
+          });
+        } else {
+          wishlistElement = document.createElement('i');
+          wishlistElement.className = 'fas fa-heart wishlist-icon';
+        }
+        card.appendChild(wishlistElement);
+  
+        // Create the image element
+        const img = document.createElement('img');
+        img.src = watch.image;
+        img.alt = `${watch.brand} ${watch.model}`;
+        card.appendChild(img);
+  
+        // Create the watch info container
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'watch-info';
+        infoDiv.textContent = `${watch.brand} ${watch.model} - ${watch.price}`;
+  
+        // Create the action button (e.g., "Shop Now")
+        const btn = document.createElement('button');
+        btn.textContent = watch.action;
+        // Prevent card redirection when clicking the button
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+        infoDiv.appendChild(btn);
+  
+        card.appendChild(infoDiv);
+        container.appendChild(card);
+      });
+    }
+  
+    // Render pagination controls
+    function renderPagination(totalPages) {
+      const paginationContainer = document.getElementById('paginationContainer');
+      paginationContainer.innerHTML = ''; // Clear previous pagination links
+  
+      // Previous button
+      const prevLink = document.createElement('a');
+      prevLink.href = '#';
+      prevLink.innerHTML = '&lt;';
+      prevLink.onclick = (e) => {
+        e.preventDefault();
+        if (currentPage > 1) {
+          currentPage--;
+          updateDisplay();
+        }
+      };
+      paginationContainer.appendChild(prevLink);
+  
+      // Page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        const pageLink = document.createElement('a');
+        pageLink.href = '#';
+        pageLink.textContent = i;
+        if (i === currentPage) {
+          pageLink.className = 'active';
+        }
+        pageLink.onclick = (e) => {
+          e.preventDefault();
+          currentPage = i;
+          updateDisplay();
+        };
+        paginationContainer.appendChild(pageLink);
+      }
+  
+      // Next button
+      const nextLink = document.createElement('a');
+      nextLink.href = '#';
+      nextLink.innerHTML = '&gt;';
+      nextLink.onclick = (e) => {
+        e.preventDefault();
+        if (currentPage < totalPages) {
+          currentPage++;
+          updateDisplay();
+        }
+      };
+      paginationContainer.appendChild(nextLink);
+    }
+  
+    // Create a dynamic dropdown menu for a filter button
+    function createDropdown(filterKey, buttonElement) {
+      // Remove any existing dropdowns
+      document.querySelectorAll('.dropdown-menu').forEach(menu => menu.remove());
+  
+      const dropdown = document.createElement('div');
+      dropdown.className = 'dropdown-menu';
+  
+      // Gather unique values for this filter from the dataset
+      const valuesSet = new Set();
+      allWatches.forEach(watch => {
+        const value = watch[filterKey];
+        if (Array.isArray(value)) {
+          value.forEach(item => valuesSet.add(item));
+        } else {
+          valuesSet.add(value);
+        }
+      });
+      const values = Array.from(valuesSet);
+  
+      // Create a dropdown option for each value
+      values.forEach(val => {
+        const option = document.createElement('div');
+        option.textContent = val;
+        option.addEventListener('click', () => {
+          currentFilters[filterKey] = val;
+          currentPage = 1; // Reset to page 1 when a filter is applied
+          updateDisplay();
+          dropdown.remove();
+        });
+        dropdown.appendChild(option);
+      });
+  
+      // Position the dropdown below the button
+      const rect = buttonElement.getBoundingClientRect();
+      dropdown.style.top = rect.bottom + window.scrollY + 'px';
+      dropdown.style.left = rect.left + window.scrollX + 'px';
+  
+      document.body.appendChild(dropdown);
+    }
+  
+    // Attach event listeners to all filter buttons for dynamic dropdowns
+    document.querySelectorAll('.filter-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const filterKey = button.getAttribute('data-filter');
+        createDropdown(filterKey, button);
+      });
+    });
+  
+    // Attach event listener to the sorting dropdown
+    document.getElementById('sortSelect').addEventListener('change', function() {
+      currentSortOption = this.value;
+      currentPage = 1; // Reset pagination on sort change
+      updateDisplay();
+    });
+  </script>
+  
   
 <!DOCTYPE html>
 <html lang="en">
@@ -465,46 +747,78 @@
     </style>
 </head>
 <body>
+<!-- HTML Container for Watch Cards -->
+<div class="watch-section" id="watchSection"></div>
 
-    <div class="watch-section">
-        <div class="watch-card">
-            <a href="wishlist.html" class="wishlist-icon"><i class="fas fa-heart"></i></a>
-            <img src="images/watch.jpg" alt="Watch 1">
-            <div class="watch-info">Tudor Black Bay - KES 500,000
-                <button>Shop Now</button>
-            </div>
-        </div>
-        <div class="watch-card">
-            <i class="fas fa-heart wishlist-icon"></i>
-            <img src="images/watch.jpg" alt="Watch 2">
-            <div class="watch-info">Tissot Classic - KES 200,000
-                <button>Ask for Information</button>
-            </div>
-        </div>
-        <div class="watch-card">
-            <i class="fas fa-heart wishlist-icon"></i>
-            <img src="images/watch2.jpeg" alt="Watch 3">
-            <div class="watch-info">Movado Amorosa - KES 150,000
-                <button>Shop Now</button>
-            </div>
-        </div>
-        <div class="watch-card">
-            <i class="fas fa-heart wishlist-icon"></i>
-            <img src="images/watch.jpg" alt="Watch 4">
-            <div class="watch-info">Movado SE Quartz - KES 300,000
-                <button>Ask for Information</button>
-            </div>
-        </div>
-        <div class="watch-card">
-            <i class="fas fa-heart wishlist-icon"></i>
-            <img src="images/watch1.jfif" alt="Watch 5">
-            <div class="watch-info">Rolex Explorer - KES 750,000
-                <button>Shop Now</button>
-            </div>
-        </div>
-    </div>
-
-
+<!-- JavaScript to dynamically fetch and render watch cards -->
+<script>
+    // Fetch the JSON repository from the public/repository folder
+    fetch('/REPOSITORY/royalALLUREREPO.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const watchSection = document.getElementById('watchSection');
+        
+        data.watches.forEach(watch => {
+          // Create the watch card container
+          const card = document.createElement('div');
+          card.classList.add('watch-card');
+          
+          // Add click event on the card to redirect to watch-details.html with the watch ID as a query parameter
+          card.addEventListener('click', function() {
+              window.location.href = `watch-details.html?id=${watch.id}`;
+          });
+          
+          // Create wishlist element (link or icon based on availability of wishlistLink)
+          let wishlistElement;
+          if (watch.wishlistLink) {
+            wishlistElement = document.createElement('a');
+            wishlistElement.href = watch.wishlistLink;
+            wishlistElement.classList.add('wishlist-icon');
+            wishlistElement.innerHTML = '<i class="fas fa-heart"></i>';
+            // Prevent the card click event when clicking the wishlist icon
+            wishlistElement.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+          } else {
+            wishlistElement = document.createElement('i');
+            wishlistElement.classList.add('fas', 'fa-heart', 'wishlist-icon');
+          }
+          card.appendChild(wishlistElement);
+          
+          // Create the image element
+          const imageElement = document.createElement('img');
+          imageElement.src = watch.image;
+          imageElement.alt = `${watch.brand} ${watch.model}`;
+          card.appendChild(imageElement);
+          
+          // Create the watch info container
+          const infoDiv = document.createElement('div');
+          infoDiv.classList.add('watch-info');
+          infoDiv.textContent = `${watch.brand} ${watch.model} - ${watch.price}`;
+          
+          // Create the action button (e.g., "Shop Now" or "Ask for Information")
+          const button = document.createElement('button');
+          button.textContent = watch.action;
+          // Prevent propagation if clicking the button should not trigger the card click event
+          button.addEventListener('click', function(event) {
+              event.stopPropagation();
+          });
+          infoDiv.appendChild(button);
+          
+          // Append the watch info to the card
+          card.appendChild(infoDiv);
+          
+          // Append the completed card to the watch-section container
+          watchSection.appendChild(card);
+        });
+      })
+      .catch(error => console.error('Error fetching JSON:', error));
+  </script>
 
     
 </body>

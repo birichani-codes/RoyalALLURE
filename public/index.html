@@ -541,62 +541,80 @@
     </div>
   
     <!-- Watch Cards Container -->
-    <div class="watch-container">
-      <!-- Card 1 -->
-      <div class="watch-card">
-        <a href="wishlist.html" class="wishlist-icon" style="text-decoration: none; color: inherit;">
-          <i class="fas fa-heart"></i>
-        </a>
-        <img src="images/watch.jpg" alt="Watch 1">
-        <div class="watch-info">
-          Tudor Black Bay - KES 500,000
-          <button>Shop Now</button>
-        </div>
-      </div>
-  
-      <!-- Card 2 -->
-      <div class="watch-card">
-        <i class="fas fa-heart wishlist-icon"></i>
-        <img src="images/watch.jpg" alt="Watch 2">
-        <div class="watch-info">
-          Tissot Classic - KES 200,000
-          <button>Ask for Information</button>
-        </div>
-      </div>
-  
-      <!-- Card 3 -->
-      <div class="watch-card">
-        <i class="fas fa-heart wishlist-icon"></i>
-        <img src="images/watch2.jpeg" alt="Watch 3">
-        <div class="watch-info">
-          Movado Amorosa - KES 150,000
-          <button>Shop Now</button>
-        </div>
-      </div>
-  
-      <!-- Card 4 -->
-      <div class="watch-card">
-        <i class="fas fa-heart wishlist-icon"></i>
-        <img src="images/watch.jpg" alt="Watch 4">
-        <div class="watch-info">
-          Movado SE Quartz - KES 300,000
-          <button>Ask for Information</button>
-        </div>
-      </div>
-  
-      <!-- Card 5 -->
-      <div class="watch-card">
-        <i class="fas fa-heart wishlist-icon"></i>
-        <img src="images/watch1.jfif" alt="Watch 5">
-        <div class="watch-info">
-          Rolex Explorer - KES 750,000
-          <button>Shop Now</button>
-        </div>
-      </div>
+    <div class="watch-container" id="watchContainer">
+      <!-- Dynamically populated watch cards will appear here -->
     </div>
   </section>
-  <!-- END: WATCH CARDS SECTION SNIPPET -->
   
+  <script>
+    // Fetch the JSON repository from the public/repository folder
+    fetch('/REPOSITORY/royalALLUREREPO.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const container = document.getElementById('watchContainer');
+  
+        // Get the "Latest Arrivals" watches
+        const latestArrivals = data.categories["Latest Arrivals"].map(id => 
+          data.watches.find(watch => watch.id === id)
+        ).filter(watch => watch); // Remove undefined watches
+  
+        // Display watches from "Latest Arrivals" or fallback to all watches
+        const watchesToDisplay = latestArrivals.length > 0 ? latestArrivals : data.watches;
+  
+        watchesToDisplay.forEach(watch => {
+          // Create the card container
+          const card = document.createElement('div');
+          card.className = 'watch-card';
+          card.dataset.id = watch.id; // Store the ID for redirection
+  
+          // Click event to redirect to watch-details.html with ID parameter
+          card.addEventListener('click', function () {
+            window.location.href = `watch-details.html?id=${watch.id}`;
+          });
+  
+          // Create wishlist element
+          let wishlistElement;
+          if (watch.wishlistLink) {
+            wishlistElement = document.createElement('a');
+            wishlistElement.href = watch.wishlistLink;
+            wishlistElement.className = 'wishlist-icon';
+            wishlistElement.innerHTML = '<i class="fas fa-heart"></i>';
+          } else {
+            wishlistElement = document.createElement('i');
+            wishlistElement.className = 'fas fa-heart wishlist-icon';
+          }
+          card.appendChild(wishlistElement);
+  
+          // Create the image element
+          const img = document.createElement('img');
+          img.src = watch.image;
+          img.alt = `${watch.brand} ${watch.model}`;
+          card.appendChild(img);
+  
+          // Create the watch info container
+          const infoDiv = document.createElement('div');
+          infoDiv.className = 'watch-info';
+          infoDiv.textContent = `${watch.brand} ${watch.model} - ${watch.price}`;
+  
+          // Create the action button
+          const btn = document.createElement('button');
+          btn.textContent = watch.action;
+          infoDiv.appendChild(btn);
+  
+          // Append watch info to the card
+          card.appendChild(infoDiv);
+  
+          // Append the card to the container
+          container.appendChild(card);
+        });
+      })
+      .catch(error => console.error('Error fetching watches:', error));
+  </script>
   
     <!-- START OF INTEREST-FREE CREDIT SECTION (INLINE STYLES) -->
 <section style="background-color:#fff; color:#333; padding:60px 20px; box-sizing:border-box;">
