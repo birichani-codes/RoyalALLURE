@@ -79,17 +79,14 @@
         "recipient": "For Him",
         "brandCollections": "Modern Collection",
         "subCategory": "Dress Watch",
-        "additionalFeatures": [
-          "Chronograph",
-          "Stopwatch"
-        ]
+        "additionalFeatures": ["Chronograph", "Stopwatch"]
       },
       {
         "id": 3,
         "brand": "Girard-Perregaux",
         "model": "Black Bay Fifty-Eight",
         "price": "KES 355,000",
-        "image": "images/girard-perregaux.jpg",
+        "image": "images/watch3.jpg",
         "action": "Ask for Information",
         "wishlistLink": "wishlist.html",
         "info": {
@@ -124,6 +121,55 @@
           "Skeleton Dial",
           "Exhibition Case Back",
           "Limited Edition"
+        ]
+      },
+      {
+        "id": 4,
+        "brand": "Smart",
+        "model": "Hybrid Smartwatch",
+        "price": "KES 50,000",
+        "image": "images/watch4.jpg",
+        "action": "Shop Now",
+        "wishlistLink": "wishlist.html",
+        "info": {
+          "basic": {
+            "Product Code": "SM202401",
+            "Manufacturer Product Number": "SMART-004",
+            "Guarantee": "1 Year Guarantee"
+          },
+          "case": {
+            "Dial Colour": "Digital Display",
+            "Case Material": "Alloy",
+            "Water Resistant": "50 Metres"
+          },
+          "bracelet": {
+            "Strap Material": "Silicone",
+            "Buckle": "Pin Buckle"
+          },
+          "movement": {
+            "Mechanism": "Smart Digital",
+            "Shape": "Round"
+          }
+        },
+        "diameter": "45mm",
+        "gender": "Unisex",
+        "features": [
+          "Bluetooth Connectivity",
+          "Heart Rate Monitor",
+          "Sleep Tracking",
+          "Fitness Tracking",
+          "Water Resistant"
+        ],
+        "category": "Smartwatches",
+        "watchMarkers": "Digital",
+        "recipient": "For Him/Her",
+        "brandCollections": "Smart Collection",
+        "subCategory": "Fitness Watch",
+        "additionalFeatures": [
+          "Step Counter",
+          "Calorie Tracking",
+          "Notifications",
+          "Multiple Watch Faces"
         ]
       }
     ],
