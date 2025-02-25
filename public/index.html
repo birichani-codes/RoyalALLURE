@@ -223,121 +223,192 @@
   </style>
 </head>
 <body>
- <!-- Top Bar -->
+<!-- Top Bar -->
 <div class="top-bar">
     <div class="left-links">
-      <a href="/request-an-appointment"><i class="fas fa-calendar-alt"></i> Request an Appointment</a>
-      <a href="/contact-us"><i class="fas fa-phone"></i> Contact Us</a>
-      <a href="/about-us"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="/request-an-appointment" aria-label="Request an Appointment"><i class="fas fa-calendar-alt"></i> Request an Appointment</a>
+        <a href="/contact-us" aria-label="Contact Us"><i class="fas fa-phone"></i> Contact Us</a>
+        <a href="/about-us" aria-label="About Us"><i class="fas fa-info-circle"></i> About Us</a>
     </div>
-  </div>
-  
-  <!-- Navigation Bar -->
-  <nav>
+</div>
+
+<!-- Navigation Bar -->
+<nav>
     <div class="nav-container">
         <div class="logo">
-            <a href="/" style="text-decoration: none; color: inherit;">
-              <i class="fas fa-home"></i> ROYALALLURE KENYA
+            <a href="/" style="text-decoration: none; color: inherit;" aria-label="Home">
+                <i class="fas fa-home"></i> ROYALALLURE KENYA
             </a>
-          </div>
-          
-      <!-- Hamburger Icon -->
-      <div class="hamburger" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </div>
-      <ul class="nav-links">
-        <li><a href="/">HOME</a></li>
-        <li><a href="/watches">WATCHES</a></li>
-        
-        <li class="dropdown">
-          <a href="#">COLLECTIONS</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Minimalist</a></li>
-            <li><a href="#">Aurora</a></li>
-            <li><a href="#">Phoenix</a></li>
-            <li><a href="#">Pollux</a></li>
-          </ul>
-        </li>
-  
-        <li class="dropdown">
-          <a href="#">MEN</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Canvas</a></li>
-            <li><a href="#">Metallic</a></li>
-            <li><a href="#">Leather</a></li>
-          </ul>
-        </li>
-  
-        <li class="dropdown">
-          <a href="#">WOMEN</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Leather</a></li>
-            <li><a href="#">Canvas</a></li>
-          </ul>
-        </li>
-  
-        <li class="dropdown">
-          <a href="#">ACCESSORIES</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Wallets</a></li>
-            <li><a href="#">jewellery</a></li><li>
-            <a href="#">Bluetooth Headsets</a></li>
-            <li><a href="#">Electronic Product</a></li>
-            <li><a href="#">Automotive Supplies</a></li>
-          </ul>
-        </li>
-  
-        <li>
-          <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search">
-          </div>
-        </li>
-        <li><span style="color: gold;">🇰🇪 EN | KES</span></li>
-        <li><a href="/shopping-bag" style="color: gold;"><i class="fas fa-shopping-bag"></i></a></li>
-        <li><a href="/wishlist" style="color: gold;"><i class="fas fa-heart"></i></a></li>
-        <li><i class="fas fa-user" style="color: gold; cursor: pointer;"></i></li>
-      </ul>
+        </div>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle Menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/watches">WATCHES</a></li>
+
+            <li class="dropdown">
+                <a href="#" aria-expanded="false">COLLECTIONS</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Minimalist</a></li>
+                    <li><a href="#">Aurora</a></li>
+                    <li><a href="#">Phoenix</a></li>
+                    <li><a href="#">Pollux</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" aria-expanded="false">MEN</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Canvas</a></li>
+                    <li><a href="#">Metallic</a></li>
+                    <li><a href="#">Leather</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" aria-expanded="false">WOMEN</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Leather</a></li>
+                    <li><a href="#">Canvas</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" aria-expanded="false">ACCESSORIES</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Wallets</a></li>
+                    <li><a href="#">Jewellery</a></li>
+                    <li><a href="#">Bluetooth Headsets</a></li>
+                    <li><a href="#">Electronic Products</a></li>
+                    <li><a href="#">Automotive Supplies</a></li>
+                </ul>
+            </li>
+
+            <!-- Search Box -->
+            <li>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search" onkeyup="debouncedSearch()">
+                    <div id="search-results" class="search-results-container"></div>
+                </div>
+            </li>
+
+            <li><span style="color: gold;">🇰🇪 EN | KES</span></li>
+            <li><a href="/shopping-bag" style="color: gold;"><i class="fas fa-shopping-bag"></i></a></li>
+            <li><a href="/wishlist" style="color: gold;"><i class="fas fa-heart"></i></a></li>
+            <li><i class="fas fa-user" style="color: gold; cursor: pointer;"></i></li>
+        </ul>
     </div>
-  </nav>
-  
-  <style>
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
+</nav>
 
+<!-- Styles -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap');
+
+    * { font-family: 'Jost', sans-serif; }
+
+    .dropdown { position: relative; display: inline-block; }
     .dropdown-menu {
-      display: none;
-      position: absolute;
-      background: #1a1a1a; /* Sophisticated black */
-      color: #d4af37; /* Elegant gold text */
-      list-style: none;
-      padding: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      border-radius: 8px; /* Rounded edges */
+        display: none;
+        position: absolute;
+        background: #1a1a1a;
+        color: #d4af37;
+        list-style: none;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
     }
-
     .dropdown:hover .dropdown-menu {
-      display: block;
+        display: block;
+        opacity: 1;
+        visibility: visible;
     }
 
-    .dropdown-menu li {
-      padding: 8px 12px;
+    /* Search Box */
+    .search-box { position: relative; }
+    .search-box input {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        outline: none;
+        width: 180px;
+    }
+    .search-results-container {
+        position: absolute;
+        background: white;
+        border: 1px solid #ccc;
+        width: 180px;
+        max-height: 200px;
+        overflow-y: auto;
+        display: none;
+        border-radius: 4px;
+        z-index: 9999;
+    }
+    .search-result-item {
+        padding: 8px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+    }
+    .search-result-item:hover { background: #f0f0f0; }
+</style>
+
+<!-- JavaScript -->
+<script>
+    let watchData = [];
+
+    async function loadWatchData() {
+        try {
+            let response = await fetch("/REPOSITORY/royalALLUREREPO.json");
+            watchData = await response.json();
+        } catch (error) {
+            console.error("Failed to load data:", error);
+        }
     }
 
-    .dropdown-menu li a {
-      color: #d4af37;
-      text-decoration: none;
-      transition: 0.3s;
+    document.addEventListener("DOMContentLoaded", loadWatchData);
+
+    function searchFunction() {
+        let input = document.getElementById("search-input").value.toLowerCase();
+        let resultsContainer = document.getElementById("search-results");
+        resultsContainer.innerHTML = "";
+        if (input.length < 2) {
+            resultsContainer.style.display = "none";
+            return;
+        }
+        let filteredResults = watchData.filter(item => item.name.toLowerCase().includes(input));
+        if (filteredResults.length === 0) {
+            resultsContainer.innerHTML = "<div class='search-result-item'>No results found.</div>";
+        }
+        filteredResults.forEach(item => {
+            let div = document.createElement("div");
+            div.classList.add("search-result-item");
+            div.innerText = item.name;
+            div.onclick = () => {
+                document.getElementById("search-input").value = item.name;
+                resultsContainer.style.display = "none";
+            };
+            resultsContainer.appendChild(div);
+        });
+        resultsContainer.style.display = "block";
     }
 
-    .dropdown-menu li a:hover {
-      color: white;
+    function debounce(func, delay) {
+        let timer;
+        return function () {
+            clearTimeout(timer);
+            timer = setTimeout(() => func(), delay);
+        };
     }
-  </style>
+    let debouncedSearch = debounce(searchFunction, 300);
+</script>
 
-  
   <!-- Hero Section -->
   <header>
     <div class="overlay"></div>
