@@ -2,85 +2,119 @@
     "repoName": "royalALLUREREPO.json",
     "watches": [
       {
-        "id": 1,
-        "brand": "Tudor",
-        "model": "Black Bay",
-        "price": "KES 500,000",
-        "image": "images/watch.jpg",
-        "action": "Shop Now",
-        "wishlistLink": "wishlist.html",
-        "info": {
-          "basic": {
-            "Product Code": "TB123456",
-            "Manufacturer Product Number": "TUD-001",
-            "Guarantee": "2 Year Guarantee"
+       "id": 1,
+            "brand": "Tudor",
+            "model": "Black Bay",
+            "price": "KES 500,000",
+            "image": "images/watch.jpg",
+            "action": "Shop Now",
+            "wishlistLink": "wishlist.html",
+            "seriesCode": "Black Bay", 
+            "series": "Black Bay", 
+            "style": "Diver / Sport", 
+            "movement": "Automatic",
+            "claspType": "Deployment Buckle", 
+            "waterResistanceDepth": "200 Metres", 
+            "bandLength": "Standard", 
+            "caseThickness": "12mm", 
+            "bandWidth": "22mm", 
+            "caseShape": "Round", 
+            "caseMaterial": "Stainless Steel", 
+            "bandMaterial": "Steel", 
+            "watchColor": "Black", 
+            "feature": ["Shock Resistant"],
+            "autoDateDayDisplay": true, 
+            "dialDiameter": "41mm", 
+            "dialWindowMaterialType": "Sapphire Crystal", 
+            "info": {
+                "basic": {
+                    "Product Code": "TB123456",
+                    "Manufacturer Product Number": "TUD-001",
+                    "Guarantee": "2 Year Guarantee"
+                },
+                "case": {
+                    "Dial Colour": "Black",
+                    "Case Material": "Stainless Steel",
+                    "Water Resistant": "200 Metres"
+                },
+                "bracelet": {
+                    "Strap Material": "Steel",
+                    "Buckle": "Deployment Buckle"
+                },
+                "movement": {
+                    "Mechanism": "Automatic",
+                    "Shape": "Round"
+                }
+            },
+            "diameter": "41mm",
+            "gender": "Unisex",
+            "features": ["Automatic", "Water Resistant", "Luminous"],
+            "category": "Watches",
+            "watchMarkers": "None",
+            "recipient": "For Him/Her",
+            "brandCollections": "Classic Collection",
+            "subCategory": "Diver's Watch",
+            "additionalFeatures": [
+                "Date Display",
+                "Luminous Hands",
+                "Power Reserve Indicator"
+            ]
           },
-          "case": {
-            "Dial Colour": "Black",
-            "Case Material": "Stainless Steel",
-            "Water Resistant": "200 Metres"
-          },
-          "bracelet": {
-            "Strap Material": "Steel",
-            "Buckle": "Deployment Buckle"
-          },
-          "movement": {
-            "Mechanism": "Automatic",
-            "Shape": "Round"
-          }
-        },
-        "diameter": "41mm",
-        "gender": "Unisex",
-        "features": ["Automatic", "Water Resistant", "Luminous"],
-        "category": "Watches",
-        "watchMarkers": "None",
-        "recipient": "For Him/Her",
-        "brandCollections": "Classic Collection",
-        "subCategory": "Diver's Watch",
-        "additionalFeatures": [
-          "Date Display",
-          "Luminous Hands",
-          "Power Reserve Indicator"
-        ]
-      },
       {
-        "id": 2,
-        "brand": "Tissot",
-        "model": "Classic",
-        "price": "KES 200,000",
-        "image": "images/watch2.jpeg",
-        "action": "Ask for Information",
-        "wishlistLink": "",
-        "info": {
-          "basic": {
-            "Product Code": "TC654321",
-            "Manufacturer Product Number": "TIS-002",
-            "Guarantee": "1 Year Guarantee"
-          },
-          "case": {
-            "Dial Colour": "White",
-            "Case Material": "Stainless Steel",
-            "Water Resistant": "100 Metres"
-          },
-          "bracelet": {
-            "Strap Material": "Leather",
-            "Buckle": "Tang Buckle"
-          },
-          "movement": {
-            "Mechanism": "Quartz",
-            "Shape": "Square"
-          }
+       "id": 2,
+            "brand": "Tissot",
+            "model": "Classic",
+            "price": "KES 200,000",
+            "image": "images/watch2.jpeg",
+            "action": "Ask for Information",
+            "wishlistLink": "",
+            "seriesCode": "Classic", 
+            "series": "Classic", 
+            "style": "Dress Watch", 
+            "movement": "Quartz",
+            "claspType": "Tang Buckle",
+            "waterResistanceDepth": "100 Metres",
+            "bandLength": "Standard", 
+            "caseThickness": "10mm", 
+            "bandWidth": "20mm", 
+            "caseShape": "Square", 
+            "caseMaterial": "Stainless Steel", 
+            "bandMaterial": "Leather", 
+            "watchColor": "White", 
+            "feature": [], 
+            "autoDateDayDisplay": false, 
+            "dialDiameter": "40mm", 
+            "dialWindowMaterialType": "Sapphire Crystal", 
+            "info": {
+                "basic": {
+                    "Product Code": "TC654321",
+                    "Manufacturer Product Number": "TIS-002",
+                    "Guarantee": "1 Year Guarantee"
+                },
+                "case": {
+                    "Dial Colour": "White",
+                    "Case Material": "Stainless Steel",
+                    "Water Resistant": "100 Metres"
+                },
+                "bracelet": {
+                    "Strap Material": "Leather",
+                    "Buckle": "Tang Buckle"
+                },
+                "movement": {
+                    "Mechanism": "Quartz",
+                    "Shape": "Square"
+                }
+            },
+            "diameter": "40mm",
+            "gender": "Men",
+            "features": ["Quartz", "Chronograph"],
+            "category": "Watches",
+            "watchMarkers": "None",
+            "recipient": "For Him",
+            "brandCollections": "Modern Collection",
+            "subCategory": "Dress Watch",
+            "additionalFeatures": ["Chronograph", "Stopwatch"]
         },
-        "diameter": "40mm",
-        "gender": "Men",
-        "features": ["Quartz", "Chronograph"],
-        "category": "Watches",
-        "watchMarkers": "None",
-        "recipient": "For Him",
-        "brandCollections": "Modern Collection",
-        "subCategory": "Dress Watch",
-        "additionalFeatures": ["Chronograph", "Stopwatch"]
-      },
       {
         "id": 3,
         "brand": "Girard-Perregaux",

@@ -537,6 +537,71 @@
   </script>
 </body>
 </html>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+<section style="display: flex; gap: 20px; padding: 20px; font-family: 'Josefin Sans', sans-serif;">
+  <!-- Left Section (Tabs) -->
+  <div style="width: 200px;">
+      <h3 style="font-size: 16px; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 5px;">
+          DESCRIPTION
+      </h3>
+      <p style="font-size: 14px; color: gray;">REVIEWS (0)</p>
+  </div>
+
+  <!-- Right Section (Details) -->
+  <div id="watch-details" style="flex: 1;"></div>
+</section>
+
+<script>
+  async function fetchWatchDetails() {
+      try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const watchId = urlParams.get('id');
+          if (!watchId) {
+              document.getElementById('watch-details').innerHTML = '<p>No watch selected.</p>';
+              return;
+          }
+
+          const response = await fetch('REPOSITORY/royalALLUREREPO.json');
+          const data = await response.json();
+          const watch = data.watches.find(w => w.id == watchId);
+
+          if (!watch) {
+              document.getElementById('watch-details').innerHTML = '<p>Watch not found.</p>';
+              return;
+          }
+
+          document.getElementById('watch-details').innerHTML = `
+              <p style="margin: 5px 0;"><strong>Brand Name:</strong> ${watch.brand}</p>
+              <p style="margin: 5px 0;"><strong>Series Code:</strong> ${watch.seriesCode || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Model Number:</strong> ${watch.model}</p>
+              <p style="margin: 5px 0;"><strong>Series:</strong> ${watch.series || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Style:</strong> ${watch.style || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Movement:</strong> ${watch.movement || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Clasp Type:</strong> ${watch.claspType || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Water Resistance Depth:</strong> ${watch.waterResistanceDepth || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Band Length:</strong> ${watch.bandLength || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Case Thickness:</strong> ${watch.caseThickness || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Band Width:</strong> ${watch.bandWidth || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Case Shape:</strong> ${watch.caseShape || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Case Material:</strong> ${watch.caseMaterial || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Band Material:</strong> ${watch.bandMaterial || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Watch Color:</strong> ${watch.watchColor || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Feature:</strong> ${watch.feature ? watch.feature.join(', ') : 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Auto Date & Day Display:</strong> ${watch.autoDateDayDisplay ? 'Yes' : 'No'}</p>
+              <p style="margin: 5px 0;"><strong>Dial Diameter:</strong> ${watch.dialDiameter || 'N/A'}</p>
+              <p style="margin: 5px 0;"><strong>Dial Window Material Type:</strong> ${watch.dialWindowMaterialType || 'N/A'}</p>
+          `;
+      } catch (error) {
+          console.error('Error fetching watch details:', error);
+          document.getElementById('watch-details').innerHTML = '<p>Error loading watch details.</p>';
+      }
+  }
+
+  fetchWatchDetails();
+</script>
+
+
 
 <section style="padding: 20px; font-family: 'Jost', sans-serif; text-align: center;">
     <h2 style="text-transform: uppercase; font-size: 16px; letter-spacing: 1px; font-weight: bold; text-align: left; margin: 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px;">
@@ -623,6 +688,7 @@
   </script>
   
   
+  
   <section style="padding: 20px; font-family: 'Jost', sans-serif; text-align: center;">
     <h2 style="text-transform: uppercase; font-size: 16px; letter-spacing: 1px; font-weight: bold; text-align: left; margin: 20px 0; border-bottom: 2px solid #ddd; padding-bottom: 10px;">
       RECENTLY VIEWED 
@@ -703,6 +769,7 @@
     // Load Recently Viewed products once the DOM is ready
     document.addEventListener("DOMContentLoaded", loadRecentlyViewed);
   </script>
+  
   
 <footer style="background-color: #1c1c1c; color: #f1f1f1; padding: 30px; text-align: left;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
