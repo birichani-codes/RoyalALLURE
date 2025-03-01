@@ -349,52 +349,142 @@
     <div class="watch-detail-info">
       <div id="watch-title" class="watch-detail-title"></div>
       <div id="watch-price" class="watch-detail-price"></div>
-      <a href="#" class="watch-detail-btn">ASK FOR INFORMATION</a>
+     
 
       <!-- Basic Info Dropdown -->
-      <div class="watch-detail-dropdown">
-        <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-basic-info')">
-          Basic Info <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="watch-detail-dropdown-content" id="watch-basic-info">
-          <p><strong>Product Code:</strong> <span id="watch-product-code"></span></p>
-          <p><strong>Manufacturer Product Number:</strong> <span id="watch-manufacturer"></span></p>
-          <p><strong>Guarantee:</strong> <span id="watch-guarantee"></span></p>
-        </div>
-      </div>
+<div class="watch-detail-dropdown">
+  <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-basic-info')" 
+       style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 12px; font-size: 18px; font-weight: bold; border-bottom: 2px solid gold; background: linear-gradient(45deg, #222, #111); color: gold; font-family: 'Jost', sans-serif;">
+    Basic Info 
+    <i class="fas fa-chevron-down" 
+       style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 2px solid gold; border-radius: 50%; background-color: black; color: gold; font-size: 16px; transition: 0.3s ease-in-out;">
+    </i>
+  </div>
+  <div class="watch-detail-dropdown-content" id="watch-basic-info" style="background: black; padding: 15px; border: 1px solid gold; color: white; display: none;">
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Product Code:</strong> <span id="watch-product-code"></span>
+    </p>
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Manufacturer Product Number:</strong> <span id="watch-manufacturer"></span>
+    </p>
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Guarantee:</strong> <span id="watch-guarantee"></span>
+    </p>
+  </div>
+</div>
 
-      <!-- Case Dropdown -->
-      <div class="watch-detail-dropdown">
-        <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-case-info')">
-          Case <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="watch-detail-dropdown-content" id="watch-case-info">
-          <p><strong>Dial Colour:</strong> <span id="watch-dial"></span></p>
-          <p><strong>Case Material:</strong> <span id="watch-case-material"></span></p>
-          <p><strong>Water Resistant:</strong> <span id="watch-water-resistant"></span></p>
-        </div>
-      </div>
+<!-- Case Dropdown -->
+<div class="watch-detail-dropdown">
+  <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-case-info')"
+       style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 12px; font-size: 18px; font-weight: bold; border-bottom: 2px solid gold; background: linear-gradient(45deg, #222, #111); color: gold; font-family: 'Jost', sans-serif;">
+    Case 
+    <i class="fas fa-chevron-down"
+       style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 2px solid gold; border-radius: 50%; background-color: black; color: gold; font-size: 16px; transition: 0.3s ease-in-out;">
+    </i>
+  </div>
+  <div class="watch-detail-dropdown-content" id="watch-case-info" style="background: black; padding: 15px; border: 1px solid gold; color: white; display: none;">
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Dial Colour:</strong> <span id="watch-dial"></span>
+    </p>
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Case Material:</strong> <span id="watch-case-material"></span>
+    </p>
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Water Resistant:</strong> <span id="watch-water-resistant"></span>
+    </p>
+  </div>
+</div>
 
-      <!-- Bracelet Dropdown -->
-      <div class="watch-detail-dropdown">
-        <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-bracelet-info')">
-          Bracelet <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="watch-detail-dropdown-content" id="watch-bracelet-info">
-          <p><strong>Strap Material:</strong> <span id="watch-strap"></span></p>
-          <p><strong>Buckle:</strong> <span id="watch-buckle"></span></p>
-        </div>
-      </div>
+<!-- Bracelet Dropdown -->
+<div class="watch-detail-dropdown">
+  <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-bracelet-info')"
+       style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 12px; font-size: 18px; font-weight: bold; border-bottom: 2px solid gold; background: linear-gradient(45deg, #222, #111); color: gold; font-family: 'Jost', sans-serif;">
+    Bracelet 
+    <i class="fas fa-chevron-down"
+       style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 2px solid gold; border-radius: 50%; background-color: black; color: gold; font-size: 16px; transition: 0.3s ease-in-out;">
+    </i>
+  </div>
+  <div class="watch-detail-dropdown-content" id="watch-bracelet-info" style="background: black; padding: 15px; border: 1px solid gold; color: white; display: none;">
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Strap Material:</strong> <span id="watch-strap"></span>
+    </p>
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Buckle:</strong> <span id="watch-buckle"></span>
+    </p>
+  </div>
+</div>
 
-      <!-- Movement Dropdown -->
-      <div class="watch-detail-dropdown">
-        <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-movement-info')">
-          Movement <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="watch-detail-dropdown-content" id="watch-movement-info">
-          <p><strong>Mechanism:</strong> <span id="watch-movement"></span></p>
-          <p><strong>Shape:</strong> <span id="watch-shape"></span></p>
-        </div>
+<!-- Movement Dropdown -->
+<div class="watch-detail-dropdown">
+  <div class="watch-detail-dropdown-header" onclick="toggleDropdown('watch-movement-info')"
+       style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 12px; font-size: 18px; font-weight: bold; border-bottom: 2px solid gold; background: linear-gradient(45deg, #222, #111); color: gold; font-family: 'Jost', sans-serif;">
+    Movement 
+    <i class="fas fa-chevron-down"
+       style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 2px solid gold; border-radius: 50%; background-color: black; color: gold; font-size: 16px; transition: 0.3s ease-in-out;">
+    </i>
+  </div>
+  <div class="watch-detail-dropdown-content" id="watch-movement-info" style="background: black; padding: 15px; border: 1px solid gold; color: white; display: none;">
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Mechanism:</strong> <span id="watch-movement"></span>
+    </p>
+    <p style="font-family: 'Jost', sans-serif; font-size: 17px; margin-bottom: 10px; padding: 8px; border-left: 4px solid gold;">
+      <strong>Shape:</strong> <span id="watch-shape"></span>
+    </p>
+  </div>
+
+  <!-- Button Container -->
+  <div class="button-container">
+    <!-- ASK FOR INFORMATION BUTTON -->
+    <a href="/request-an-appointment" class="watch-detail-btn ask-info">
+      ASK FOR INFORMATION
+    </a>
+
+    <!-- SHOP NOW BUTTON -->
+    <a href="/shop-now" class="watch-detail-btn shop-now">
+      SHOP NOW
+    </a>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px auto;
+    width: 90%;
+  }
+
+  .watch-detail-btn {
+    width: 45%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s ease;
+  }
+
+  .ask-info {
+    background-color: gold;
+    color: black;
+  }
+
+  .shop-now {
+    background-color: black;
+    color: gold;
+    border: 2px solid gold;
+  }
+
+  /* Hover Effect */
+  .watch-detail-btn:hover {
+    filter: brightness(1.2);
+  }
+</style>
+
+
       </div>
     </div>
   </div>
