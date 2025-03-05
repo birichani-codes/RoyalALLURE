@@ -35,6 +35,10 @@ app.get('/contact-us', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'contact-us.html'));
 });
 
+app.get('/privacy-policy', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'privacy-policy.html'));
+});
+
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');
 });

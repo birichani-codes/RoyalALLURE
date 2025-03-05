@@ -340,16 +340,18 @@
 </head>
 <body>
   <div class="watch-detail-container">
-    <!-- Watch Image -->
-    <div class="watch-detail-image">
+     <!-- Watch Image -->
+     <div class="watch-detail-image">
       <img id="watch-image" src="" alt="Watch Image" />
     </div>
+
+    <!-- Thumbnail Section -->
+    <div id="thumbnail-container" class="thumbnail-container"></div>
 
     <!-- Watch Details -->
     <div class="watch-detail-info">
       <div id="watch-title" class="watch-detail-title"></div>
       <div id="watch-price" class="watch-detail-price"></div>
-     
 
       <!-- Basic Info Dropdown -->
 <div class="watch-detail-dropdown">
@@ -481,60 +483,63 @@
   /* Hover Effect */
   .watch-detail-btn:hover {
     filter: brightness(1.2);
+  
   }
+
+  .thumbnail-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: 0.3s;
+    }
+    .thumbnail:hover, .thumbnail.active {
+      border-color: gold;
+    }
 </style>
 
 
       </div>
     </div>
   </div>
+ <script>
+        function toggleDropdown(id) {
+            var content = document.getElementById(id);
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        }
 
-  <script>
-    // Toggle dropdown visibility
-    function toggleDropdown(id) {
-      var content = document.getElementById(id);
-      content.style.display = content.style.display === "block" ? "none" : "block";
-    }
+        function loadWatchDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const watchId = urlParams.get('id');
 
-    // Load watch details from JSON based on URL parameter "id"
-    function loadWatchDetails() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const watchId = urlParams.get('id');
-
-      fetch('REPOSITORY/royalALLUREREPO.json')
-        .then(response => response.json())
-        .then(data => {
-          const watch = data.watches.find(w => w.id == watchId);
-          if (watch) {
-            // Set main image, title, and price
-            document.getElementById('watch-image').src = watch.image;
-            document.getElementById('watch-title').textContent = `${watch.brand} ${watch.model}`;
-            document.getElementById('watch-price').textContent = watch.price;
-
-            // Populate Basic Info
-            document.getElementById('watch-product-code').textContent = watch.info.basic["Product Code"] || watch.id;
-            document.getElementById('watch-manufacturer').textContent = watch.info.basic["Manufacturer Product Number"] || "";
-            document.getElementById('watch-guarantee').textContent = watch.info.basic["Guarantee"] || "";
-
-            // Populate Case Info
-            document.getElementById('watch-dial').textContent = watch.info.case["Dial Colour"] || watch.dialColour;
-            document.getElementById('watch-case-material').textContent = watch.info.case["Case Material"] || "";
-            document.getElementById('watch-water-resistant').textContent = watch.info.case["Water Resistant"] || "";
-
-            // Populate Bracelet Info
-            document.getElementById('watch-strap').textContent = watch.info.bracelet["Strap Material"] || "";
-            document.getElementById('watch-buckle').textContent = watch.info.bracelet["Buckle"] || "";
-
-            // Populate Movement Info
-            document.getElementById('watch-movement').textContent = watch.info.movement["Mechanism"] || "";
-            document.getElementById('watch-shape').textContent = watch.info.movement["Shape"] || "";
-          }
-        })
-        .catch(error => console.error('Error fetching watch details:', error));
-    }
-
-    document.addEventListener('DOMContentLoaded', loadWatchDetails);
-  </script>
+            fetch('REPOSITORY/royalALLUREREPO.json')
+                .then(response => response.json())
+                .then(data => {
+                    const watch = data.watches.find(w => w.id == watchId);
+                    if (watch) {
+                        document.getElementById('watch-image').src = watch.image;
+                        document.getElementById('watch-title').textContent = `${watch.brand} ${watch.model}`;
+                        document.getElementById('watch-price').textContent = watch.price;
+                        
+                        document.getElementById('watch-product-code').textContent = watch.info.basic["Product Code"] || watch.id;
+                        document.getElementById('watch-manufacturer').textContent = watch.info.basic["Manufacturer Product Number"] || "";
+                        document.getElementById('watch-guarantee').textContent = watch.info.basic["Guarantee"] || "";
+                        
+                        document.getElementById('watch-dial').textContent = watch.info.case["Dial Colour"] || watch.dialColour;
+                        document.getElementById('watch-case-material').textContent = watch.info.case["Case Material"] || "";
+                        document.getElementById('watch-water-resistant').textContent = watch.info.case["Water Resistant"] || "";
+                    }
+                })
+                .catch(error => console.error('Error fetching watch details:', error));
+        } 
+ 
+        document.addEventListener('DOMContentLoaded', loadWatchDetails);
+    </script>
 </body>
 </html>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet">
