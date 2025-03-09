@@ -199,7 +199,6 @@
         <!-- Wishlist Icon -->
         <li><a href="/wishlist" style="color: gold;"><i class="fas fa-heart"></i></a></li>
         <li><i class="fas fa-user" style="color: gold; cursor: pointer;"></i></li>
-        <li><i class="fas fa-user" style="color: gold; cursor: pointer;"></i></li>
       </ul>
     </div>
   </nav>
@@ -460,152 +459,487 @@
 </head>
 <body>
   <!-- Main content container -->
-  <div class="main-container" id="cartContainer">
-    <!-- Dynamic shopping cart content will be injected here -->
+<!-- Main content container -->
+<div class="main-container" id="cartContainer">
+  <!-- Dynamic shopping cart content will be injected here -->
+</div>
+
+<!-- M-Pesa Payment Modal (hidden by default) -->
+<div id="payment-modal" class="payment-modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Choose Payment Method</h2>
+    <div class="payment-options">
+      <div class="payment-option" id="mpesa-option">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/320px-M-PESA_LOGO-01.svg.png" alt="M-Pesa">
+        <span>Pay with M-Pesa</span>
+      </div>
+      <div class="payment-option" id="card-option">
+        <i class="fa-brands fa-cc-visa fa-2x"></i>
+        <i class="fa-brands fa-cc-mastercard fa-2x"></i>
+        <span>Pay with Card</span>
+      </div>
+    </div>
+    <div id="mpesa-payment-form" style="display: none;">
+      <h3>M-Pesa Payment</h3>
+      <p id="mpesa-amount-display"></p>
+      <div class="form-group">
+        <label for="phone-number">Phone Number (e.g., 07XXXXXXXX)</label>
+        <input type="text" id="phone-number" placeholder="Enter your M-Pesa phone number">
+      </div>
+      <button id="pay-button" class="primary-button">Pay Now</button>
+      <div id="payment-status" class="payment-status"></div>
+    </div>
   </div>
+</div>
 
-  <script>
-    // Helper function to retrieve cart items from localStorage
-    function getCartItems() {
-      return JSON.parse(localStorage.getItem("cartItems")) || [];
-    }
+<style>
+  /* Payment Modal Styles */
+  .payment-modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 
-    // Helper function to save cart items to localStorage
-    function saveCartItems(items) {
-      localStorage.setItem("cartItems", JSON.stringify(items));
-    }
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
 
-    // Helper function to parse price string (e.g., "KES 500,000") into a number
-    function parseCartPrice(priceStr) {
-      return parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
-    }
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-    // Render the shopping cart dynamically
-    function renderCart() {
-      const cartItems = getCartItems();
-      const container = document.getElementById("cartContainer");
-      
-      // Calculate subtotal
-      let subtotal = 0;
-      cartItems.forEach(item => {
-        let priceVal = parseCartPrice(item.price);
-        subtotal += priceVal * (item.quantity || 1);
-      });
-      
-      // Optionally, define goodwill payment (here we assume zero)
-      let goodwillPayment = 0;
-      
-      let html = `
-        <h1 class="page-title">YOUR SHOPPING BAG</h1>
-        <div class="content-wrapper">
-          <!-- Left side: cart items -->
-          <div class="cart-area">
-      `;
-      
-      // Render each cart item
-      cartItems.forEach(item => {
-        html += `
-          <div class="cart-item">
-            <img src="${item.image}" alt="${item.brand} ${item.model}">
-            <div class="item-details">
-              <h4>${item.brand} ${item.model}</h4>
-              <p>Price: ${item.price}</p>
-              <p><strong>Delivery:</strong> Free delivery by [Date]</p>
-              <div>
-                <select class="quantity-select" onchange="updateQuantity(${item.id}, this.value)">
-                  ${[1,2,3,4,5].map(num => `<option value="${num}" ${num === item.quantity ? 'selected' : ''}>${num}</option>`).join('')}
-                </select>
-                <span class="item-actions">
-                  <a href="#" onclick="removeFromCart(${item.id}); return false;">Remove item</a> | 
-                  <a href="#" onclick="addToWishlist(${item.id}); return false;">Add to wishlist</a>
-                </span>
-              </div>
-            </div>
-          </div>
-        `;
-      });
-      
+  .payment-options {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+
+  .payment-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 45%;
+    transition: all 0.3s;
+  }
+
+  .payment-option:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-color: #4CAF50;
+  }
+
+  .payment-option img {
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  #mpesa-payment-form {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .primary-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .primary-button:hover {
+    background-color: #45a049;
+  }
+
+  .primary-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+
+  .payment-status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .payment-status .error {
+    color: #D32F2F;
+    background-color: #FFEBEE;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .payment-status .success {
+    color: #2E7D32;
+    background-color: #E8F5E9;
+    padding: 10px;
+    border-radius: 4px;
+  }
+</style>
+
+<script>
+  // Helper function to retrieve cart items from localStorage
+  function getCartItems() {
+    return JSON.parse(localStorage.getItem("cartItems")) || [];
+  }
+
+  // Helper function to save cart items to localStorage
+  function saveCartItems(items) {
+    localStorage.setItem("cartItems", JSON.stringify(items));
+  }
+
+  // Helper function to parse price string (e.g., "KES 500,000") into a number
+  function parseCartPrice(priceStr) {
+    return parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
+  }
+
+  // Render the shopping cart dynamically
+  function renderCart() {
+    const cartItems = getCartItems();
+    const container = document.getElementById("cartContainer");
+    
+    // Calculate subtotal
+    let subtotal = 0;
+    cartItems.forEach(item => {
+      let priceVal = parseCartPrice(item.price);
+      subtotal += priceVal * (item.quantity || 1);
+    });
+    
+    // Optionally, define goodwill payment (here we assume zero)
+    let goodwillPayment = 0;
+    
+    let html = `
+      <h1 class="page-title">YOUR SHOPPING BAG</h1>
+      <div class="content-wrapper">
+        <!-- Left side: cart items -->
+        <div class="cart-area">
+    `;
+    
+    // Render each cart item
+    cartItems.forEach(item => {
       html += `
-          </div>
-          <!-- Right side: summary -->
-          <div class="summary-area">
-            <h3>Summary</h3>
-            <div class="summary-option">
-              <i class="fa-solid fa-circle-check"></i> Click & Collect Available
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.brand} ${item.model}">
+          <div class="item-details">
+            <h4>${item.brand} ${item.model}</h4>
+            <p>Price: ${item.price}</p>
+            <p><strong>Delivery:</strong> Free delivery by [Date]</p>
+            <div>
+              <select class="quantity-select" onchange="updateQuantity(${item.id}, this.value)">
+                ${[1,2,3,4,5].map(num => `<option value="${num}" ${num === item.quantity ? 'selected' : ''}>${num}</option>`).join('')}
+              </select>
+              <span class="item-actions">
+                <a href="#" onclick="removeFromCart(${item.id}); return false;">Remove item</a> | 
+                <a href="#" onclick="addToWishlist(${item.id}); return false;">Add to wishlist</a>
+              </span>
             </div>
-            <div class="summary-option">
-              <i class="fa-solid fa-truck"></i> Free Home Delivery
-            </div>
-            <div class="summary-option">
-              <i class="fa-solid fa-clock"></i> Order within 2 hours for next day
-            </div>
-            <div class="summary-option">
-              <i class="fa-solid fa-money-check-dollar"></i> V12 Finance Available
-            </div>
-            <div class="summary-option">
-              <i class="fa-solid fa-rotate-left"></i> <a href="#">Returns Policy</a>
-            </div>
-            <div class="summary-option">
-              <i class="fa-solid fa-tag"></i> <a href="#">Got a promotional code?</a>
-            </div>
-            <div class="price-line">
-              <span>Your Goodwill Payment:</span>
-              <strong>KES ${goodwillPayment.toLocaleString()}</strong>
-            </div>
-            <div class="price-line">
-              <span>Subtotal (incl. taxes):</span>
-              <strong>KES ${subtotal.toLocaleString()}</strong>
-            </div>
-            <a href="#" class="checkout-btn">
-              <i class="fa-solid fa-lock"></i> Checkout Securely
-            </a>
-            <div class="payment-icons">
-              <i class="fa-brands fa-cc-visa"></i>
-              <i class="fa-brands fa-cc-mastercard"></i>
-              <i class="fa-brands fa-cc-amex"></i>
-              <i class="fa-brands fa-cc-discover"></i>
-            </div>
-            <a href="#" class="paypal-btn">
-              <i class="fa-brands fa-paypal"></i> PayPal Checkout
-            </a>
-            <a href="#" class="gpay-btn">
-              <i class="fa-brands fa-google-pay"></i> Pay with G Pay
-            </a>
-            <p class="payment-text">All transactions are secure and encrypted for your peace of mind.</p>
           </div>
         </div>
       `;
-      
-      container.innerHTML = html;
-    }
+    });
+    
+    html += `
+        </div>
+        <!-- Right side: summary -->
+        <div class="summary-area">
+          <h3>Summary</h3>
+          <div class="summary-option">
+            <i class="fa-solid fa-circle-check"></i> Click & Collect Available
+          </div>
+          <div class="summary-option">
+            <i class="fa-solid fa-truck"></i> Free Home Delivery
+          </div>
+          <div class="summary-option">
+            <i class="fa-solid fa-clock"></i> Order within 2 hours for next day
+          </div>
+          <div class="summary-option">
+            <i class="fa-solid fa-money-check-dollar"></i> V12 Finance Available
+          </div>
+          <div class="summary-option">
+            <i class="fa-solid fa-rotate-left"></i> <a href="#">Returns Policy</a>
+          </div>
+          <div class="summary-option">
+            <i class="fa-solid fa-tag"></i> <a href="#">Got a promotional code?</a>
+          </div>
+          <div class="price-line">
+            <span>Your Goodwill Payment:</span>
+            <strong>KES ${goodwillPayment.toLocaleString()}</strong>
+          </div>
+          <div class="price-line">
+            <span>Subtotal (incl. taxes):</span>
+            <strong>KES ${subtotal.toLocaleString()}</strong>
+          </div>
+          <a href="#" class="checkout-btn" onclick="showPaymentModal(); return false;">
+            <i class="fa-solid fa-lock"></i> Checkout Securely
+          </a>
+         <div class="payment-icons">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/320px-M-PESA_LOGO-01.svg.png" 
+         alt="M-Pesa" 
+         style="width: 50px; height: auto; margin-left: 5px;">
+    <i class="fa-brands fa-cc-visa"></i>
+    <i class="fa-brands fa-cc-mastercard"></i>
+    <i class="fa-brands fa-cc-amex"></i>
+    <i class="fa-brands fa-cc-discover"></i>
+    
+</div>
 
-    // Remove an item from the cart
-    function removeFromCart(productId) {
-      let items = getCartItems();
-      items = items.filter(item => item.id !== productId);
+
+          
+          <p class="payment-text">All transactions are secure and encrypted for your peace of mind.</p>
+        </div>
+      </div>
+    `;
+    
+    container.innerHTML = html;
+  }
+
+  // Remove an item from the cart
+  function removeFromCart(productId) {
+    let items = getCartItems();
+    items = items.filter(item => item.id !== productId);
+    saveCartItems(items);
+    renderCart();
+  }
+
+  // Update quantity for a cart item
+  function updateQuantity(productId, newQuantity) {
+    let items = getCartItems();
+    const index = items.findIndex(item => item.id === productId);
+    if (index !== -1) {
+      items[index].quantity = parseInt(newQuantity, 10);
       saveCartItems(items);
       renderCart();
     }
+  }
 
-    // Update quantity for a cart item
-    function updateQuantity(productId, newQuantity) {
-      let items = getCartItems();
-      const index = items.findIndex(item => item.id === productId);
-      if (index !== -1) {
-        items[index].quantity = parseInt(newQuantity, 10);
-        saveCartItems(items);
-        renderCart();
+  // Dummy function for adding an item to wishlist from cart
+  function addToWishlist(productId) {
+    alert("Product " + productId + " added to wishlist!");
+    // You can implement this similar to toggleWishlist() if desired.
+  }
+
+  // Function to show payment modal
+  function showPaymentModal() {
+    const cartItems = getCartItems();
+    if (cartItems.length === 0) {
+      alert('Your cart is empty');
+      return;
+    }
+    
+    // Calculate subtotal
+    let subtotal = 0;
+    cartItems.forEach(item => {
+      let priceVal = parseCartPrice(item.price);
+      subtotal += priceVal * (item.quantity || 1);
+    });
+    
+    // Update amount in M-Pesa form
+    document.getElementById('mpesa-amount-display').textContent = `Total Amount: KES ${subtotal.toLocaleString()}`;
+    
+    // Show modal
+    document.getElementById('payment-modal').style.display = 'block';
+    
+    // Setup modal event handlers
+    setupModalHandlers(subtotal);
+  }
+  
+  // Setup modal event handlers
+  function setupModalHandlers(subtotal) {
+    const modal = document.getElementById('payment-modal');
+    const closeModal = document.querySelector('.close-modal');
+    const mpesaOption = document.getElementById('mpesa-option');
+    const cardOption = document.getElementById('card-option');
+    const mpesaForm = document.getElementById('mpesa-payment-form');
+    const payButton = document.getElementById('pay-button');
+    const phoneInput = document.getElementById('phone-number');
+    const paymentStatus = document.getElementById('payment-status');
+    
+    // Update pay button text
+    payButton.textContent = `Pay KES ${subtotal.toLocaleString()}`;
+    
+    // Close modal when X is clicked
+    closeModal.onclick = function() {
+      modal.style.display = 'none';
+      // Reset form
+      mpesaForm.style.display = 'none';
+      paymentStatus.innerHTML = '';
+    };
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+        // Reset form
+        mpesaForm.style.display = 'none';
+        paymentStatus.innerHTML = '';
       }
-    }
+    };
+    
+    // Show M-Pesa form when M-Pesa option is clicked
+    mpesaOption.onclick = function() {
+      mpesaForm.style.display = 'block';
+    };
+    
+    // Handle card option click
+    cardOption.onclick = function() {
+      alert('Card payment option is not implemented yet');
+    };
+    
+    // Handle M-Pesa payment
+    payButton.onclick = function() {
+      const phoneNumber = phoneInput.value.trim();
+      
+      // Validate phone number
+      if (!phoneNumber) {
+        paymentStatus.innerHTML = '<p class="error">Please enter a phone number</p>';
+        return;
+      }
+      
+      if (!/^(0|254|\+254)[7|1][0-9]{8}$/.test(phoneNumber)) {
+        paymentStatus.innerHTML = '<p class="error">Please enter a valid Kenyan phone number</p>';
+        return;
+      }
+      
+      // Show loading state
+      payButton.disabled = true;
+      payButton.textContent = 'Processing...';
+      paymentStatus.innerHTML = '<p>Initiating payment request...</p>';
+      
+      // Make API call to initiate STK push
+      fetch('/api/mpesa/stk-push', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          phoneNumber: phoneNumber,
+          amount: subtotal
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.ResponseCode === '0') {
+          // STK push successful, show instructions
+          paymentStatus.innerHTML = `
+            <p class="success">Payment request sent to your phone.</p>
+            <p>Please check your phone and enter M-Pesa PIN to complete payment.</p>
+            <p>Checkout ID: ${data.CheckoutRequestID}</p>
+          `;
+          
+          // Store checkout request ID for later verification
+          localStorage.setItem('mpesaCheckoutRequestID', data.CheckoutRequestID);
+          
+          // Poll for payment status
+          setTimeout(checkPaymentStatus, 10000, data.CheckoutRequestID);
+        } else {
+          // STK push failed
+          paymentStatus.innerHTML = `
+            <p class="error">Failed to initiate payment: ${data.ResponseDescription || 'Unknown error'}</p>
+          `;
+          payButton.disabled = false;
+          payButton.textContent = `Pay KES ${subtotal.toLocaleString()}`;
+        }
+      })
+      .catch(error => {
+        console.error('Payment error:', error);
+        paymentStatus.innerHTML = `
+          <p class="error">Payment request failed. Please try again.</p>
+        `;
+        payButton.disabled = false;
+        payButton.textContent = `Pay KES ${subtotal.toLocaleString()}`;
+      });
+    };
+  }
 
-    // Dummy function for adding an item to wishlist from cart
-    function addToWishlist(productId) {
-      alert("Product " + productId + " added to wishlist!");
-      // You can implement this similar to toggleWishlist() if desired.
+  // Check payment status
+  function checkPaymentStatus(checkoutRequestID) {
+    const paymentStatus = document.getElementById('payment-status');
+    
+    if (paymentStatus) {
+      paymentStatus.innerHTML += `<p>Checking payment status...</p>`;
+      
+      fetch('/api/mpesa/check-status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ checkoutRequestID })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          paymentStatus.innerHTML = `
+            <p class="success">Payment completed successfully!</p>
+            <p>Receipt Number: ${data.receiptNumber}</p>
+            <p>We'll process your order right away.</p>
+          `;
+          // Clear cart after successful payment
+          localStorage.removeItem('cartItems');
+          // Redirect to success page after a delay
+          setTimeout(() => {
+            window.location.href = '/order-confirmation';
+          }, 3000);
+        } else {
+          paymentStatus.innerHTML += `
+            <p>Payment not yet completed. Please complete the payment on your phone.</p>
+          `;
+          // Check again after some time
+          setTimeout(checkPaymentStatus, 10000, checkoutRequestID);
+        }
+      })
+      .catch(error => {
+        console.error('Status check error:', error);
+        paymentStatus.innerHTML += `
+          <p class="error">Failed to check payment status. Please contact support if payment was made.</p>
+        `;
+      });
     }
+  }
 
-    // Render cart on page load
-    document.addEventListener("DOMContentLoaded", renderCart);
-  </script>
+  // Render cart on page load
+  document.addEventListener("DOMContentLoaded", renderCart);
+</script>
 </body>
 </html>
