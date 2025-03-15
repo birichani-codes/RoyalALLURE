@@ -7,7 +7,6 @@ const router = express.Router();
 const CONSUMER_KEY = 'vvhKAaFpdOK2K8o3PsdaJyTTxYTHKScObMxvPqkjXlBqEAL8';
 const CONSUMER_SECRET = 'APU2PXaweU9pEhQ5qN8dVzGkNqE67lgVArbDGMBI0ezmeqhAhjtp8l5XZiQGEnrV';
 const BUSINESS_SHORT_CODE = '174379'; // This is usually your Paybill or Till number
-const PASSKEY = 'your-passkey'; // Provided by Safaricom
 const BASE_URL = 'https://sandbox.safaricom.co.ke'; // Use production URL for live environment
 
 // Generate OAuth token
@@ -26,10 +25,104 @@ async function generateToken() {
   }
 }
 
-// Initiate STK Push (Lipa Na M-Pesa Online)
-router.post('/stk-push', async (req, res) => {
+// Register C2B URLs
+router.post('/register-urls', async (req, res) => {
   try {
-    const { phoneNumber, amount } = req.body;
+    const token = await generateToken();
+    
+    const response = await axios.post(
+      `${BASE_URL}/mpesa/c2b/v1/registerurl`,
+      {
+        ShortCode: BUSINESS_SHORT_CODE,
+        ResponseType: 'Completed', // Can be 'Cancelled' or 'Completed'
+        ConfirmationURL: 'https://your-domain.com/api/mpesa/confirmation',
+        ValidationURL: 'https://your-domain.com/api/mpesa/validation'
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error('Error registering URLs:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Failed to register URLs' });
+  }
+});
+
+// C2B Validation URL endpoint
+router.post('/validation', (req, res) => {
+  console.log('Validation request received:', JSON.stringify(req.body));
+  
+  // You can perform validation logic here, e.g., check if the account number exists
+  // If everything is valid, return a success response
+  
+  res.status(200).json({
+    ResultCode: 0,
+    ResultDesc: 'Accepted'
+  });
+  
+  // If validation fails, you would return:
+  // res.status(200).json({
+  //   ResultCode: 1,
+  //   ResultDesc: 'Rejected'
+  // });
+});
+
+// C2B Confirmation URL endpoint
+router.post('/confirmation', (req, res) => {
+  const payment = req.body;
+  console.log('Payment confirmation received:', JSON.stringify(payment));
+  
+  // Process the payment data
+  // Typical C2B data structure:
+  // {
+  //   TransactionType: 'Pay Bill',
+  //   TransID: 'C2BXXXXXXXXX',
+  //   TransTime: '20200412195247',
+  //   TransAmount: '1000',
+  //   BusinessShortCode: '174379',
+  //   BillRefNumber: 'account_reference',
+  //   InvoiceNumber: '',
+  //   OrgAccountBalance: '',
+  //   ThirdPartyTransID: '',
+  //   MSISDN: '254712345678',
+  //   FirstName: 'John',
+  //   MiddleName: '',
+  //   LastName: 'Doe'
+  // }
+  
+  try {
+    // Extract important details
+    const transactionId = payment.TransID;
+    const amount = payment.TransAmount;
+    const accountReference = payment.BillRefNumber;
+    const phoneNumber = payment.MSISDN;
+    const customerName = `${payment.FirstName} ${payment.MiddleName} ${payment.LastName}`.trim();
+    
+    // Here you would typically:
+    // 1. Update your database with payment information
+    // 2. Fulfill the customer's order or service
+    // 3. Send confirmation to user if needed
+    
+    console.log(`Payment of KES ${amount} received from ${customerName} (${phoneNumber}). Reference: ${accountReference}, TransactionID: ${transactionId}`);
+    
+    // Always acknowledge receipt of the confirmation
+    res.status(200).json({ ResultCode: 0, ResultDesc: 'Confirmation received successfully' });
+  } catch (error) {
+    console.error('Error processing confirmation:', error);
+    // Still return success to M-Pesa to acknowledge receipt
+    res.status(200).json({ ResultCode: 0, ResultDesc: 'Confirmation received' });
+  }
+});
+
+// Simulate a C2B payment (for testing in sandbox)
+router.post('/simulate-c2b', async (req, res) => {
+  try {
+    const { phoneNumber, amount, accountReference } = req.body;
     
     // Validate input
     if (!phoneNumber || !amount) {
@@ -42,30 +135,18 @@ router.post('/stk-push', async (req, res) => {
       formattedPhone = '254' + phoneNumber.substring(1);
     }
     
-    // Generate timestamp
-    const timestamp = new Date().toISOString().replace(/[-T:.Z]/g, '').substring(0, 14);
-    
-    // Generate password
-    const password = Buffer.from(`${BUSINESS_SHORT_CODE}${PASSKEY}${timestamp}`).toString('base64');
-    
     // Get access token
     const token = await generateToken();
     
-    // Prepare STK push request
-    const stkPushResponse = await axios.post(
-      `${BASE_URL}/mpesa/stkpush/v1/processrequest`,
+    // Simulate C2B transaction (only works in sandbox environment)
+    const response = await axios.post(
+      `${BASE_URL}/mpesa/c2b/v1/simulate`,
       {
-        BusinessShortCode: BUSINESS_SHORT_CODE,
-        Password: password,
-        Timestamp: timestamp,
-        TransactionType: 'CustomerPayBillOnline',
+        ShortCode: BUSINESS_SHORT_CODE,
+        CommandID: 'CustomerPayBillOnline',
         Amount: amount,
-        PartyA: formattedPhone,
-        PartyB: BUSINESS_SHORT_CODE,
-        PhoneNumber: formattedPhone,
-        CallBackURL: 'https://your-domain.com/api/mpesa/callback',
-        AccountReference: 'Shopping Cart Payment',
-        TransactionDesc: 'Payment for products purchased'
+        Msisdn: formattedPhone,
+        BillRefNumber: accountReference || 'TEST'
       },
       {
         headers: {
@@ -75,44 +156,14 @@ router.post('/stk-push', async (req, res) => {
       }
     );
     
-    // Return STK push response to client
-    res.status(200).json(stkPushResponse.data);
+    res.status(200).json(response.data);
   } catch (error) {
-    console.error('STK push error:', error.response?.data || error.message);
-    res.status(500).json({ error: 'Failed to process payment request' });
+    console.error('C2B simulation error:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Failed to simulate C2B transaction' });
   }
 });
 
-// Callback URL for M-Pesa responses
-router.post('/callback', (req, res) => {
-  const response = req.body;
-  
-  // Log the callback response
-  console.log('M-Pesa Callback Response:', JSON.stringify(response));
-  
-  // Process the callback response
-  if (response.Body.stkCallback.ResultCode === 0) {
-    // Payment successful
-    const amount = response.Body.stkCallback.CallbackMetadata.Item.find(item => item.Name === 'Amount').Value;
-    const mpesaReceiptNumber = response.Body.stkCallback.CallbackMetadata.Item.find(item => item.Name === 'MpesaReceiptNumber').Value;
-    const phoneNumber = response.Body.stkCallback.CallbackMetadata.Item.find(item => item.Name === 'PhoneNumber').Value;
-    
-    // Here you would typically:
-    // 1. Update your database with payment status
-    // 2. Trigger order processing
-    // 3. Send confirmation to user
-    
-    console.log(`Payment of KES ${amount} received from ${phoneNumber}. Receipt: ${mpesaReceiptNumber}`);
-  } else {
-    // Payment failed
-    console.log(`Payment failed with code ${response.Body.stkCallback.ResultCode}: ${response.Body.stkCallback.ResultDesc}`);
-  }
-  
-  // Acknowledge receipt of callback
-  res.status(200).json({ success: true });
-});
-
-// Check transaction status
+// Transaction status query (unchanged from original)
 router.post('/transaction-status', async (req, res) => {
   try {
     const { transactionId } = req.body;

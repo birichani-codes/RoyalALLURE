@@ -684,25 +684,73 @@
         </div>
         <!-- Right side: summary -->
         <div class="summary-area">
-          <h3>Summary</h3>
-          <div class="summary-option">
-            <i class="fa-solid fa-circle-check"></i> Click & Collect Available
-          </div>
-          <div class="summary-option">
-            <i class="fa-solid fa-truck"></i> Free Home Delivery
-          </div>
-          <div class="summary-option">
-            <i class="fa-solid fa-clock"></i> Order within 2 hours for next day
-          </div>
-          <div class="summary-option">
-            <i class="fa-solid fa-money-check-dollar"></i> V12 Finance Available
-          </div>
-          <div class="summary-option">
-            <i class="fa-solid fa-rotate-left"></i> <a href="#">Returns Policy</a>
-          </div>
-          <div class="summary-option">
-            <i class="fa-solid fa-tag"></i> <a href="#">Got a promotional code?</a>
-          </div>
+     <h3 style="font-size: 1.5em; font-weight: bold; color: #333; margin-bottom: 10px;">Order Summary</h3>
+
+<div class="summary-option" style="margin-bottom: 8px; font-size: 1em; color: #555;">
+  <i class="fa-solid fa-circle-check" style="color: #4caf50; margin-right: 5px;"></i> Click & Collect Available
+</div>
+
+<div class="summary-option" style="margin-bottom: 8px; font-size: 1em; color: #555;">
+  <i class="fa-solid fa-truck" style="color: #2196f3; margin-right: 5px;"></i> Free Home Delivery
+</div>
+
+<!-- Billing Details Section -->
+<div class="summary-option" style="margin-bottom: 8px; font-size: 1em; color: #555;">
+  <button 
+    style="background-color: #ffd700; color: #333; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;"
+    onclick="document.getElementById('billing-form').style.display = (document.getElementById('billing-form').style.display === 'block' ? 'none' : 'block')"
+  >
+    Enter Billing Details
+  </button>
+
+  <form id="billing-form" style="display: none; margin-top: 10px;">
+    <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+      <input type="text" placeholder="First Name" required style="flex: 1; padding: 8px; border: 1px solid #ddd;">
+      <input type="text" placeholder="Last Name" required style="flex: 1; padding: 8px; border: 1px solid #ddd;">
+    </div>
+    <div style="margin-bottom: 8px;">
+      <select id="country" required style="width: 100%; padding: 8px; border: 1px solid #ddd;">
+        <option value="">Select Country/Region</option>
+        <option value="USA">United States</option>
+        <option value="UK">United Kingdom</option>
+        <option value="CA">Canada</option>
+      </select>
+    </div>
+    <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+      <input type="text" placeholder="Street Address" required style="flex: 1; padding: 8px; border: 1px solid #ddd;">
+      <input type="text" placeholder="Town/City" required style="flex: 1; padding: 8px; border: 1px solid #ddd;">
+    </div>
+    <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+      <input type="text" placeholder="County/State" required style="flex: 1; padding: 8px; border: 1px solid #ddd;">
+      <input type="text" placeholder="Zip Code" required style="flex: 1; padding: 8px; border: 1px solid #ddd;">
+    </div>
+    <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+      <input type="tel" placeholder="Phone Number" required style="flex: 1; padding: 8px; border: 1px solid #ddd;">
+      <input type="email" placeholder="Email Address" required style="flex: 1; padding: 8px; border: 1px solid #ddd;">
+    </div>
+  </form>
+</div>
+
+<!-- Action Buttons Section -->
+<div style="display: flex; gap: 10px; margin-top: 10px;">
+  <!-- Email Order Summary Button -->
+  <button 
+    style="background-color: #2196f3; color: #fff; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;"
+    onclick="window.location.href='mailto:?subject=Your%20Order%20Summary&body=Here%20is%20your%20order%20summary%3A'"
+  >
+    Email Order Summary
+  </button>
+
+  <!-- Share via WhatsApp Button -->
+  <button 
+    style="background-color: #25d366; color: #fff; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;"
+    onclick="window.open('https://wa.me/?text=Check%20out%20my%20order%20summary!', '_blank')"
+  >
+    Share via WhatsApp
+  </button>
+</div>
+
+
           <div class="price-line">
             <span>Your Goodwill Payment:</span>
             <strong>KES ${goodwillPayment.toLocaleString()}</strong>
