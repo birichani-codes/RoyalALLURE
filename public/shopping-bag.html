@@ -691,15 +691,26 @@
 </div>
 
 <div class="summary-option" style="margin-bottom: 8px; font-size: 1em; color: #555;">
-  <i class="fa-solid fa-truck" style="color: #2196f3; margin-right: 5px;"></i> Free Home Delivery
+  <i class="fa-solid fa-truck" style="color: #2196f3; margin-right: 5px;"></i> Free Home Delivery (Estimated delivery: 3-4 working days)
+</div>
+
+<!-- Promo Code Section -->
+<div class="summary-option" style="margin-bottom: 8px; font-size: 1em; color: #555;">
+  <input type="text" placeholder="Enter promo code" style="padding: 8px; border: 1px solid #ddd; width: calc(70% - 10px); margin-right: 5px;">
+  <button style="background-color: #ffd700; color: #333; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s;"
+    onmouseover="this.style.backgroundColor='#e5c100'; this.style.transform='scale(1.05)';"
+    onmouseout="this.style.backgroundColor='#ffd700'; this.style.transform='scale(1)';">
+    Apply
+  </button>
 </div>
 
 <!-- Billing Details Section -->
 <div class="summary-option" style="margin-bottom: 8px; font-size: 1em; color: #555;">
   <button 
-    style="background-color: #ffd700; color: #333; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;"
-    onclick="document.getElementById('billing-form').style.display = (document.getElementById('billing-form').style.display === 'block' ? 'none' : 'block')"
-  >
+    style="background-color: #ffd700; color: #333; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s;"
+    onmouseover="this.style.backgroundColor='#e5c100'; this.style.transform='scale(1.05)';"
+    onmouseout="this.style.backgroundColor='#ffd700'; this.style.transform='scale(1)';"
+    onclick="document.getElementById('billing-form').style.display = (document.getElementById('billing-form').style.display === 'block' ? 'none' : 'block')">
     Enter Billing Details
   </button>
 
@@ -731,23 +742,22 @@
   </form>
 </div>
 
-<!-- Action Buttons Section -->
-<div style="display: flex; gap: 10px; margin-top: 10px;">
-  <!-- Email Order Summary Button -->
-  <button 
-    style="background-color: #2196f3; color: #fff; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;"
-    onclick="window.location.href='mailto:?subject=Your%20Order%20Summary&body=Here%20is%20your%20order%20summary%3A'"
-  >
-    Email Order Summary
-  </button>
+<!-- Buttons Section -->
+<button style="background-color: #4caf50; color: #fff; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; margin-right: 5px;"
+  onmouseover="this.style.backgroundColor='#43a047'; this.style.transform='scale(1.05)';"
+  onmouseout="this.style.backgroundColor='#4caf50'; this.style.transform='scale(1)';">
+  Email Order Summary
+</button>
 
-  <!-- Share via WhatsApp Button -->
-  <button 
-    style="background-color: #25d366; color: #fff; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;"
-    onclick="window.open('https://wa.me/?text=Check%20out%20my%20order%20summary!', '_blank')"
-  >
-    Share via WhatsApp
-  </button>
+<button style="background-color: #25d366; color: #fff; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s;"
+  onmouseover="this.style.backgroundColor='#1ebc57'; this.style.transform='scale(1.05)';"
+  onmouseout="this.style.backgroundColor='#25d366'; this.style.transform='scale(1)';">
+  Share via WhatsApp
+</button>
+
+<!-- Customer Support Link -->
+<div style="margin-top: 10px; font-size: 0.9em; color: #555;">
+  Need help? <a href="#" style="color: #2196f3; text-decoration: none;">Contact Customer Support</a>
 </div>
 
 
